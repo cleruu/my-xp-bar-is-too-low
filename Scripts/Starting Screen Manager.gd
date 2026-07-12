@@ -7,3 +7,6 @@ func _ready() -> void:
 
 func goToStartingCutscene() -> void:
 	get_tree().change_scene_to_file("res://Scenes/Starting Cutscene.tscn")
+
+func goToArcade() -> void:
+	get_tree().change_scene_to_file("res://Scenes/Arcade Screen.tscn")
