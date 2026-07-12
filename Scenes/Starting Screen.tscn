@@ -55,7 +55,7 @@ offset_right = 365.0
 offset_bottom = 736.0
 scale = Vector2(1.8000025, 1.8000025)
 theme_override_colors/font_hover_color = Color(0.7372549, 0.9490196, 0.9490196, 1)
-text = "Settings"
+text = "Settings (Under Construction)"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=368379480]
 position = Vector2(962, 540)
@@ -64,3 +64,4 @@ position = Vector2(962, 540)
 script = ExtResource("1_edyhh")
 
 [connection signal="pressed" from="UI/Story Button" to="Starting Screen Manager" method="goToStartingCutscene"]
+[connection signal="pressed" from="UI/Arcade Button" to="Starting Screen Manager" method="goToArcade"]
