@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://b5rk1mqn6gcc3"]
 
-[ext_resource type="Script" uid="uid://df5n35rhayt0d" path="res://Scenes/levelTwo/playerRunner.gd" id="1_ltroy"]
-[ext_resource type="Script" uid="uid://chtdhep4jbtmk" path="res://Scenes/levelTwo/levelTwoController.gd" id="1_t82t3"]
-[ext_resource type="PackedScene" uid="uid://dcr10eef1gxgv" path="res://Scenes/levelTwo/obstacleBox.tscn" id="2_qlx0o"]
+[ext_resource type="Script" uid="uid://chtdhep4jbtmk" path="res://Scenes/LevelTwo/levelTwoController.gd" id="1_vfym8"]
+[ext_resource type="PackedScene" uid="uid://dcr10eef1gxgv" path="res://Scenes/LevelTwo/obstacleBox.tscn" id="2_1vfx7"]
+[ext_resource type="Script" uid="uid://df5n35rhayt0d" path="res://Scenes/LevelTwo/playerRunner.gd" id="3_wqdxf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5y726"]
 size = Vector2(1400, 80)
@@ -11,8 +11,8 @@ size = Vector2(1400, 80)
 size = Vector2(50, 50)
 
 [node name="LevelTwo" type="Node2D" unique_id=1751186645]
-script = ExtResource("1_t82t3")
-obstacleScene = ExtResource("2_qlx0o")
+script = ExtResource("1_vfym8")
+obstacleScene = ExtResource("2_1vfx7")
 
 [node name="Ground" type="StaticBody2D" parent="." unique_id=1205775299]
 position = Vector2(640, 620)
@@ -30,7 +30,7 @@ color = Color(0.19076231, 0.19076234, 0.19076231, 1)
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=6888644]
 position = Vector2(220, 540)
-script = ExtResource("1_ltroy")
+script = ExtResource("3_wqdxf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=314159605]
 shape = SubResource("RectangleShape2D_6efse")
@@ -47,5 +47,5 @@ position = Vector2(640, 360)
 [node name="Obstacles" type="Node2D" parent="." unique_id=1544212232]
 
 [node name="SpawnTimer" type="Timer" parent="." unique_id=1678853670]
-wait_time = 1.2
+wait_time = 1.5
 autostart = true

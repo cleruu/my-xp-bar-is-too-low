@@ -1,12 +1,12 @@
 extends CharacterBody2D
 
 @export var speed: float = 220.0
-@export var jumpForce: float = -420.0
-@export var gravity: float = 1100.0
+@export var jumpForce: float = -520.0
+@export var gravity: float = 1000.0
 @export var crouchSpeedMultiplier: float = 0.45
 
-@export var standSize: Vector2 = Vector2(50, 50)
-@export var crouchSize: Vector2 = Vector2(50, 28)
+@export var standSize: Vector2 = Vector2(192, 264)
+@export var crouchSize: Vector2 = Vector2(192, 156)
 
 @onready var collisionShape: CollisionShape2D = $CollisionShape2D
 @onready var collisionRect: RectangleShape2D = collisionShape.shape as RectangleShape2D
