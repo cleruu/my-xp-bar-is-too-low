@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dcr10eef1gxgv"]
+
+[ext_resource type="Script" uid="uid://cv5ue2yt37fgb" path="res://Scenes/levelTwo/obstacleBox.gd" id="1_b2kmf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5y726"]
+size = Vector2(40, 60)
+
+[node name="ObstacleBox" type="Node2D" unique_id=492900643]
+script = ExtResource("1_b2kmf")
+
+[node name="ObstacleBox" type="StaticBody2D" parent="." unique_id=1935209773]
+script = ExtResource("1_b2kmf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObstacleBox" unique_id=1512046680]
+position = Vector2(0, -30)
+shape = SubResource("RectangleShape2D_5y726")
+
+[node name="ColorRect" type="ColorRect" parent="ObstacleBox" unique_id=1299488190]
+offset_left = -20.0
+offset_top = -60.0
+offset_right = 20.0
+color = Color(0.8549513, 0, 0.22190854, 1)
