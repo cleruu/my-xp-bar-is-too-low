@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dcr10eef1gxgv"]
 
-[ext_resource type="Script" uid="uid://cv5ue2yt37fgb" path="res://Scenes/LevelTwo/obstacleBox.gd" id="1_xvena"]
+[ext_resource type="Script" uid="uid://cv5ue2yt37fgb" path="res://Scripts/LevelTwo/obstacleBox.gd" id="1_xvena"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5y726"]
 size = Vector2(60, 90)

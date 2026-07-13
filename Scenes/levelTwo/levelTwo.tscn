@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://b5rk1mqn6gcc3"]
 
-[ext_resource type="Script" uid="uid://chtdhep4jbtmk" path="res://Scenes/LevelTwo/levelTwoController.gd" id="1_vfym8"]
+[ext_resource type="Script" uid="uid://chtdhep4jbtmk" path="res://Scripts/LevelTwo/levelTwoController.gd" id="1_vfym8"]
 [ext_resource type="PackedScene" uid="uid://dcr10eef1gxgv" path="res://Scenes/LevelTwo/obstacleBox.tscn" id="2_1vfx7"]
-[ext_resource type="Script" uid="uid://df5n35rhayt0d" path="res://Scenes/LevelTwo/playerRunner.gd" id="3_wqdxf"]
+[ext_resource type="Script" uid="uid://df5n35rhayt0d" path="res://Scripts/LevelTwo/playerRunner.gd" id="3_wqdxf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5y726"]
 size = Vector2(1400, 80)
