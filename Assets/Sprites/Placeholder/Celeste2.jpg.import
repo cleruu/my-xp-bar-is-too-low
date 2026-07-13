@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cdfipi5kjc55f"
-path="res://.godot/imported/Placeholder Celeste.jpg-86966a5bd12d77d5ea5b184e3bf1ad74.ctex"
+uid="uid://c21lc1cxx1py1"
+path="res://.godot/imported/Celeste2.jpg-bf900c802cf14f1967545ff5293a93d6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Placeholder Celeste.jpg"
-dest_files=["res://.godot/imported/Placeholder Celeste.jpg-86966a5bd12d77d5ea5b184e3bf1ad74.ctex"]
+source_file="res://Assets/Sprites/Placeholder/Celeste2.jpg"
+dest_files=["res://.godot/imported/Celeste2.jpg-bf900c802cf14f1967545ff5293a93d6.ctex"]
 
 [params]
 

@@ -1,0 +1,241 @@
+[gd_scene format=3 uid="uid://hsvjhd0unsfa"]
+
+[ext_resource type="Script" uid="uid://b5oaeact7gtf" path="res://Scripts/Start/Starting Cutscene Manager.gd" id="1_mdk07"]
+[ext_resource type="PackedScene" uid="uid://cgtqsyk548rcr" path="res://Scenes/UI/Pause Menu.tscn" id="2_765ld"]
+[ext_resource type="Texture2D" uid="uid://doridq2qnnye8" path="res://Assets/Sprites/Placeholder/CelestteTopLeft.png" id="2_vpt4i"]
+[ext_resource type="Texture2D" uid="uid://dbxuwep4lxosu" path="res://Assets/Sprites/Placeholder/Celestte mid.png" id="3_765ld"]
+[ext_resource type="Texture2D" uid="uid://nfuvr031eavf" path="res://Assets/Sprites/Placeholder/Celestte bottom.png" id="4_1kpd1"]
+[ext_resource type="Texture2D" uid="uid://c21lc1cxx1py1" path="res://Assets/Sprites/Placeholder/Celeste2.jpg" id="5_vpt4i"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_8yi08"]
+
+[sub_resource type="Animation" id="Animation_0dydj"]
+length = 3.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Control/SC1 Strip 2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.033333335),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Control/SC1 Strip 3:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.033333335),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/Control/SC1 Strip 1:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/Control/SC2:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer/Control/RichTextLabel:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_i67vu"]
+resource_name = "test"
+length = 8.033334
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Control/SC1 Strip 1:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.56666666, 1.5333333, 4.766667, 5.4666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Control/SC1 Strip 2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.5666667, 2.7333333, 4.766667, 5.4333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/Control/SC1 Strip 3:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2.7666667, 4.133333, 4.766667, 5.4333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0.7831889), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/Control/SC2:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(5.4333334, 6.4666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer/Control/RichTextLabel:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(6.5, 8.033334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Starting Cutscene Manager")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"canGoToL1"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p0s0g"]
+_data = {
+&"RESET": SubResource("Animation_0dydj"),
+&"SC Anim": SubResource("Animation_i67vu")
+}
+
+[node name="StartingCutscene" type="Node2D" unique_id=159108994]
+process_mode = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=204981963]
+visible = false
+position = Vector2(960, 540)
+scale = Vector2(1920, 1080)
+texture = SubResource("PlaceholderTexture2D_8yi08")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=993072113]
+position = Vector2(960, 540)
+
+[node name="Starting Cutscene Manager" type="Node2D" parent="." unique_id=1753106489]
+script = ExtResource("1_mdk07")
+PauseMenu = ExtResource("2_765ld")
+
+[node name="SC Animation Player" type="AnimationPlayer" parent="." unique_id=918761386]
+libraries/ = SubResource("AnimationLibrary_p0s0g")
+autoplay = &"SC Anim"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=12950610]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=294883678]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_right = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SC1 Strip 1" type="TextureRect" parent="CanvasLayer/Control" unique_id=352371048]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 11.0
+offset_right = 1023.5659
+offset_bottom = 628.0
+texture = ExtResource("2_vpt4i")
+
+[node name="SC1 Strip 2" type="TextureRect" parent="CanvasLayer/Control" unique_id=529473667]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 1.0
+offset_top = 7.0
+offset_right = 1917.6666
+offset_bottom = 1157.0
+texture = ExtResource("3_765ld")
+
+[node name="SC1 Strip 3" type="TextureRect" parent="CanvasLayer/Control" unique_id=1187689583]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 13.463257
+offset_top = 496.0
+offset_right = 1922.9999
+offset_bottom = 1080.0
+texture = ExtResource("4_1kpd1")
+
+[node name="SC2" type="TextureRect" parent="CanvasLayer/Control" unique_id=1329220078]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_vpt4i")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control" unique_id=1804046575]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -224.0
+offset_top = 286.0
+offset_right = 223.5
+offset_bottom = 381.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 47
+text = "Press Enter to Start"
