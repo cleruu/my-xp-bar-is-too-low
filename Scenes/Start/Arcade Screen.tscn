@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://52kyw6vddqrf"]
 
-[ext_resource type="Script" uid="uid://ca8eex0exx3lv" path="res://Scripts/Arcade Screen Manager.gd" id="1_j4lnu"]
+[ext_resource type="Script" uid="uid://ca8eex0exx3lv" path="res://Scripts/Start/Arcade Screen Manager.gd" id="1_2ou0m"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_krmdh"]
 
@@ -15,7 +15,7 @@ scale = Vector2(1920.5, 1080.5)
 texture = SubResource("PlaceholderTexture2D_krmdh")
 
 [node name="Arcade Screen Manager" type="Node2D" parent="." unique_id=1603146417]
-script = ExtResource("1_j4lnu")
+script = ExtResource("1_2ou0m")
 
 [node name="Control" type="Control" parent="." unique_id=1319581319]
 layout_mode = 3

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bgnbnu6q4x2kw"]
 
-[ext_resource type="Script" uid="uid://ei2da28cetux" path="res://Scripts/Starting Screen Manager.gd" id="1_edyhh"]
+[ext_resource type="Script" uid="uid://ei2da28cetux" path="res://Scripts/Start/Starting Screen Manager.gd" id="1_fybfx"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_krmdh"]
 
@@ -61,7 +61,7 @@ text = "Settings (Under Construction)"
 position = Vector2(962, 540)
 
 [node name="Starting Screen Manager" type="Node2D" parent="." unique_id=1614071965]
-script = ExtResource("1_edyhh")
+script = ExtResource("1_fybfx")
 
 [connection signal="pressed" from="UI/Story Button" to="Starting Screen Manager" method="goToStartingCutscene"]
 [connection signal="pressed" from="UI/Arcade Button" to="Starting Screen Manager" method="goToArcade"]

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://hsvjhd0unsfa"]
 
-[ext_resource type="Script" uid="uid://b5oaeact7gtf" path="res://Scripts/Starting Cutscene Manager.gd" id="1_yn2ft"]
+[ext_resource type="Script" uid="uid://b5oaeact7gtf" path="res://Scripts/Start/Starting Cutscene Manager.gd" id="1_ifdp3"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_8yi08"]
 
@@ -21,4 +21,4 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Starting Cutscene Manager" type="Node2D" parent="." unique_id=1753106489]
-script = ExtResource("1_yn2ft")
+script = ExtResource("1_ifdp3")
