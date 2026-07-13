@@ -2816,6 +2816,10 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_35ved"]
+radius = 16.8
+height = 57.6
+
 [node name="LevelThree" type="Node2D" unique_id=1916613163]
 
 [node name="TileMap" type="TileMap" parent="." unique_id=1597216190]
@@ -2837,7 +2841,7 @@ scale = Vector2(0.45000002, 0.42657343)
 sprite_frames = SubResource("SpriteFrames_35ved")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.8692085
+frame_progress = 0.73788285
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="CharacterBody2D" unique_id=788654478]
 position = Vector2(6, 4)
@@ -2847,6 +2851,12 @@ shape = SubResource("CapsuleShape2D_6nr7s")
 zoom = Vector2(3.41, 3.41)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=602835533]
-position = Vector2(120, 36)
+position = Vector2(27, -6)
+scale = Vector2(0.41489363, 0.41666666)
 sprite_frames = SubResource("SpriteFrames_6nr7s")
-frame_progress = 0.31035522
+autoplay = "default"
+frame_progress = 0.17902963
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D" unique_id=10382465]
+position = Vector2(-4.820513, 2.4)
+shape = SubResource("CapsuleShape2D_35ved")
