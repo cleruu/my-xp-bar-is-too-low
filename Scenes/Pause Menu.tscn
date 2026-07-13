@@ -1,0 +1,119 @@
+[gd_scene format=3 uid="uid://cgtqsyk548rcr"]
+
+[ext_resource type="Texture2D" uid="uid://cdfipi5kjc55f" path="res://Assets/Sprites/Placeholder Celeste.jpg" id="1_1p8f4"]
+[ext_resource type="FontFile" uid="uid://d3ocxdke0tnxi" path="res://Assets/Fonts/SatukiloRegular-BLgz3.ttf" id="3_1gmqm"]
+[ext_resource type="FontFile" uid="uid://b57t4vqbtlds" path="res://Assets/Fonts/SteelworksVintageDemo-rR98.ttf" id="4_m076e"]
+
+[node name="Pause Menu" type="Control" unique_id=1432655512]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1626469542]
+position = Vector2(962.00006, 541)
+scale = Vector2(1.5966668, 1.4972222)
+texture = ExtResource("1_1p8f4")
+
+[node name="Panel" type="Panel" parent="." unique_id=1713199935]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Pause Text" type="RichTextLabel" parent="." unique_id=1703995572]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -98.0
+offset_top = -303.0
+offset_right = 277.0
+offset_bottom = -160.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("3_1gmqm")
+theme_override_font_sizes/normal_font_size = 100
+text = "Paused"
+
+[node name="Continue" type="Button" parent="." unique_id=274682015]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -84.0
+offset_top = -195.0
+offset_right = 135.0
+offset_bottom = -109.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_hover_color = Color(1, 0.9019608, 0.37254903, 1)
+theme_override_fonts/font = ExtResource("4_m076e")
+theme_override_font_sizes/font_size = 51
+text = "continue"
+flat = true
+
+[node name="Retry" type="Button" parent="." unique_id=1001922372]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -84.0
+offset_top = -109.0
+offset_right = 135.0
+offset_bottom = -23.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_hover_color = Color(1, 0.9019608, 0.37254903, 1)
+theme_override_fonts/font = ExtResource("4_m076e")
+theme_override_font_sizes/font_size = 51
+text = "retry"
+flat = true
+
+[node name="Options" type="Button" parent="." unique_id=317087043]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -84.0
+offset_top = -19.0
+offset_right = 135.0
+offset_bottom = 67.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_hover_color = Color(1, 0.9019608, 0.37254903, 1)
+theme_override_fonts/font = ExtResource("4_m076e")
+theme_override_font_sizes/font_size = 51
+text = "options"
+flat = true
+
+[node name="Save and Quit" type="Button" parent="." unique_id=878244689]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -111.0
+offset_top = 67.0
+offset_right = 160.0
+offset_bottom = 153.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_hover_color = Color(1, 0.9019608, 0.37254903, 1)
+theme_override_fonts/font = ExtResource("4_m076e")
+theme_override_font_sizes/font_size = 51
+text = "save and quit"
+flat = true

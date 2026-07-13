@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://bgnbnu6q4x2kw"]
+
+[ext_resource type="Script" uid="uid://ei2da28cetux" path="res://Scripts/Starting Screen Manager.gd" id="1_edyhh"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_krmdh"]
+
+[node name="StartingScreen" type="Node2D" unique_id=119521370]
+
+[node name="Background" type="Sprite2D" parent="." unique_id=489772162]
+position = Vector2(960, 540)
+scale = Vector2(1920, 1080)
+texture = SubResource("PlaceholderTexture2D_krmdh")
+
+[node name="UI" type="Control" parent="." unique_id=1510869740]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Title Text" type="RichTextLabel" parent="UI" unique_id=723043770]
+layout_mode = 0
+offset_left = 161.0
+offset_top = 205.0
+offset_right = 436.0
+offset_bottom = 245.0
+scale = Vector2(4.4230814, 4.4230814)
+text = "Habol ng Hininga"
+
+[node name="Story Button" type="Button" parent="UI" unique_id=1120805849]
+layout_mode = 0
+offset_left = 239.0
+offset_top = 529.0
+offset_right = 366.0
+offset_bottom = 568.0
+scale = Vector2(1.8000025, 1.8000025)
+theme_override_colors/font_hover_color = Color(0.7372549, 0.9490196, 0.9490196, 1)
+toggle_mode = true
+text = "Story Mode"
+
+[node name="Arcade Button" type="Button" parent="UI" unique_id=454041848]
+layout_mode = 0
+offset_left = 239.0
+offset_top = 616.0
+offset_right = 366.0
+offset_bottom = 655.0
+scale = Vector2(1.8000025, 1.8000025)
+theme_override_colors/font_hover_color = Color(0.7372549, 0.9490196, 0.9490196, 1)
+text = "Arcade Mode"
+
+[node name="Settings Button" type="Button" parent="UI" unique_id=406128106]
+layout_mode = 0
+offset_left = 238.0
+offset_top = 697.0
+offset_right = 365.0
+offset_bottom = 736.0
+scale = Vector2(1.8000025, 1.8000025)
+theme_override_colors/font_hover_color = Color(0.7372549, 0.9490196, 0.9490196, 1)
+text = "Settings (Under Construction)"
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=368379480]
+position = Vector2(962, 540)
+
+[node name="Starting Screen Manager" type="Node2D" parent="." unique_id=1614071965]
+script = ExtResource("1_edyhh")
+
+[connection signal="pressed" from="UI/Story Button" to="Starting Screen Manager" method="goToStartingCutscene"]
+[connection signal="pressed" from="UI/Arcade Button" to="Starting Screen Manager" method="goToArcade"]

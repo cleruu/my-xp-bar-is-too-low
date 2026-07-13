@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://hsvjhd0unsfa"]
+
+[ext_resource type="Script" uid="uid://b5oaeact7gtf" path="res://Scripts/Starting Cutscene Manager.gd" id="1_yn2ft"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_8yi08"]
+
+[node name="StartingCutscene" type="Node2D" unique_id=159108994]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=204981963]
+position = Vector2(960, 540)
+scale = Vector2(1920, 1080)
+texture = SubResource("PlaceholderTexture2D_8yi08")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=993072113]
+position = Vector2(960, 540)
+
+[node name="Control" type="Control" parent="." unique_id=2024644563]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Starting Cutscene Manager" type="Node2D" parent="." unique_id=1753106489]
+script = ExtResource("1_yn2ft")
