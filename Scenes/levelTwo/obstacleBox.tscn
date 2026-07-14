@@ -8,7 +8,9 @@ size = Vector2(60, 90)
 [node name="ObstacleBox" type="StaticBody2D" unique_id=1935209773]
 script = ExtResource("1_xvena")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1512046680]
+[node name="Hitbox" type="Area2D" parent="." unique_id=1150455004]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1512046680]
 position = Vector2(0, -45)
 shape = SubResource("RectangleShape2D_5y726")
 
