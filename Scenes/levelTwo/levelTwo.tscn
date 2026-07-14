@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://b5rk1mqn6gcc3"]
 
 [ext_resource type="Script" uid="uid://chtdhep4jbtmk" path="res://Scripts/LevelTwo/levelTwoController.gd" id="1_vfym8"]
-[ext_resource type="PackedScene" uid="uid://dcr10eef1gxgv" path="res://Scenes/LevelTwo/obstacleBox.tscn" id="2_1vfx7"]
 [ext_resource type="Script" uid="uid://df5n35rhayt0d" path="res://Scripts/LevelTwo/playerRunner.gd" id="3_wqdxf"]
+[ext_resource type="Script" uid="uid://d3lacml8x5vwl" path="res://Scripts/LevelTwo/enemyBox.gd" id="4_1vfx7"]
+[ext_resource type="Script" uid="uid://dsktwms3bq6xd" path="res://Scripts/LevelTwo/scoreLabel.gd" id="4_wqdxf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5y726"]
 size = Vector2(1400, 80)
@@ -10,9 +11,11 @@ size = Vector2(1400, 80)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6efse"]
 size = Vector2(50, 50)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_updvk"]
+size = Vector2(50, 50)
+
 [node name="LevelTwo" type="Node2D" unique_id=1751186645]
 script = ExtResource("1_vfym8")
-obstacleScene = ExtResource("2_1vfx7")
 
 [node name="Ground" type="StaticBody2D" parent="." unique_id=1205775299]
 position = Vector2(640, 620)
@@ -49,3 +52,26 @@ position = Vector2(640, 360)
 [node name="SpawnTimer" type="Timer" parent="." unique_id=1678853670]
 wait_time = 1.5
 autostart = true
+
+[node name="Enemy" type="Area2D" parent="." unique_id=803945751]
+position = Vector2(0, 540)
+script = ExtResource("4_1vfx7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy" unique_id=1969724979]
+shape = SubResource("RectangleShape2D_updvk")
+
+[node name="ColorRect" type="ColorRect" parent="Enemy" unique_id=1790246730]
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+color = Color(0.85468584, 0.00094759825, 0.91072994, 1)
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=1072683532]
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 96.0
+offset_bottom = 73.0
+theme_override_font_sizes/font_size = 48
+text = "50000"
+script = ExtResource("4_wqdxf")

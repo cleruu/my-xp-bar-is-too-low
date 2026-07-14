@@ -12,10 +12,13 @@ extends Node2D
 
 @onready var spawnTimer: Timer = $SpawnTimer
 @onready var obstaclesRoot: Node2D = $Obstacles
+@onready var enemy: Area2D = $Enemy  # Reference to enemy node
+@onready var scoreLabel: Label = $ScoreLabel 
 
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 func _ready() -> void:
+	add_to_group("level_controller")
 	rng.randomize()
 
 	if obstacleScene == null:
@@ -24,6 +27,10 @@ func _ready() -> void:
 	if obstacleScene == null:
 		push_error("obstacleScene is null. Check path or assign in Inspector.")
 		return
+
+	if scoreLabel and scoreLabel.has_signal("game_over"):
+		scoreLabel.game_over.connect(_on_game_over)
+
 
 	spawnTimer.timeout.connect(_on_spawn_timer_timeout)
 	_reset_timer()
@@ -57,3 +64,10 @@ func _reset_timer() -> void:
 	var gapDistance: float = rng.randf_range(minGap, maxGap)
 	spawnTimer.wait_time = gapDistance / maxf(obstacleSpeed, 1.0)
 	spawnTimer.start()
+	
+func deduct_score(amount: int = 5000):
+	if scoreLabel and scoreLabel.has_method("deduct_score"):
+		scoreLabel.deduct_score(amount)
+
+func _on_game_over():
+	get_tree().change_scene_to_file("res://Scenes/LevelTwo/gameOver.tscn")

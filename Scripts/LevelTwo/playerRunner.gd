@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @export var speed: float = 220.0
-@export var jumpForce: float = -520.0
+@export var jumpForce: float = -540.0
 @export var gravity: float = 1000.0
 @export var crouchSpeedMultiplier: float = 0.45
 
@@ -16,6 +16,7 @@ var isCrouching: bool = false
 
 func _ready() -> void:
 	_apply_stand_shape()
+	add_to_group("player")
 
 func _physics_process(delta: float) -> void:
 	# Gravity
