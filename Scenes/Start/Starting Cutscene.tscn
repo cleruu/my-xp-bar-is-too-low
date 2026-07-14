@@ -177,7 +177,6 @@ libraries/ = SubResource("AnimationLibrary_p0s0g")
 autoplay = &"SC Anim"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=12950610]
-visible = false
 
 [node name="Control" type="Control" parent="CanvasLayer" unique_id=294883678]
 layout_mode = 3

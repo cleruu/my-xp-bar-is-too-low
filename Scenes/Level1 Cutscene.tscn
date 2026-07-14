@@ -1,5 +1,0 @@
-[gd_scene format=3 uid="uid://b206r31542cne"]
-
-[ext_resource type="PackedScene" uid="uid://hsvjhd0unsfa" path="res://Scenes/Start/Starting Cutscene.tscn" id="1_33v4k"]
-
-[node name="Level1 Cutscene" unique_id=159108994 instance=ExtResource("1_33v4k")]
