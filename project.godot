@@ -63,6 +63,12 @@ Esc={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_17="Player"
+2d_physics/layer_18="Wall"
+2d_physics/layer_19="Guard"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

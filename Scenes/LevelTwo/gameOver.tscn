@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bw5t76fnyla4t"]
+
+[ext_resource type="Script" uid="uid://lqtfxbcac81k" path="res://Scripts/LevelTwo/gameOver.gd" id="1_lhcrs"]
+
+[node name="GameOver" type="Node2D" unique_id=178194341]
+script = ExtResource("1_lhcrs")
+
+[node name="Title" type="Label" parent="." unique_id=167725230]
+offset_left = 815.0
+offset_top = 455.0
+offset_right = 1227.0
+offset_bottom = 554.0
+theme_override_font_sizes/font_size = 72
+text = "GAME OVER"
+
+[node name="Button" type="Button" parent="." unique_id=222753193]
+offset_left = 915.0
+offset_top = 622.0
+offset_right = 1115.0
+offset_bottom = 672.0
+text = "restart"
+
+[connection signal="pressed" from="Button" to="." method="_on_restart_button_pressed"]
