@@ -1,11 +1,12 @@
 [gd_scene format=3 uid="uid://dgj2xcn0y4xl2"]
 
+[ext_resource type="Script" uid="uid://bnonv73yi52cl" path="res://Scripts/LevelOne/FishingSystem.gd" id="1_gloj8"]
 [ext_resource type="Texture2D" uid="uid://bpwoi2p4mpves" path="res://Assets/Sprites/TempSpritesForLevel1/LeftRightHolder.png" id="1_ur0fe"]
 [ext_resource type="Texture2D" uid="uid://bpm6a0vq7f4a1" path="res://Assets/Sprites/TempSpritesForLevel1/Success.png" id="2_ur0fe"]
 [ext_resource type="Texture2D" uid="uid://dhma0fdp8dvrk" path="res://Assets/Sprites/TempSpritesForLevel1/RodRect.png" id="3_fxngu"]
 [ext_resource type="Script" uid="uid://bq0l0beeg7ac6" path="res://Scripts/LevelOne/InsideRect.gd" id="3_ur0fe"]
 [ext_resource type="Texture2D" uid="uid://dhks7232wn68d" path="res://Assets/Sprites/TempSpritesForLevel1/FishIcon.png" id="4_gloj8"]
-[ext_resource type="Script" uid="uid://cdatcagepu6qi" path="res://Scripts/LevelOne/texture_progress_bar.gd" id="7_3wdek"]
+[ext_resource type="Script" uid="uid://b6g0ay1s2vpmq" path="res://Scripts/LevelOne/fish.gd" id="6_gloj8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yex4w"]
 size = Vector2(795.353, 71.8217)
@@ -13,10 +14,14 @@ size = Vector2(795.353, 71.8217)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wt34f"]
 size = Vector2(352.80896, 79.42636)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u0ya7"]
+size = Vector2(80.644165, 83.39453)
+
 [node name="Node2D" type="Node2D" unique_id=1862412663]
+script = ExtResource("1_gloj8")
 
 [node name="Frame" type="Sprite2D" parent="." unique_id=757150166]
-position = Vector2(961.99994, 1011.5)
+position = Vector2(960, 1011.5)
 scale = Vector2(2.225, 1)
 texture = ExtResource("1_ur0fe")
 
@@ -24,6 +29,7 @@ texture = ExtResource("1_ur0fe")
 position = Vector2(-1.8027296, -6.3372107)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Frame/StaticBody2D" unique_id=457276326]
+visible = false
 position = Vector2(-1.5206909, -3.8023071)
 shape = SubResource("RectangleShape2D_yex4w")
 
@@ -41,6 +47,7 @@ gravity_scale = 0.0
 script = ExtResource("3_ur0fe")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Frame/RigidBody2D" unique_id=474256767]
+visible = false
 position = Vector2(-1.1116638, 0)
 shape = SubResource("RectangleShape2D_wt34f")
 
@@ -49,25 +56,39 @@ position = Vector2(-2.9137888, 1.6899058)
 scale = Vector2(2.5, 0.972)
 texture = ExtResource("3_fxngu")
 
-[node name="Fish" type="Sprite2D" parent="." unique_id=614844088]
-position = Vector2(960, 1002.99994)
+[node name="Fish" type="Sprite2D" parent="Frame" unique_id=614844088]
+position = Vector2(0, -8.500061)
 rotation = -1.5707964
-scale = Vector2(0.7564087, 0.6235428)
+scale = Vector2(0.7564087, 0.28024396)
 texture = ExtResource("4_gloj8")
+script = ExtResource("6_gloj8")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1451018423]
+[node name="Area2D" type="Area2D" parent="Frame/Fish" unique_id=953711947]
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer" unique_id=1420017021]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Frame/Fish/Area2D" unique_id=402526495]
+position = Vector2(-0.66101074, -1.6037598)
+scale = Vector2(0.99999976, 1)
+shape = SubResource("RectangleShape2D_u0ya7")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=1420017021]
+unique_name_in_owner = true
 anchors_preset = -1
-anchor_left = 0.061000004
-anchor_top = 0.201
-anchor_right = 0.061000004
-anchor_bottom = 0.201
-offset_left = -112.12001
-offset_top = -209.08
-offset_right = 697.88
-offset_bottom = -149.08
+anchor_bottom = 0.035
+offset_left = 5.0
+offset_top = 8.0
+offset_right = 815.0
+offset_bottom = 68.0
+grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(2.35, 1)
+step = 0.1
 texture_progress = ExtResource("2_ur0fe")
-script = ExtResource("7_3wdek")
+
+[node name="Timer" type="Timer" parent="." unique_id=1939966748]
+wait_time = 0.2
+autostart = true
+
+[connection signal="body_entered" from="Frame/Fish/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Frame/Fish/Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer" to="Frame/Fish" method="_on_timer_timeout"]
