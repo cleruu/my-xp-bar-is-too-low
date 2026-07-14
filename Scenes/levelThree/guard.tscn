@@ -1,0 +1,127 @@
+[gd_scene format=3 uid="uid://dv0xynaxgib47"]
+
+[ext_resource type="Script" uid="uid://72lj2bc65coj" path="res://Scripts/LevelThree/guard.gd" id="1_4g6nq"]
+[ext_resource type="Texture2D" uid="uid://cbxim3mcisdo2" path="res://Assets/L3 TEMP ASSETS/Tiny Swords (Free Pack)/Units/Red Units/Warrior/Warrior_Idle.png" id="2_a2hu5"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_35ved"]
+radius = 16.8
+height = 57.6
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hsfkr"]
+atlas = ExtResource("2_a2hu5")
+region = Rect2(14, 0, 179, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iean5"]
+atlas = ExtResource("2_a2hu5")
+region = Rect2(205, 0, 179, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3t1mw"]
+atlas = ExtResource("2_a2hu5")
+region = Rect2(396, 0, 179, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xw1qe"]
+atlas = ExtResource("2_a2hu5")
+region = Rect2(587, 0, 179, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_405vd"]
+atlas = ExtResource("2_a2hu5")
+region = Rect2(778, 0, 179, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_igksj"]
+atlas = ExtResource("2_a2hu5")
+region = Rect2(969, 0, 179, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sqe66"]
+atlas = ExtResource("2_a2hu5")
+region = Rect2(1160, 0, 179, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aw2bo"]
+atlas = ExtResource("2_a2hu5")
+region = Rect2(1351, 0, 179, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7bco8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hsfkr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iean5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3t1mw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xw1qe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_405vd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_igksj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sqe66")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aw2bo")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="guard" type="CharacterBody2D" unique_id=1274342205 groups=["guards"]]
+position = Vector2(160, 120)
+scale = Vector2(0.41489363, 0.41666666)
+script = ExtResource("1_4g6nq")
+
+[node name="visionRay" type="RayCast2D" parent="." unique_id=978499428]
+unique_name_in_owner = true
+position = Vector2(0, -19.2)
+scale = Vector2(2.4102564, 2.4)
+target_position = Vector2(31, 2)
+
+[node name="visionRay2" type="RayCast2D" parent="." unique_id=1054374665]
+unique_name_in_owner = true
+position = Vector2(0, -19.2)
+scale = Vector2(2.4102564, 2.4)
+target_position = Vector2(31, 2)
+
+[node name="visionRay3" type="RayCast2D" parent="." unique_id=536165637]
+unique_name_in_owner = true
+position = Vector2(0, -19.2)
+scale = Vector2(2.4102564, 2.4)
+target_position = Vector2(31, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1336571179]
+position = Vector2(-4.820511, 2.3999977)
+shape = SubResource("CapsuleShape2D_35ved")
+one_way_collision = true
+
+[node name="patrolPoints" type="Node2D" parent="." unique_id=565380674]
+unique_name_in_owner = true
+
+[node name="patrolPoint1" type="Marker2D" parent="patrolPoints" unique_id=1979261518]
+unique_name_in_owner = true
+position = Vector2(-291.64102, -168)
+gizmo_extents = 18.8
+
+[node name="patrolPoint2" type="Marker2D" parent="patrolPoints" unique_id=1189123109]
+unique_name_in_owner = true
+position = Vector2(108.46154, 151.20001)
+
+[node name="patrolPoint3" type="Marker2D" parent="patrolPoints" unique_id=619248107]
+unique_name_in_owner = true
+position = Vector2(16.871796, -216)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1314819782]
+position = Vector2(2.4102514, -16.8)
+sprite_frames = SubResource("SpriteFrames_7bco8")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="Label" type="Label" parent="." unique_id=996043841]
+offset_right = 40.0
+offset_bottom = 23.0
+metadata/_edit_use_anchors_ = true
