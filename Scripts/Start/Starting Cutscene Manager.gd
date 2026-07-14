@@ -17,8 +17,6 @@ func _process(delta: float) -> void:
 			print("test")
 			
 	if Input.is_action_just_pressed("Esc"):
-		if GlobalManager.isGamePaused == true:
-			return
 		pauseGame()
 
 func goToLevel1() -> void:
@@ -28,8 +26,6 @@ func canGoToL1() -> void:
 	isAtEnd = true
 
 func pauseGame() -> void:
-	get_tree().paused = true
-	GlobalManager.isGamePaused = true
 	var pause = PauseMenu.instantiate()
 	get_parent().get_child(4).add_child(pause)
 	

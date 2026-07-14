@@ -6,8 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bjkxiiqeo1mx0" path="res://Assets/L3 TEMP ASSETS/Tiny Swords (Free Pack)/Terrain/Tileset/Tilemap_color1.png" id="2_3kt3y"]
 [ext_resource type="Texture2D" uid="uid://c21lc1cxx1py1" path="res://Assets/Sprites/Placeholder/Celeste2.jpg" id="2_frt6c"]
 [ext_resource type="Texture2D" uid="uid://5wqeb8h4sir0" path="res://Assets/L3 TEMP ASSETS/Tiny Swords (Free Pack)/Terrain/Tileset/Water Background color.png" id="3_xu1mw"]
-[ext_resource type="Script" uid="uid://72lj2bc65coj" path="res://Scripts/LevelThree/guard.gd" id="6_c1oxh"]
-[ext_resource type="Texture2D" uid="uid://cbxim3mcisdo2" path="res://Assets/L3 TEMP ASSETS/Tiny Swords (Free Pack)/Units/Red Units/Warrior/Warrior_Idle.png" id="6_xu1mw"]
+[ext_resource type="PackedScene" uid="uid://dv0xynaxgib47" path="res://Scenes/levelThree/guard.tscn" id="7_r4kcd"]
 [ext_resource type="Texture2D" uid="uid://dratdon7oldam" path="res://Assets/L3 TEMP ASSETS/Tiny Swords (Free Pack)/Terrain/Tileset/Water Foam.png" id="8_r4kcd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c1oxh"]
@@ -2755,74 +2754,6 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6nr7s"]
 radius = 9.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_35ved"]
-radius = 16.8
-height = 57.6
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hsfkr"]
-atlas = ExtResource("6_xu1mw")
-region = Rect2(14, 0, 179, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_iean5"]
-atlas = ExtResource("6_xu1mw")
-region = Rect2(205, 0, 179, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3t1mw"]
-atlas = ExtResource("6_xu1mw")
-region = Rect2(396, 0, 179, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xw1qe"]
-atlas = ExtResource("6_xu1mw")
-region = Rect2(587, 0, 179, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_405vd"]
-atlas = ExtResource("6_xu1mw")
-region = Rect2(778, 0, 179, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_igksj"]
-atlas = ExtResource("6_xu1mw")
-region = Rect2(969, 0, 179, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sqe66"]
-atlas = ExtResource("6_xu1mw")
-region = Rect2(1160, 0, 179, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_aw2bo"]
-atlas = ExtResource("6_xu1mw")
-region = Rect2(1351, 0, 179, 192)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_7bco8"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hsfkr")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_iean5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3t1mw")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xw1qe")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_405vd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_igksj")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sqe66")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_aw2bo")
-}],
-"loop": 1,
-"name": &"idle",
-"speed": 5.0
-}]
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w1xl0"]
 texture = ExtResource("3_xu1mw")
 0:0/0 = 0
@@ -3447,48 +3378,8 @@ shape = SubResource("CapsuleShape2D_6nr7s")
 [node name="Camera2D" type="Camera2D" parent="player" unique_id=1970495766]
 zoom = Vector2(3.41, 3.41)
 
-[node name="guard" type="CharacterBody2D" parent="." unique_id=1434594714 groups=["guards"]]
-unique_name_in_owner = true
-position = Vector2(103, 14)
-scale = Vector2(0.41489363, 0.41666666)
-script = ExtResource("6_c1oxh")
-
-[node name="visionRay" type="RayCast2D" parent="guard" unique_id=39054848]
-unique_name_in_owner = true
-position = Vector2(-248.25641, -33.600002)
-scale = Vector2(2.4102564, 2.4)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="guard" unique_id=10382465]
-position = Vector2(-4.820511, 2.3999977)
-shape = SubResource("CapsuleShape2D_35ved")
-one_way_collision = true
-
-[node name="patrolPoints" type="Node2D" parent="guard" unique_id=393552373]
-unique_name_in_owner = true
-
-[node name="patrolPoint1" type="Marker2D" parent="guard/patrolPoints" unique_id=206298143]
-unique_name_in_owner = true
-position = Vector2(-291.64102, -168)
-gizmo_extents = 18.8
-
-[node name="patrolPoint2" type="Marker2D" parent="guard/patrolPoints" unique_id=1513241693]
-unique_name_in_owner = true
-position = Vector2(108.46154, 151.20001)
-
-[node name="patrolPoint3" type="Marker2D" parent="guard/patrolPoints" unique_id=819186905]
-unique_name_in_owner = true
-position = Vector2(16.871796, -216)
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="guard" unique_id=1083667412]
-position = Vector2(2.4102514, -16.8)
-sprite_frames = SubResource("SpriteFrames_7bco8")
-animation = &"idle"
-autoplay = "idle"
-
-[node name="Label" type="Label" parent="guard" unique_id=448241955]
-offset_right = 40.0
-offset_bottom = 23.0
-metadata/_edit_use_anchors_ = true
+[node name="guard" parent="." unique_id=1274342205 instance=ExtResource("7_r4kcd")]
+position = Vector2(2, 10)
 
 [node name="walls" type="TileMap" parent="." unique_id=1481014092]
 unique_name_in_owner = true
