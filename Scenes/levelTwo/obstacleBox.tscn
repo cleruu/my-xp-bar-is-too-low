@@ -1,21 +1,26 @@
 [gd_scene format=3 uid="uid://dcr10eef1gxgv"]
 
 [ext_resource type="Script" uid="uid://cv5ue2yt37fgb" path="res://Scripts/LevelTwo/obstacleBox.gd" id="1_xvena"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5y726"]
-size = Vector2(60, 90)
+[ext_resource type="Texture2D" uid="uid://bjy0sqv2jrraw" path="res://Assets/Sprites/LevelTwo/Obstacles/dog.PNG" id="2_c7n64"]
+[ext_resource type="Texture2D" uid="uid://bq6kk5hdl1xvs" path="res://Assets/Sprites/LevelTwo/Obstacles/trash.PNG" id="3_peh4b"]
+[ext_resource type="Texture2D" uid="uid://clhai7nnxq334" path="res://Assets/Sprites/LevelTwo/Obstacles/manhole.PNG" id="4_j5n51"]
+[ext_resource type="Texture2D" uid="uid://46cgjqhlmbve" path="res://Assets/Sprites/LevelTwo/Obstacles/umbrella.PNG" id="5_peh4b"]
 
 [node name="ObstacleBox" type="StaticBody2D" unique_id=1935209773]
 script = ExtResource("1_xvena")
+ground_textures = Array[Texture2D]([ExtResource("2_c7n64"), ExtResource("4_j5n51"), ExtResource("3_peh4b")])
+ground_target_widths = Array[float]([200.0, 200.0, 200.0])
+ground_target_heights = Array[float]([200.0, 200.0, 200.0])
+ground_y_offsets = Array[float]([50.0, 100.0, 0.0])
+ground_hitbox_widths = Array[float]([50.0, 50.0, 50.0])
+ground_hitbox_heights = Array[float]([50.0, 50.0, 100.0])
+air_texture = ExtResource("5_peh4b")
+air_target_width = 400.0
+air_target_height = 400.0
+air_y_offset = 250.0
+air_hitbox_width = 100.0
+air_hitbox_height = 50.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2041089260]
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=1150455004]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1512046680]
-position = Vector2(0, -45)
-shape = SubResource("RectangleShape2D_5y726")
-
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1299488190]
-offset_left = -30.0
-offset_top = -90.0
-offset_right = 30.0
-color = Color(0.8549513, 0, 0.22190854, 1)

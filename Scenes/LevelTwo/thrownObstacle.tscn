@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://f5g7suwi17sx"]
+
+[ext_resource type="Script" uid="uid://cjyii61huygvw" path="res://Scripts/LevelTwo/thrownObstacle.gd" id="1_ls3jh"]
+[ext_resource type="Texture2D" uid="uid://cg258s0kc2ngc" path="res://Assets/Sprites/LevelTwo/Obstacles/tsinelas.PNG" id="1_t2nk1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5y726"]
+size = Vector2(50, 100)
+
+[node name="ThrownObstacle" type="Area2D" unique_id=956654940]
+script = ExtResource("1_ls3jh")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=112367559]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_t2nk1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=760083838]
+shape = SubResource("RectangleShape2D_5y726")

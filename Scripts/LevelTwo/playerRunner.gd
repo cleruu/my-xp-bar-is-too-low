@@ -10,21 +10,25 @@ extends CharacterBody2D
 
 @onready var collisionShape: CollisionShape2D = $CollisionShape2D
 @onready var collisionRect: RectangleShape2D = collisionShape.shape as RectangleShape2D
-@onready var visualRect: ColorRect = $ColorRect
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 var isCrouching: bool = false
 
 func _ready() -> void:
 	_apply_stand_shape()
 	add_to_group("player")
+	
+	# Start with run animation
+	if animated_sprite:
+		animated_sprite.play("run")
 
 func _physics_process(delta: float) -> void:
 	# Gravity
 	if not is_on_floor():
 		velocity.y += gravity * delta
 
-	# Crouch intent
-	if Input.is_action_pressed("moveDown"):
+	# Crouch intent - ONLY allow on ground
+	if Input.is_action_pressed("moveDown") and is_on_floor():
 		_enter_crouch()
 	else:
 		_try_exit_crouch()
@@ -39,6 +43,42 @@ func _physics_process(delta: float) -> void:
 		velocity.y = jumpForce
 
 	move_and_slide()
+	
+	# Update animation
+	_update_animation()
+
+func _update_animation() -> void:
+	if not animated_sprite:
+		return
+	
+	# In the air - play jump
+	if not is_on_floor():
+		if animated_sprite.animation != "jump":
+			animated_sprite.play("jump")
+			animated_sprite.frame = 0
+		return
+	
+	# On ground - check if crouching
+	if isCrouching:
+		# Play duck animation
+		if animated_sprite.animation != "duck":
+			animated_sprite.play("duck")
+		# Make sure it's playing
+		if not animated_sprite.is_playing():
+			animated_sprite.play()
+		return
+	
+	# On ground - running
+	if animated_sprite.animation != "run":
+		animated_sprite.play("run")
+	
+	# Make sure it's playing
+	if not animated_sprite.is_playing():
+		animated_sprite.play()
+	
+	# Flip sprite based on direction
+	if velocity.x != 0:
+		animated_sprite.flip_h = velocity.x < 0
 
 func _enter_crouch() -> void:
 	if isCrouching:
@@ -77,13 +117,14 @@ func _try_exit_crouch() -> void:
 	# else: blocked above, stay crouched
 
 func _apply_stand_shape() -> void:
-	collisionRect.size = standSize
-	collisionShape.position = Vector2(0, -standSize.y * 0.5)
-	visualRect.size = standSize
-	visualRect.position = Vector2(-standSize.x * 0.5, -standSize.y)
+	collisionRect.size = standSize  # (192, 264)
+	collisionShape.position = Vector2(0, -standSize.y * 0.5)  # (0, -132)
+	
+	# AnimatedSprite stays at stand position (no resize)
+	if animated_sprite:
+		animated_sprite.position = Vector2(0, -standSize.y * 0.5)
 
 func _apply_crouch_shape() -> void:
-	collisionRect.size = crouchSize
-	collisionShape.position = Vector2(0, -crouchSize.y * 0.5)
-	visualRect.size = crouchSize
-	visualRect.position = Vector2(-crouchSize.x * 0.5, -crouchSize.y)
+	# Only resize the hitbox (collision shape)
+	collisionRect.size = crouchSize  # (192, 156)
+	collisionShape.position = Vector2(0, -crouchSize.y * 0.5)  # (0, -78)
