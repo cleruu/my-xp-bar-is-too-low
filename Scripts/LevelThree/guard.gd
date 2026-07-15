@@ -51,6 +51,9 @@ var detection_timer: float = 0.0
 enum State { PATROL, CHASE }
 var current_state: State = State.PATROL
 
+@export var wander_radius: float = 300.0
+@onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
+var spawn_position: Vector2
 
 func _ready() -> void:
 	for point in patrol_points_node.get_children():
@@ -63,6 +66,21 @@ func _ready() -> void:
 	setRayCast(vision_ray)
 	setRayCast(vision_ray2)
 	setRayCast(vision_ray3)
+	
+
+	spawn_position = global_position
+	
+	# We use call_deferred so the game has 1 frame to load the TileMap 
+	# before the guard tries to calculate a path!
+	call_deferred("_pick_new_wander_target")
+
+func _pick_new_wander_target() -> void:
+	var random_angle = randf() * TAU 
+	var random_distance = randf_range(50.0, wander_radius) 
+	var random_target = spawn_position + Vector2(cos(random_angle), sin(random_angle)) * random_distance
+	
+	# Feed the random coordinate to the Navigation Agent
+	nav_agent.target_position = random_target
 
 func setRayCast(rc: RayCast2D) -> void:
 	#rc.collision_mask = 0
@@ -91,27 +109,27 @@ func _physics_process(delta: float) -> void:
 	_update_vision(delta)
 	queue_redraw()
 
-
+		
 func _patrol() -> void:
-	if patrol_points.is_empty():
-		return
-
 	if is_waiting:
 		return
-
-	var target = patrol_points[current_point_index]
-	var to_target = target - global_position
-	if to_target.length() < ARRIVAL_THRESHOLD:
+	
+	if nav_agent.is_navigation_finished():
 		is_waiting = true
 		wait_timer = 0.0
-		# Face the direction the marker was rotated to point
-		var marker = patrol_points_node.get_child(current_point_index)
 		
-		desired_direction = Vector2.RIGHT.rotated(marker.rotation)
-	else:
-		desired_direction = to_target.normalized()
-		velocity = desired_direction * patrol_speed
-		move_and_slide()
+		# Look around randomly while waiting
+		desired_direction = Vector2.RIGHT.rotated(randf() * TAU)
+		
+		# Queue up the next location
+		_pick_new_wander_target()
+		return
+
+	var next_path_position: Vector2 = nav_agent.get_next_path_position()
+	
+	desired_direction = global_position.direction_to(next_path_position)
+	velocity = desired_direction * patrol_speed
+	move_and_slide()
 
 
 func _chase() -> void:
