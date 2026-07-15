@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://c2n5gxuqmfghx"]
+
+[ext_resource type="Script" uid="uid://b60bc6p2khj17" path="res://Scripts/LevelOne/VictoryLevelOne.gd" id="1_uooi1"]
+
+[node name="VictoryLevelOne" type="Node2D" unique_id=1747859155]
+script = ExtResource("1_uooi1")
+goToLevelTwo = "uid://b5rk1mqn6gcc3"
+
+[node name="Label" type="Label" parent="." unique_id=726654628]
+offset_left = 658.0
+offset_top = 418.0
+offset_right = 1320.0
+offset_bottom = 631.0
+theme_override_font_sizes/font_size = 50
+text = "VICTORY
+
+PRESS SPACE TO CONTINUE"
+horizontal_alignment = 1

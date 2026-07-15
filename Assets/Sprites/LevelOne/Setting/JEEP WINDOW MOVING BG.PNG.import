@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhma0fdp8dvrk"
-path="res://.godot/imported/RodRect.png-0df188d1b85175cf53d1e823cace2e45.ctex"
+uid="uid://begk4yr2b18nx"
+path="res://.godot/imported/JEEP WINDOW MOVING BG.PNG-e88967ccdcdf419818ae2d453106d7c7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/TempSpritesForLevel1/RodRect.png"
-dest_files=["res://.godot/imported/RodRect.png-0df188d1b85175cf53d1e823cace2e45.ctex"]
+source_file="res://Assets/Sprites/LevelOne/Setting/JEEP WINDOW MOVING BG.PNG"
+dest_files=["res://.godot/imported/JEEP WINDOW MOVING BG.PNG-e88967ccdcdf419818ae2d453106d7c7.ctex"]
 
 [params]
 

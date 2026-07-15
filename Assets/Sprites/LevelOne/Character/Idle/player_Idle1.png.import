@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bpwoi2p4mpves"
-path="res://.godot/imported/LeftRightHolder.png-807f673a219710b430fc8602ff1a1735.ctex"
+uid="uid://cl5j4emnnb87w"
+path="res://.godot/imported/player_Idle1.png-4962dd458e1139ca116d50052869de6d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/TempSpritesForLevel1/LeftRightHolder.png"
-dest_files=["res://.godot/imported/LeftRightHolder.png-807f673a219710b430fc8602ff1a1735.ctex"]
+source_file="res://Assets/Sprites/LevelOne/Character/Idle/player_Idle1.png"
+dest_files=["res://.godot/imported/player_Idle1.png-4962dd458e1139ca116d50052869de6d.ctex"]
 
 [params]
 
