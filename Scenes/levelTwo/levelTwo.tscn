@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://chtdhep4jbtmk" path="res://Scripts/LevelTwo/levelTwoController.gd" id="1_vfym8"]
 [ext_resource type="Script" uid="uid://cj3wstohjxbna" path="res://Scripts/LevelTwo/background.gd" id="2_36jrh"]
+[ext_resource type="PackedScene" uid="uid://cgtqsyk548rcr" path="res://Scenes/UI/Pause Menu.tscn" id="2_vfc66"]
 [ext_resource type="Script" uid="uid://df5n35rhayt0d" path="res://Scripts/LevelTwo/playerRunner.gd" id="3_wqdxf"]
 [ext_resource type="Script" uid="uid://d3lacml8x5vwl" path="res://Scripts/LevelTwo/enemyBox.gd" id="4_1vfx7"]
 [ext_resource type="Script" uid="uid://dsktwms3bq6xd" path="res://Scripts/LevelTwo/scoreLabel.gd" id="4_wqdxf"]
@@ -93,6 +94,7 @@ size = Vector2(50, 50)
 
 [node name="LevelTwo" type="Node2D" unique_id=1751186645]
 script = ExtResource("1_vfym8")
+PauseMenu = ExtResource("2_vfc66")
 
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=1046154910]
 repeat_size = Vector2(1890, 0)
@@ -178,3 +180,6 @@ offset_right = 177.0
 offset_bottom = 176.0
 theme_override_font_sizes/font_size = 48
 text = "0 / 15"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=248141980]
+unique_name_in_owner = true

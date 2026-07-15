@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://b5oaeact7gtf" path="res://Scripts/Start/Starting Cutscene Manager.gd" id="1_mdk07"]
 [ext_resource type="PackedScene" uid="uid://cgtqsyk548rcr" path="res://Scenes/UI/Pause Menu.tscn" id="2_765ld"]
-[ext_resource type="Texture2D" uid="uid://doridq2qnnye8" path="res://Assets/Sprites/Placeholder/CelestteTopLeft.png" id="2_vpt4i"]
-[ext_resource type="Texture2D" uid="uid://dbxuwep4lxosu" path="res://Assets/Sprites/Placeholder/Celestte mid.png" id="3_765ld"]
-[ext_resource type="Texture2D" uid="uid://nfuvr031eavf" path="res://Assets/Sprites/Placeholder/Celestte bottom.png" id="4_1kpd1"]
+[ext_resource type="Texture2D" uid="uid://ci5djqorhlns" path="res://Assets/Sprites/Start Assets/START CUTSCENE/1-1.PNG" id="3_765ld"]
+[ext_resource type="Texture2D" uid="uid://c0dat1x8grycd" path="res://Assets/Sprites/Start Assets/START CUTSCENE/1-2PNG.png" id="4_1kpd1"]
+[ext_resource type="Texture2D" uid="uid://35mhslavvakd" path="res://Assets/Sprites/Start Assets/START CUTSCENE/1-3.PNG" id="5_0dydj"]
 [ext_resource type="Texture2D" uid="uid://c21lc1cxx1py1" path="res://Assets/Sprites/Placeholder/Celeste2.jpg" id="5_vpt4i"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_8yi08"]
@@ -171,6 +171,7 @@ position = Vector2(960, 540)
 [node name="Starting Cutscene Manager" type="Node2D" parent="." unique_id=1753106489]
 script = ExtResource("1_mdk07")
 PauseMenu = ExtResource("2_765ld")
+level1 = "uid://dgj2xcn0y4xl2"
 
 [node name="SC Animation Player" type="AnimationPlayer" parent="." unique_id=918761386]
 libraries/ = SubResource("AnimationLibrary_p0s0g")
@@ -194,25 +195,26 @@ offset_left = 5.0
 offset_top = 11.0
 offset_right = 1023.5659
 offset_bottom = 628.0
-texture = ExtResource("2_vpt4i")
+texture = ExtResource("3_765ld")
 
 [node name="SC1 Strip 2" type="TextureRect" parent="CanvasLayer/Control" unique_id=529473667]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
-offset_left = 1.0
-offset_top = 7.0
-offset_right = 1917.6666
-offset_bottom = 1157.0
-texture = ExtResource("3_765ld")
+offset_left = 61.0
+offset_top = 15.999998
+offset_right = 1981.0
+offset_bottom = 1143.0834
+scale = Vector2(0.96, 0.96)
+texture = ExtResource("4_1kpd1")
 
 [node name="SC1 Strip 3" type="TextureRect" parent="CanvasLayer/Control" unique_id=1187689583]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
-offset_left = 13.463257
-offset_top = 496.0
-offset_right = 1922.9999
-offset_bottom = 1080.0
-texture = ExtResource("4_1kpd1")
+offset_left = 8.0
+offset_top = 21.0
+offset_right = 1928.0
+offset_bottom = 1101.0
+texture = ExtResource("5_0dydj")
 
 [node name="SC2" type="TextureRect" parent="CanvasLayer/Control" unique_id=1329220078]
 layout_mode = 1

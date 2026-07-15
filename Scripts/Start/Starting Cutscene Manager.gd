@@ -2,6 +2,7 @@ extends Node2D
 
 var isAtEnd := false
 @export var PauseMenu: PackedScene
+@export_file("*.tscn") var level1: String
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -20,7 +21,7 @@ func _process(delta: float) -> void:
 		pauseGame()
 
 func goToLevel1() -> void:
-	get_tree().change_scene_to_file("res://Scenes/levelTwo/levelTwo.tscn")
+	get_tree().change_scene_to_file(level1)
 
 func canGoToL1() -> void:
 	isAtEnd = true

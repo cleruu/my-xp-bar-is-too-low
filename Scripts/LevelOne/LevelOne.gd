@@ -21,6 +21,9 @@ const drainSpeed = 4.0
 ## Scene to load immediately when the theft fails (caught or time up).
 @export_file("*.tscn") var gameOverLevelOnePath: String
 
+# For pausing the game
+@export var PauseMenu: PackedScene
+
 var isOnBar = false
 var witnessIsLooking = false
 var pressedWhileLookingTime = 0.0
@@ -64,7 +67,10 @@ func _onWitnessLookEnded() -> void:
 func _process(delta: float) -> void:
 	if gameOver:
 		return
-
+	
+	if Input.is_action_just_pressed("Esc"):
+		pauseGame()
+	
 	_handleMeter(delta)
 	_handleTimer(delta)
 	_handleCatchCheck(delta)
@@ -156,3 +162,12 @@ func _fail(reason: String) -> void:
 		push_warning("FishingSystem: gameOverLevelOnePath not set, cannot change scene.")
 		return
 	get_tree().change_scene_to_file(gameOverLevelOnePath)
+
+# Helper functions for pausing the game
+func pauseGame() -> void:
+	var pause = PauseMenu.instantiate()
+	pause.retry.connect(resetGame)
+	get_node("%CanvasLayer").add_child(pause)
+
+func resetGame() -> void:
+	get_tree().reload_current_scene()
