@@ -1,0 +1,205 @@
+[gd_scene format=3 uid="uid://dgj2xcn0y4xl2"]
+
+[ext_resource type="Script" uid="uid://bnonv73yi52cl" path="res://Scripts/LevelOne/LevelOne.gd" id="1_g4gpp"]
+[ext_resource type="Texture2D" uid="uid://cl5j4emnnb87w" path="res://Assets/Sprites/LevelOne/Character/Idle/player_Idle1.png" id="2_33qbs"]
+[ext_resource type="Texture2D" uid="uid://co1v7ja613i0m" path="res://Assets/Sprites/LevelOne/Character/Idle/player_Idle2.png" id="3_6jkrq"]
+[ext_resource type="Texture2D" uid="uid://d1ikoirmxegr0" path="res://Assets/Sprites/LevelOne/Character/Idle/player_Idle3.png" id="4_gj6lw"]
+[ext_resource type="Texture2D" uid="uid://cunt2wju4mthv" path="res://Assets/Sprites/LevelOne/Character/PlayerGoingToGrab/player_GoingToGrab1.png" id="5_okwmc"]
+[ext_resource type="Texture2D" uid="uid://yhtfbnae42uj" path="res://Assets/Sprites/LevelOne/Character/PlayerGoingToGrab/player_GoingToGrab2.png" id="6_pudjq"]
+[ext_resource type="Texture2D" uid="uid://bjphjxn8rix7o" path="res://Assets/Sprites/LevelOne/Character/PlayerGoingToGrab/player_GoingToGrab3.png" id="7_g2bpq"]
+[ext_resource type="Texture2D" uid="uid://0fcq7xb7aigm" path="res://Assets/Sprites/LevelOne/Character/PlayerGoingToGrab/player_GoingToGrab4.png" id="8_reegp"]
+[ext_resource type="Texture2D" uid="uid://bby33ky513ytl" path="res://Assets/Sprites/LevelOne/Character/PlayerGrabbing/player_Grabbing1.png" id="9_yeay2"]
+[ext_resource type="Texture2D" uid="uid://c06uvox2oy5kf" path="res://Assets/Sprites/LevelOne/Character/PlayerGrabbing/player_Grabbing2.png" id="10_shlit"]
+[ext_resource type="Texture2D" uid="uid://c4wl2itlhiprp" path="res://Assets/Sprites/LevelOne/Character/PlayerGrabbing/player_Grabbing3.png" id="11_f2ljl"]
+[ext_resource type="Texture2D" uid="uid://qumk2i3134ro" path="res://Assets/Sprites/LevelOne/Character/PlayerGrabbing/player_Grabbing4.png" id="12_rcjjd"]
+[ext_resource type="Texture2D" uid="uid://b6b0tyu6xunb4" path="res://Assets/Sprites/LevelOne/Character/PlayerGrabbing/player_Grabbing5.png" id="13_2p8yc"]
+[ext_resource type="Texture2D" uid="uid://bpwoi2p4mpves" path="res://Assets/Sprites/LevelOne/FishingSystem/LeftRightHolder.png" id="14_ggmnk"]
+[ext_resource type="Script" uid="uid://bq0l0beeg7ac6" path="res://Scripts/LevelOne/InsideRect.gd" id="15_or6yd"]
+[ext_resource type="Texture2D" uid="uid://dhma0fdp8dvrk" path="res://Assets/Sprites/LevelOne/FishingSystem/RodRect.png" id="16_xr3e4"]
+[ext_resource type="Texture2D" uid="uid://dhks7232wn68d" path="res://Assets/Sprites/LevelOne/FishingSystem/FishIcon.png" id="17_h6ri6"]
+[ext_resource type="Script" uid="uid://b6g0ay1s2vpmq" path="res://Scripts/LevelOne/fish.gd" id="18_u1is5"]
+[ext_resource type="Texture2D" uid="uid://bpm6a0vq7f4a1" path="res://Assets/Sprites/LevelOne/FishingSystem/Success.png" id="19_wfebn"]
+[ext_resource type="Script" uid="uid://x304a4b4bvap" path="res://Scripts/LevelOne/WitnessNPC.gd" id="20_xvwyu"]
+[ext_resource type="Texture2D" uid="uid://begk4yr2b18nx" path="res://Assets/Sprites/LevelOne/Setting/JEEP WINDOW MOVING BG.PNG" id="21_mbex6"]
+[ext_resource type="Texture2D" uid="uid://dfgamdhltxb1n" path="res://Assets/Sprites/LevelOne/Setting/JEEP BG.PNG" id="22_wea86"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3irhm"]
+animations = [{
+"frames": [{
+"duration": 0.2,
+"texture": ExtResource("2_33qbs")
+}, {
+"duration": 0.2,
+"texture": ExtResource("3_6jkrq")
+}, {
+"duration": 0.2,
+"texture": ExtResource("4_gj6lw")
+}],
+"loop": 1,
+"name": &"Idle",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 0.2,
+"texture": ExtResource("5_okwmc")
+}, {
+"duration": 0.2,
+"texture": ExtResource("6_pudjq")
+}, {
+"duration": 0.2,
+"texture": ExtResource("7_g2bpq")
+}, {
+"duration": 0.2,
+"texture": ExtResource("8_reegp")
+}],
+"loop": 1,
+"name": &"PlayerGoingToGrab",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 0.2,
+"texture": ExtResource("9_yeay2")
+}, {
+"duration": 0.2,
+"texture": ExtResource("10_shlit")
+}, {
+"duration": 0.2,
+"texture": ExtResource("11_f2ljl")
+}, {
+"duration": 0.2,
+"texture": ExtResource("12_rcjjd")
+}, {
+"duration": 0.2,
+"texture": ExtResource("13_2p8yc")
+}],
+"loop": 1,
+"name": &"PlayerGrabbing",
+"speed": 1.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yex4w"]
+size = Vector2(795.353, 71.8217)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wt34f"]
+size = Vector2(352.80896, 79.42636)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u0ya7"]
+size = Vector2(80.644165, 83.39453)
+
+[node name="Node2D" type="Node2D" unique_id=1862412663]
+script = ExtResource("1_g4gpp")
+timeLimit = 60.0
+witnessPath = NodePath("WitnessNpc")
+victoryLevelOnePath = "uid://c2n5gxuqmfghx"
+gameOverLevelOnePath = "uid://doyugpgddktfd"
+
+[node name="CharacterAnimation" type="AnimatedSprite2D" parent="." unique_id=1458317970]
+position = Vector2(871.25, 423.37503)
+scale = Vector2(0.46825, 0.423375)
+sprite_frames = SubResource("SpriteFrames_3irhm")
+animation = &"PlayerGoingToGrab"
+frame_progress = 0.048814856
+
+[node name="Frame" type="Sprite2D" parent="." unique_id=757150166]
+position = Vector2(960, 1011.5)
+scale = Vector2(2.225, 1)
+texture = ExtResource("14_ggmnk")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Frame" unique_id=695560062]
+position = Vector2(-1.8027296, -6.3372107)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Frame/StaticBody2D" unique_id=457276326]
+visible = false
+position = Vector2(-1.5206909, -3.8023071)
+shape = SubResource("RectangleShape2D_yex4w")
+
+[node name="GrooveJoint2D" type="GrooveJoint2D" parent="Frame" unique_id=1326085649]
+position = Vector2(-325, -6)
+rotation = -1.5707964
+node_a = NodePath("../StaticBody2D")
+node_b = NodePath("../RigidBody2D")
+length = 650.0
+initial_offset = 325.0
+
+[node name="RigidBody2D" type="RigidBody2D" parent="Frame" unique_id=413653336]
+position = Vector2(1.3364172, -7.1821575)
+gravity_scale = 0.0
+script = ExtResource("15_or6yd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Frame/RigidBody2D" unique_id=474256767]
+visible = false
+position = Vector2(-1.1116638, 0)
+shape = SubResource("RectangleShape2D_wt34f")
+
+[node name="Sprite2D" type="Sprite2D" parent="Frame/RigidBody2D" unique_id=1201554835]
+position = Vector2(-2.9137888, 1.6899058)
+scale = Vector2(2.5, 0.972)
+texture = ExtResource("16_xr3e4")
+
+[node name="Fish" type="Sprite2D" parent="Frame" unique_id=614844088]
+position = Vector2(0, -8.500061)
+rotation = -1.5707964
+scale = Vector2(0.7564087, 0.28024396)
+texture = ExtResource("17_h6ri6")
+script = ExtResource("18_u1is5")
+
+[node name="Area2D" type="Area2D" parent="Frame/Fish" unique_id=953711947]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Frame/Fish/Area2D" unique_id=402526495]
+position = Vector2(-0.66101074, -1.6037598)
+scale = Vector2(0.99999976, 1)
+shape = SubResource("RectangleShape2D_u0ya7")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=1420017021]
+unique_name_in_owner = true
+anchors_preset = -1
+anchor_bottom = 0.035
+offset_left = 5.0
+offset_top = 8.0
+offset_right = 815.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.35, 1)
+step = 0.1
+texture_progress = ExtResource("19_wfebn")
+
+[node name="Timer" type="Timer" parent="." unique_id=1939966748]
+wait_time = 0.2
+autostart = true
+
+[node name="WitnessNpc" type="Node2D" parent="." unique_id=1604695136]
+script = ExtResource("20_xvwyu")
+
+[node name="LookAwayTimer" type="Timer" parent="WitnessNpc" unique_id=905165790]
+one_shot = true
+
+[node name="LookDurationTimer" type="Timer" parent="WitnessNpc" unique_id=683217658]
+one_shot = true
+
+[node name="LookingLabel" type="Label" parent="." unique_id=857367415]
+unique_name_in_owner = true
+visible = false
+offset_left = 607.0
+offset_top = 375.0
+offset_right = 1080.0
+offset_bottom = 531.0
+theme_override_font_sizes/font_size = 67
+text = "LOOOOKING!!!!"
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=604485385]
+
+[node name="JeepWindow" type="Sprite2D" parent="ParallaxBackground" unique_id=281326467]
+position = Vector2(965, 633.5)
+scale = Vector2(1, 1.1564815)
+texture = ExtResource("21_mbex6")
+
+[node name="JeepBG" type="Sprite2D" parent="ParallaxBackground" unique_id=1054868121]
+position = Vector2(966, 430.00003)
+scale = Vector2(1.0052084, 0.8076388)
+texture = ExtResource("22_wea86")
+
+[connection signal="body_entered" from="Frame/Fish/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Frame/Fish/Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer" to="Frame/Fish" method="_on_timer_timeout"]
