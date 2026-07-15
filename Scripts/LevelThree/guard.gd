@@ -41,8 +41,8 @@ var catch_timer: float = 0.0
 @export var vision_angle_degrees: float = 45.0  # half-angle either side of facing direction
 @export var time_to_detect: float = 3.0
 @export var patrol_wait_time: float = 1.5   # seconds to pause at each point
-@export var peripheral_radius: float = 45.0 # NEW: Distance where guard ignores angle
-@export var suspicion_drain_rate: float = 1.5 # NEW: How fast the meter drains when sight is lost
+@export var peripheral_radius: float = 45.0 # 
+@export var suspicion_drain_rate: float = 1.5 #How fast the meter drains when sight is lost
 @onready var debug_label: Label = $Label
 
 var is_waiting: bool = false
@@ -95,8 +95,10 @@ func _physics_process(delta: float) -> void:
 	match current_state:
 		State.PATROL:
 			if is_detecting:
-				velocity = Vector2.ZERO
-				move_and_slide()
+				if player != null and (player.global_position - global_position).length() > 5.0:
+					desired_direction = desired_direction.lerp((player.global_position - global_position).normalized(), 0.5).normalized()
+					velocity = desired_direction * chase_speed
+					move_and_slide()
 			elif is_waiting:
 				wait_timer += delta
 				velocity = Vector2.ZERO
@@ -144,7 +146,6 @@ func _chase() -> void:
 		desired_direction = to_player.normalized()
 		velocity = desired_direction * chase_speed
 		move_and_slide()
-
 
 
 func _update_vision(delta: float) -> void:
