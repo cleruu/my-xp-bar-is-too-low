@@ -19,3 +19,7 @@ func _physics_process(delta):
 		if %charaSprite.animation != "idle": %charaSprite.animation = "idle"
 	
 	move_and_slide()
+
+
+func _on_area_2d_body_entered(_body: Node2D) -> void:
+	pass # Replace with function body.
