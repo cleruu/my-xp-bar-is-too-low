@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-const vectorSpeed = 500
+const vectorSpeed = 750
 
 func _physics_process(delta):
 	if Input.is_action_pressed("ui_accept") or Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
