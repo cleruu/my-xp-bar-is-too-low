@@ -39,6 +39,8 @@ var time_remaining: float = 60.0
 
 # Track which obstacles have been counted
 var counted_obstacles: Array = []
+#damage popups
+var damage_popup_scene: PackedScene = null
 
 func _ready() -> void:
 	add_to_group("level_controller")
@@ -58,7 +60,11 @@ func _ready() -> void:
 	thrown_obstacle_scene = load("res://Scenes/LevelTwo/thrownObstacle.tscn")
 	if thrown_obstacle_scene == null:
 		push_error("thrownObstacle.tscn not found!")
-
+	
+	damage_popup_scene = load("res://Scenes/LevelTwo/damagePopup.tscn")
+	if damage_popup_scene == null:
+		push_error("damagePopup.tscn not found!")
+		
 	# Initialize displays
 	time_remaining = challenge_time_limit
 	_update_timer_display()
@@ -69,6 +75,8 @@ func _ready() -> void:
 	
 	_setup_enemy_throwing()
 	_setup_challenge_timer()
+	
+
 
 func _process(delta: float) -> void:
 	if not game_active:
@@ -254,6 +262,18 @@ func _reset_timer() -> void:
 func deduct_score(amount: int = 5000):
 	if scoreLabel and scoreLabel.has_method("deduct_score"):
 		scoreLabel.deduct_score(amount)
+
+func show_damage_popup(position: Vector2, amount: int = 5000):
+	if not damage_popup_scene:
+		return
+	
+	var popup = damage_popup_scene.instantiate()
+	if not popup:
+		return
+	
+	popup.position = position
+	add_child(popup)
+	print("Damage popup shown!")
 
 func _on_game_over():
 	if not game_active:
