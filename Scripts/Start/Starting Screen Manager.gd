@@ -12,3 +12,4 @@ func goToStartingCutscene() -> void:
 
 func goToArcade() -> void:
 	get_tree().change_scene_to_file(arcadeScene)
+	

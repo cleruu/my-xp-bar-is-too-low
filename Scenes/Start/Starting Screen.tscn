@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://bgnbnu6q4x2kw"]
 
 [ext_resource type="Script" uid="uid://ei2da28cetux" path="res://Scripts/Start/Starting Screen Manager.gd" id="1_fybfx"]
+[ext_resource type="AudioStream" uid="uid://htuhdb7swh4x" path="res://Assets/Sounds/Title song.wav" id="2_6fifq"]
+[ext_resource type="Script" uid="uid://ms80vonistdx" path="res://Scripts/Audio Manager.gd" id="2_8kkvn"]
+[ext_resource type="AudioStream" uid="uid://css8pxj2uut2n" path="res://Assets/Sounds/sfx/Button Hover.mp3" id="3_61log"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_krmdh"]
 
@@ -17,13 +20,13 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Title Text" type="RichTextLabel" parent="UI" unique_id=723043770]
+[node name="Title Text" type="RichTextLabel" parent="UI" unique_id=712941362]
 layout_mode = 0
-offset_left = 161.0
-offset_top = 205.0
-offset_right = 436.0
-offset_bottom = 245.0
-scale = Vector2(4.4230814, 4.4230814)
+offset_left = 92.0
+offset_top = 125.0
+offset_right = 1249.0
+offset_bottom = 370.0
+theme_override_font_sizes/normal_font_size = 126
 text = "Habol ng Hininga"
 
 [node name="Story Button" type="Button" parent="UI" unique_id=1120805849]
@@ -65,5 +68,19 @@ script = ExtResource("1_fybfx")
 startingCutscene = "uid://hsvjhd0unsfa"
 arcadeScene = "uid://52kyw6vddqrf"
 
+[node name="Audio Manager" type="Node" parent="." unique_id=356233711]
+script = ExtResource("2_8kkvn")
+
+[node name="BGM" type="AudioStreamPlayer" parent="Audio Manager" unique_id=643333736]
+stream = ExtResource("2_6fifq")
+autoplay = true
+
+[node name="Button Hover" type="AudioStreamPlayer" parent="Audio Manager" unique_id=1999035934]
+unique_name_in_owner = true
+stream = ExtResource("3_61log")
+
+[connection signal="mouse_entered" from="UI/Story Button" to="Audio Manager" method="playSound" binds= ["Button Hover"]]
 [connection signal="pressed" from="UI/Story Button" to="Starting Screen Manager" method="goToStartingCutscene"]
+[connection signal="mouse_entered" from="UI/Arcade Button" to="Audio Manager" method="playSound" binds= ["Button Hover"]]
 [connection signal="pressed" from="UI/Arcade Button" to="Starting Screen Manager" method="goToArcade"]
+[connection signal="mouse_entered" from="UI/Settings Button" to="Audio Manager" method="playSound" binds= ["Button Hover"]]

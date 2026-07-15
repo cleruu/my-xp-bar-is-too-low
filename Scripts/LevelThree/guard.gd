@@ -40,6 +40,8 @@ var catch_timer: float = 0.0
 @export var vision_angle_degrees: float = 45.0  # half-angle either side of facing direction
 @export var time_to_detect: float = 3.0
 @export var patrol_wait_time: float = 1.5   # seconds to pause at each point
+@export var peripheral_radius: float = 45.0 # NEW: Distance where guard ignores angle
+@export var suspicion_drain_rate: float = 1.5 # NEW: How fast the meter drains when sight is lost
 @onready var debug_label: Label = $Label
 
 var is_waiting: bool = false
@@ -151,14 +153,11 @@ func _update_vision(delta: float) -> void:
 	match current_state:
 		State.PATROL:
 			if _can_see_player():
-				#facing_direction = (player.global_position - global_position).normalized()
-				
 				var target_direction = (player.global_position - global_position).normalized()
 				desired_direction = desired_direction.lerp(target_direction, 0.5).normalized()
 				
 				is_detecting = true
-				velocity = desired_direction * chase_speed
-				move_and_slide()
+				# The guard should stand still while staring and detecting
 				
 				detection_timer += delta
 				
@@ -174,10 +173,22 @@ func _update_vision(delta: float) -> void:
 				vision_ray.enabled = false
 				vision_ray2.enabled = false
 				vision_ray3.enabled = false
-				if is_detecting:
-					print("Guard: lost sight during detection, resuming patrol")
-				is_detecting = false
-				detection_timer = 0.0
+				
+				# NEW: Suspicion Decay instead of instant reset
+				if detection_timer > 0.0:
+					# FIX: The guard keeps turning its head to track the player's last direction
+					# during the grace period!
+					var target_direction = (player.global_position - global_position).normalized()
+					desired_direction = desired_direction.lerp(target_direction, 0.5).normalized()
+					
+					detection_timer -= delta * suspicion_drain_rate
+					# If it drains all the way to 0, they fully lose interest
+					if detection_timer <= 0.0:
+						print("Guard: lost sight during detection, resuming patrol")
+						is_detecting = false
+						detection_timer = 0.0
+				else:
+					is_detecting = false
 
 		State.CHASE:
 			_update_chase_tracking(delta)
@@ -220,18 +231,18 @@ func _can_see_player() -> bool:
 	var distance = to_player.length()
 
 	if distance > vision_range:
-		#print("DEBUG: too far, distance=", distance, " range=", vision_range)
 		return false
 	
-	var angle_diff = rad_to_deg(facing_direction.angle_to(to_player.normalized()))
-	if abs(angle_diff) > vision_angle_degrees:
-		#print("DEBUG: outside angle, angle_diff=", angle_diff, " max=", vision_angle_degrees)
-		return false
+	# NEW: Peripheral Vision / "Sixth Sense"
+	# If the player is outside the point-blank radius, then we check the angle
+	if distance > peripheral_radius:
+		var angle_diff = rad_to_deg(facing_direction.angle_to(to_player.normalized()))
+		if abs(angle_diff) > vision_angle_degrees:
+			return false
+	
 	var direction_to_player = (player.global_position - global_position).normalized()
 	var perpendicular = direction_to_player.orthogonal()
 	var spread_distance = 15.0 
-
-	print("Perpendicularing the Area: ", perpendicular)
 
 	raycastEnable(vision_ray, perpendicular * spread_distance)   # Left edge
 	raycastEnable(vision_ray2, Vector2.ZERO)                     # Dead center
@@ -242,12 +253,10 @@ func _can_see_player() -> bool:
 	for ray in rays:
 		if ray.is_colliding():
 			var collider = ray.get_collider()
-			print("DEBUG: ray hit ", collider.name, " expected player=", player.name)
 			if collider != player:
 				continue
 			hit_player = true
 
-	print("DEBUG: player detected!")
 	return hit_player
 
 func raycastEnable(rc: RayCast2D, height_offset: Vector2 = Vector2.ZERO) -> void:
@@ -268,6 +277,9 @@ func _draw() -> void:
 		points.append(dir * (vision_range + 335))
 
 	draw_colored_polygon(points, color)
+	
+	# NEW: Draw a faint inner circle to visualize the peripheral "Sixth Sense" radius
+	draw_arc(Vector2.ZERO, peripheral_radius, 0, TAU, 32, Color(1, 1, 1, 0.2), 1.0)
 
 	# Detection meter bar, only visible while filling
 	if is_detecting:
