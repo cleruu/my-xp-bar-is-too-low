@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://bq0l0beeg7ac6" path="res://Scripts/LevelOne/InsideRect.gd" id="3_ur0fe"]
 [ext_resource type="Texture2D" uid="uid://dhks7232wn68d" path="res://Assets/Sprites/TempSpritesForLevel1/FishIcon.png" id="4_gloj8"]
 [ext_resource type="Script" uid="uid://b6g0ay1s2vpmq" path="res://Scripts/LevelOne/fish.gd" id="6_gloj8"]
+[ext_resource type="Script" uid="uid://x304a4b4bvap" path="res://Scripts/LevelOne/WitnessNPC.gd" id="8_3wdek"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yex4w"]
 size = Vector2(795.353, 71.8217)
@@ -19,6 +20,8 @@ size = Vector2(80.644165, 83.39453)
 
 [node name="Node2D" type="Node2D" unique_id=1862412663]
 script = ExtResource("1_gloj8")
+timeLimit = 60.0
+witnessPath = NodePath("WitnessNpc")
 
 [node name="Frame" type="Sprite2D" parent="." unique_id=757150166]
 position = Vector2(960, 1011.5)
@@ -87,6 +90,25 @@ texture_progress = ExtResource("2_ur0fe")
 [node name="Timer" type="Timer" parent="." unique_id=1939966748]
 wait_time = 0.2
 autostart = true
+
+[node name="WitnessNpc" type="Node2D" parent="." unique_id=1604695136]
+script = ExtResource("8_3wdek")
+
+[node name="LookAwayTimer" type="Timer" parent="WitnessNpc" unique_id=905165790]
+one_shot = true
+
+[node name="LookDurationTimer" type="Timer" parent="WitnessNpc" unique_id=683217658]
+one_shot = true
+
+[node name="LookingLabel" type="Label" parent="." unique_id=857367415]
+unique_name_in_owner = true
+visible = false
+offset_left = 607.0
+offset_top = 375.0
+offset_right = 1080.0
+offset_bottom = 531.0
+theme_override_font_sizes/font_size = 67
+text = "LOOOOKING!!!!"
 
 [connection signal="body_entered" from="Frame/Fish/Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Frame/Fish/Area2D" to="." method="_on_area_2d_body_exited"]
