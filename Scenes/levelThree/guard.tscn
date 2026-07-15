@@ -75,6 +75,7 @@ animations = [{
 position = Vector2(160, 120)
 scale = Vector2(0.41489363, 0.41666666)
 script = ExtResource("1_4g6nq")
+suspicion_drain_rate = 0.415
 
 [node name="visionRay" type="RayCast2D" parent="." unique_id=978499428]
 unique_name_in_owner = true

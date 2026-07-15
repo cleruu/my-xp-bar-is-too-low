@@ -157,8 +157,7 @@ func _update_vision(delta: float) -> void:
 				desired_direction = desired_direction.lerp(target_direction, 0.5).normalized()
 				
 				is_detecting = true
-				velocity = desired_direction * chase_speed
-				move_and_slide()
+				# The guard should stand still while staring and detecting
 				
 				detection_timer += delta
 				
@@ -177,6 +176,11 @@ func _update_vision(delta: float) -> void:
 				
 				# NEW: Suspicion Decay instead of instant reset
 				if detection_timer > 0.0:
+					# FIX: The guard keeps turning its head to track the player's last direction
+					# during the grace period!
+					var target_direction = (player.global_position - global_position).normalized()
+					desired_direction = desired_direction.lerp(target_direction, 0.5).normalized()
+					
 					detection_timer -= delta * suspicion_drain_rate
 					# If it drains all the way to 0, they fully lose interest
 					if detection_timer <= 0.0:
