@@ -1,13 +1,15 @@
 [gd_scene format=3 uid="uid://b5rk1mqn6gcc3"]
 
 [ext_resource type="Script" uid="uid://chtdhep4jbtmk" path="res://Scripts/LevelTwo/levelTwoController.gd" id="1_vfym8"]
-[ext_resource type="Script" uid="uid://cj3wstohjxbna" path="res://Scripts/LevelTwo/background.gd" id="2_36jrh"]
+[ext_resource type="Texture2D" uid="uid://chaianjxkvvwy" path="res://Assets/Sprites/LevelTwo/Background/main.PNG" id="2_jnvl0"]
+[ext_resource type="Texture2D" uid="uid://bbs1m8x2gme6x" path="res://Assets/Sprites/LevelTwo/Background/1ST.PNG" id="3_sm41y"]
 [ext_resource type="Script" uid="uid://df5n35rhayt0d" path="res://Scripts/LevelTwo/playerRunner.gd" id="3_wqdxf"]
 [ext_resource type="Script" uid="uid://d3lacml8x5vwl" path="res://Scripts/LevelTwo/enemyBox.gd" id="4_1vfx7"]
+[ext_resource type="Texture2D" uid="uid://ck28nlh5myg22" path="res://Assets/Sprites/LevelTwo/Background/2ND.PNG" id="4_qd3ud"]
 [ext_resource type="Script" uid="uid://dsktwms3bq6xd" path="res://Scripts/LevelTwo/scoreLabel.gd" id="4_wqdxf"]
 [ext_resource type="Texture2D" uid="uid://b44ushqal5gfm" path="res://Assets/Sprites/LevelTwo/Jumping/player_Jumping1.png" id="5_bmsnb"]
 [ext_resource type="Texture2D" uid="uid://ywpxi08biano" path="res://Assets/Sprites/LevelTwo/Ducking/player_RunningDuck1.png" id="5_l8wlw"]
-[ext_resource type="Texture2D" uid="uid://fs1p88in5xtu" path="res://Assets/Sprites/LevelTwo/LevelTwoBg.PNG" id="5_wqdxf"]
+[ext_resource type="Texture2D" uid="uid://djej3jemeomw5" path="res://Assets/Sprites/LevelTwo/Background/3RD.PNG" id="5_skc8q"]
 [ext_resource type="Texture2D" uid="uid://dx8oat3spoxud" path="res://Assets/Sprites/LevelTwo/Jumping/player_Jumping2.png" id="6_ubc54"]
 [ext_resource type="Texture2D" uid="uid://4m4gceba4kbc" path="res://Assets/Sprites/LevelTwo/Ducking/player_RunningDuck2.png" id="6_wdrpt"]
 [ext_resource type="Texture2D" uid="uid://daovv3auo4ouu" path="res://Assets/Sprites/LevelTwo/Ducking/player_RunningDuck3.png" id="7_mh20q"]
@@ -20,10 +22,17 @@
 [ext_resource type="Texture2D" uid="uid://bhae8h2fa2rhu" path="res://Assets/Sprites/LevelTwo/Ducking/player_RunningDuck6.png" id="10_uspcj"]
 [ext_resource type="Texture2D" uid="uid://dxu0lgebxsm7q" path="res://Assets/Sprites/LevelTwo/Running/player_Running5.png" id="11_l8wlw"]
 [ext_resource type="Texture2D" uid="uid://bj1qh4dnvfitc" path="res://Assets/Sprites/LevelTwo/Running/player_Running6.png" id="12_wdrpt"]
+[ext_resource type="Texture2D" uid="uid://5plq8ctjo5p5" path="res://Assets/Sprites/LevelTwo/Enemy/lola_Running1.png" id="20_jnvl0"]
+[ext_resource type="Texture2D" uid="uid://beiqg4ppeoqav" path="res://Assets/Sprites/LevelTwo/Enemy/lola_Running2.png" id="21_1sinq"]
 [ext_resource type="AudioStream" uid="uid://dqb2oj0x283h7" path="res://Assets/Sounds/LevelTwo/Level_2.wav" id="21_wdrpt"]
+[ext_resource type="AudioStream" uid="uid://xbhnsn6p1378" path="res://Assets/Sounds/LevelTwo/Captured.wav" id="22_qd3ud"]
+[ext_resource type="Texture2D" uid="uid://bnqgchxtc1tmi" path="res://Assets/Sprites/LevelTwo/Enemy/lola_Running3.png" id="22_sm41y"]
+[ext_resource type="Texture2D" uid="uid://cvy6u6mtqhw7l" path="res://Assets/Sprites/LevelTwo/Enemy/lola_Running4.png" id="23_qd3ud"]
+[ext_resource type="Texture2D" uid="uid://ces4xnavdllf5" path="res://Assets/Sprites/LevelTwo/Enemy/lola_Running5.png" id="24_skc8q"]
+[ext_resource type="Texture2D" uid="uid://ix7x76vfap81" path="res://Assets/Sprites/LevelTwo/Enemy/lola_Running6.png" id="25_sfet4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5y726"]
-size = Vector2(1400, 80)
+size = Vector2(1666, 80)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6efse"]
 size = Vector2(50, 50)
@@ -62,7 +71,7 @@ animations = [{
 }],
 "loop": 0,
 "name": &"jump",
-"speed": 1.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -91,24 +100,83 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_updvk"]
 size = Vector2(50, 50)
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_5y726"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_jnvl0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_1sinq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_sm41y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_qd3ud")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_skc8q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_sfet4")
+}],
+"loop": 1,
+"name": &"run",
+"speed": 12.0
+}]
+
 [node name="LevelTwo" type="Node2D" unique_id=1751186645]
 script = ExtResource("1_vfym8")
 
-[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1046154910]
-repeat_size = Vector2(1890, 0)
-autoscroll = Vector2(-300, 0)
-script = ExtResource("2_36jrh")
+[node name="Main" type="Sprite2D" parent="." unique_id=311937296]
+position = Vector2(640, 447)
+scale = Vector2(1, 1.0203704)
+texture = ExtResource("2_jnvl0")
 
-[node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=32714666]
-texture_repeat = 2
-position = Vector2(635, 361)
-scale = Vector2(0.9916667, 0.97962964)
-texture = ExtResource("5_wqdxf")
+[node name="Parallax2D_Back" type="Parallax2D" parent="." unique_id=204262640]
+scroll_offset = Vector2(0, -1)
+repeat_size = Vector2(1940, 0)
+autoscroll = Vector2(-40, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D_Back" unique_id=1355366302]
+position = Vector2(636.7756, 353.49997)
+scale = Vector2(1.0049746, 0.9138889)
+texture = ExtResource("5_skc8q")
+
+[node name="Parallax2D_Mid" type="Parallax2D" parent="." unique_id=1046154910]
+repeat_size = Vector2(1904, 0)
+autoscroll = Vector2(-80, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D_Mid" unique_id=1950004647]
+position = Vector2(640, 380.5)
+scale = Vector2(1, 0.875)
+texture = ExtResource("4_qd3ud")
+
+[node name="Parallax2D_Front" type="Parallax2D" parent="." unique_id=421060973]
+repeat_size = Vector2(1904, 0)
+autoscroll = Vector2(-130, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D_Front" unique_id=1808321921]
+position = Vector2(640, 375.00003)
+scale = Vector2(1, 0.86851853)
+texture = ExtResource("3_sm41y")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1765648751]
+offset_left = -320.0
+offset_top = -178.0
+offset_right = 1596.0
+offset_bottom = -78.0
+color = Color(0, 0, 0, 1)
 
 [node name="Ground" type="StaticBody2D" parent="." unique_id=1205775299]
 position = Vector2(640, 620)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=821197221]
+position = Vector2(133, 0)
 shape = SubResource("RectangleShape2D_5y726")
 debug_color = Color(1, 0.10980392, 0.31764707, 0.3764706)
 
@@ -138,22 +206,24 @@ autostart = true
 [node name="Enemy" type="Area2D" parent="." unique_id=803945751]
 position = Vector2(0, 540)
 script = ExtResource("4_1vfx7")
+hit_sound = ExtResource("22_qd3ud")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy" unique_id=1969724979]
 shape = SubResource("RectangleShape2D_updvk")
 
-[node name="ColorRect" type="ColorRect" parent="Enemy" unique_id=1790246730]
-offset_left = -25.0
-offset_top = -25.0
-offset_right = 25.0
-offset_bottom = 25.0
-color = Color(0.85468584, 0.00094759825, 0.91072994, 1)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy" unique_id=1622199263]
+position = Vector2(58, -177)
+scale = Vector2(0.199, 0.199)
+sprite_frames = SubResource("SpriteFrames_5y726")
+animation = &"run"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Enemy" unique_id=1739377616]
 
 [node name="ScoreLabel" type="Label" parent="." unique_id=1072683532]
-offset_left = 50.0
-offset_top = 50.0
-offset_right = 96.0
-offset_bottom = 73.0
+offset_left = -306.0
+offset_top = -160.0
+offset_right = -169.0
+offset_bottom = -93.0
 theme_override_font_sizes/font_size = 48
 text = "50000"
 script = ExtResource("4_wqdxf")
@@ -164,17 +234,19 @@ volume_db = -0.1
 autoplay = true
 
 [node name="TimerLabel" type="Label" parent="." unique_id=713067432]
-offset_left = 1177.0
-offset_top = 50.0
-offset_right = 1232.0
-offset_bottom = 117.0
+visible = false
+offset_left = 1395.0
+offset_top = -160.0
+offset_right = 1450.0
+offset_bottom = -93.0
 theme_override_font_sizes/font_size = 48
 text = "60"
 
 [node name="DodgeCounter" type="Label" parent="." unique_id=931449969]
-offset_left = 52.0
-offset_top = 109.0
-offset_right = 177.0
-offset_bottom = 176.0
+visible = false
+offset_left = -304.0
+offset_top = -95.0
+offset_right = -179.0
+offset_bottom = -28.0
 theme_override_font_sizes/font_size = 48
 text = "0 / 15"
