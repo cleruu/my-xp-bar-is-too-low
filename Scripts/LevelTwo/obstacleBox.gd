@@ -107,7 +107,12 @@ func _physics_process(delta: float) -> void:
 
 func _on_body_entered(body: Node) -> void:
 	if body.is_in_group("player"):
+		# Player got hit - reset dodge counter
 		var controller = get_tree().current_scene
+		if controller and controller.has_method("reset_dodge"):
+			controller.reset_dodge()
+		
 		if controller and controller.has_method("deduct_score"):
 			controller.deduct_score(5000)
+		
 		queue_free()

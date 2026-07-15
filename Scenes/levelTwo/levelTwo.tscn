@@ -162,3 +162,19 @@ script = ExtResource("4_wqdxf")
 stream = ExtResource("21_wdrpt")
 volume_db = -0.1
 autoplay = true
+
+[node name="TimerLabel" type="Label" parent="." unique_id=713067432]
+offset_left = 1177.0
+offset_top = 50.0
+offset_right = 1232.0
+offset_bottom = 117.0
+theme_override_font_sizes/font_size = 48
+text = "60"
+
+[node name="DodgeCounter" type="Label" parent="." unique_id=931449969]
+offset_left = 52.0
+offset_top = 109.0
+offset_right = 177.0
+offset_bottom = 176.0
+theme_override_font_sizes/font_size = 48
+text = "0 / 15"
