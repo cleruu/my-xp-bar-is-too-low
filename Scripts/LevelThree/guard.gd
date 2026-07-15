@@ -14,9 +14,14 @@ const ARRIVAL_THRESHOLD := 5.0
 var patrol_points: Array[Vector2] = []
 var current_point_index: int = 0
 var facing_direction: Vector2 = Vector2.DOWN
+
+# This is for smooth rotation
+@export var turn_speed: float = 5.0
+var desired_direction: Vector2 = Vector2.DOWN
+
+
 signal player_caught 
 var is_detecting: bool = false
-
 
 signal player_spotted
 
@@ -81,6 +86,7 @@ func _physics_process(delta: float) -> void:
 				_patrol()
 		State.CHASE:
 			_chase()
+	facing_direction = facing_direction.slerp(desired_direction, turn_speed * delta)
 
 	_update_vision(delta)
 	queue_redraw()
@@ -95,16 +101,16 @@ func _patrol() -> void:
 
 	var target = patrol_points[current_point_index]
 	var to_target = target - global_position
-
 	if to_target.length() < ARRIVAL_THRESHOLD:
 		is_waiting = true
 		wait_timer = 0.0
 		# Face the direction the marker was rotated to point
 		var marker = patrol_points_node.get_child(current_point_index)
-		facing_direction = Vector2.RIGHT.rotated(marker.rotation)
+		
+		desired_direction = Vector2.RIGHT.rotated(marker.rotation)
 	else:
-		facing_direction = to_target.normalized()
-		velocity = facing_direction * patrol_speed
+		desired_direction = to_target.normalized()
+		velocity = desired_direction * patrol_speed
 		move_and_slide()
 
 
@@ -114,8 +120,8 @@ func _chase() -> void:
 
 	var to_player = player.global_position - global_position
 	if to_player.length() > 5.0:
-		facing_direction = to_player.normalized()
-		velocity = facing_direction * chase_speed
+		desired_direction = to_player.normalized()
+		velocity = desired_direction * chase_speed
 		move_and_slide()
 
 
@@ -127,10 +133,18 @@ func _update_vision(delta: float) -> void:
 	match current_state:
 		State.PATROL:
 			if _can_see_player():
-				facing_direction = (player.global_position - global_position).normalized()
+				#facing_direction = (player.global_position - global_position).normalized()
+				
+				var target_direction = (player.global_position - global_position).normalized()
+				desired_direction = desired_direction.lerp(target_direction, 0.5).normalized()
+				
 				is_detecting = true
+				velocity = desired_direction * chase_speed
+				move_and_slide()
+				
 				detection_timer += delta
-
+				
+			
 				if detection_timer >= time_to_detect:
 					sawPlayer = true
 					is_detecting = false
@@ -201,7 +215,6 @@ func _can_see_player() -> bool:
 
 	print("Perpendicularing the Area: ", perpendicular)
 
-	# 4. Apply the offset: One goes left, one center, one right
 	raycastEnable(vision_ray, perpendicular * spread_distance)   # Left edge
 	raycastEnable(vision_ray2, Vector2.ZERO)                     # Dead center
 	raycastEnable(vision_ray3, -perpendicular * spread_distance) # Right edge
