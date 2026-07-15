@@ -16,6 +16,9 @@ texture = SubResource("PlaceholderTexture2D_krmdh")
 
 [node name="Arcade Screen Manager" type="Node2D" parent="." unique_id=1603146417]
 script = ExtResource("1_2ou0m")
+level1 = "uid://dgj2xcn0y4xl2"
+level2 = "uid://b5rk1mqn6gcc3"
+level3 = "uid://c02ectbgvwcad"
 
 [node name="Control" type="Control" parent="." unique_id=1319581319]
 layout_mode = 3
