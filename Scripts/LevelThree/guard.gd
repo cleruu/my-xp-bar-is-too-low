@@ -24,6 +24,7 @@ signal player_caught
 var is_detecting: bool = false
 
 signal player_spotted
+signal player_lost
 
 # --- Escape / Aggro loss ---
 @export var chase_lose_time: float = 2.0
@@ -221,6 +222,7 @@ func _reset_to_patrol() -> void:
 	is_detecting = false
 	lost_sight_timer = 0.0
 	catch_timer = 0.0
+	player_lost.emit()
 
 func _can_see_player() -> bool:
 	if player == null:
