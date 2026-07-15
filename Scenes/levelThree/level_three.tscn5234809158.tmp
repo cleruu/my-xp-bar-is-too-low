@@ -10439,20 +10439,17 @@ tile_map_data = PackedByteArray("AAAHAPf/BwAAAAQAAAAHAPj/BwAAAAUAAAAHAPn/BwAAAAY
 tile_set = SubResource("TileSet_6nr7s")
 
 [node name="WaterBackgroundColor" type="Sprite2D" parent="." unique_id=267486298]
-position = Vector2(9948, -237)
+position = Vector2(5023.5, -119.5)
 scale = Vector2(1.015625, 1.2656249)
 texture = ExtResource("3_xu1mw")
 
-[node name="GoalZone" type="Area2D" parent="WaterBackgroundColor" unique_id=937313094 groups=["goal"]]
-position = Vector2(-4946.218, 94.4198)
-scale = Vector2(0.9846159, 0.79012376)
-collision_layer = 255
-collision_mask = 4294967295
-script = ExtResource("22_fi66q")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WaterBackgroundColor/GoalZone" unique_id=1270233608]
-position = Vector2(101.00238, -2.0000377)
-scale = Vector2(0.99999976, 1)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WaterBackgroundColor" unique_id=1270233608]
+scale = Vector2(0.9846157, 0.79012376)
 shape = SubResource("RectangleShape2D_dep14")
 
-[connection signal="body_entered" from="WaterBackgroundColor/GoalZone" to="player" method="_on_area_2d_body_entered"]
+[node name="GoalZone" type="Area2D" parent="." unique_id=937313094]
+position = Vector2(-0.00048828125, 7.6293945e-06)
+scale = Vector2(1.0000001, 1.0000001)
+script = ExtResource("22_fi66q")
+
+[connection signal="body_entered" from="GoalZone" to="player" method="_on_area_2d_body_entered"]
