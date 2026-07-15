@@ -1,9 +1,26 @@
 [gd_scene format=3 uid="uid://b5rk1mqn6gcc3"]
 
 [ext_resource type="Script" uid="uid://chtdhep4jbtmk" path="res://Scripts/LevelTwo/levelTwoController.gd" id="1_vfym8"]
+[ext_resource type="Script" uid="uid://cj3wstohjxbna" path="res://Scripts/LevelTwo/background.gd" id="2_36jrh"]
 [ext_resource type="Script" uid="uid://df5n35rhayt0d" path="res://Scripts/LevelTwo/playerRunner.gd" id="3_wqdxf"]
 [ext_resource type="Script" uid="uid://d3lacml8x5vwl" path="res://Scripts/LevelTwo/enemyBox.gd" id="4_1vfx7"]
 [ext_resource type="Script" uid="uid://dsktwms3bq6xd" path="res://Scripts/LevelTwo/scoreLabel.gd" id="4_wqdxf"]
+[ext_resource type="Texture2D" uid="uid://b44ushqal5gfm" path="res://Assets/Sprites/LevelTwo/Jumping/player_Jumping1.png" id="5_bmsnb"]
+[ext_resource type="Texture2D" uid="uid://ywpxi08biano" path="res://Assets/Sprites/LevelTwo/Ducking/player_RunningDuck1.png" id="5_l8wlw"]
+[ext_resource type="Texture2D" uid="uid://fs1p88in5xtu" path="res://Assets/Sprites/LevelTwo/LevelTwoBg.PNG" id="5_wqdxf"]
+[ext_resource type="Texture2D" uid="uid://dx8oat3spoxud" path="res://Assets/Sprites/LevelTwo/Jumping/player_Jumping2.png" id="6_ubc54"]
+[ext_resource type="Texture2D" uid="uid://4m4gceba4kbc" path="res://Assets/Sprites/LevelTwo/Ducking/player_RunningDuck2.png" id="6_wdrpt"]
+[ext_resource type="Texture2D" uid="uid://daovv3auo4ouu" path="res://Assets/Sprites/LevelTwo/Ducking/player_RunningDuck3.png" id="7_mh20q"]
+[ext_resource type="Texture2D" uid="uid://3nwmyf3a6bwo" path="res://Assets/Sprites/LevelTwo/Running/player_Running1.png" id="7_w324y"]
+[ext_resource type="Texture2D" uid="uid://b0yvk61mobjvo" path="res://Assets/Sprites/LevelTwo/Running/player_Running2.png" id="8_gmdng"]
+[ext_resource type="Texture2D" uid="uid://dm4vmfsbxmo3c" path="res://Assets/Sprites/LevelTwo/Ducking/player_RunningDuck4.png" id="8_xtgec"]
+[ext_resource type="Texture2D" uid="uid://yj577ak6a7iq" path="res://Assets/Sprites/LevelTwo/Running/player_Running3.png" id="9_i77de"]
+[ext_resource type="Texture2D" uid="uid://d2v5265t06jwt" path="res://Assets/Sprites/LevelTwo/Ducking/player_RunningDuck5.png" id="9_wmcb0"]
+[ext_resource type="Texture2D" uid="uid://c4fi4mkv04vq" path="res://Assets/Sprites/LevelTwo/Running/player_Running4.png" id="10_pq1pk"]
+[ext_resource type="Texture2D" uid="uid://bhae8h2fa2rhu" path="res://Assets/Sprites/LevelTwo/Ducking/player_RunningDuck6.png" id="10_uspcj"]
+[ext_resource type="Texture2D" uid="uid://dxu0lgebxsm7q" path="res://Assets/Sprites/LevelTwo/Running/player_Running5.png" id="11_l8wlw"]
+[ext_resource type="Texture2D" uid="uid://bj1qh4dnvfitc" path="res://Assets/Sprites/LevelTwo/Running/player_Running6.png" id="12_wdrpt"]
+[ext_resource type="AudioStream" uid="uid://dqb2oj0x283h7" path="res://Assets/Sounds/LevelTwo/Level_2.wav" id="21_wdrpt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5y726"]
 size = Vector2(1400, 80)
@@ -11,11 +28,82 @@ size = Vector2(1400, 80)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6efse"]
 size = Vector2(50, 50)
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_6efse"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_l8wlw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_wdrpt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_mh20q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_xtgec")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_wmcb0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_uspcj")
+}],
+"loop": 1,
+"name": &"duck",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_bmsnb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ubc54")
+}],
+"loop": 0,
+"name": &"jump",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_w324y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_gmdng")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_i77de")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_pq1pk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_l8wlw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_wdrpt")
+}],
+"loop": 1,
+"name": &"run",
+"speed": 12.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_updvk"]
 size = Vector2(50, 50)
 
 [node name="LevelTwo" type="Node2D" unique_id=1751186645]
 script = ExtResource("1_vfym8")
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1046154910]
+repeat_size = Vector2(1890, 0)
+autoscroll = Vector2(-300, 0)
+script = ExtResource("2_36jrh")
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=32714666]
+texture_repeat = 2
+position = Vector2(635, 361)
+scale = Vector2(0.9916667, 0.97962964)
+texture = ExtResource("5_wqdxf")
 
 [node name="Ground" type="StaticBody2D" parent="." unique_id=1205775299]
 position = Vector2(640, 620)
@@ -24,25 +112,19 @@ position = Vector2(640, 620)
 shape = SubResource("RectangleShape2D_5y726")
 debug_color = Color(1, 0.10980392, 0.31764707, 0.3764706)
 
-[node name="ColorRect" type="ColorRect" parent="Ground" unique_id=842011508]
-offset_left = -700.0
-offset_top = -40.0
-offset_right = 700.0
-offset_bottom = 40.0
-color = Color(0.19076231, 0.19076234, 0.19076231, 1)
-
 [node name="Player" type="CharacterBody2D" parent="." unique_id=6888644]
 position = Vector2(220, 540)
 script = ExtResource("3_wqdxf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=314159605]
+position = Vector2(87, -132)
 shape = SubResource("RectangleShape2D_6efse")
 
-[node name="ColorRect" type="ColorRect" parent="Player" unique_id=1689819628]
-offset_left = -25.0
-offset_top = -25.0
-offset_right = 25.0
-offset_bottom = 25.0
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=73690220]
+position = Vector2(131.25008, -193.2499)
+scale = Vector2(0.21174994, 0.21174994)
+sprite_frames = SubResource("SpriteFrames_6efse")
+animation = &"jump"
 
 [node name="MainCamera" type="Camera2D" parent="." unique_id=1305661516]
 position = Vector2(640, 360)
@@ -75,3 +157,8 @@ offset_bottom = 73.0
 theme_override_font_sizes/font_size = 48
 text = "50000"
 script = ExtResource("4_wqdxf")
+
+[node name="MusicPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1963900855]
+stream = ExtResource("21_wdrpt")
+volume_db = -0.1
+autoplay = true

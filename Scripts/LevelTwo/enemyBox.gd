@@ -17,7 +17,7 @@ func _ready():
 	
 	# Visual - make it orange, match player size (192x264)
 	if has_node("ColorRect"):
-		$ColorRect.size = Vector2(192, 264)
+		$ColorRect.size = Vector2(192, 264)  # SAME AS PLAYER
 		$ColorRect.position = Vector2(-96, -264)  # Offset up by full height
 		$ColorRect.color = Color(1, 0.5, 0)  # Orange
 	
@@ -25,13 +25,20 @@ func _ready():
 	if has_node("CollisionShape2D"):
 		var shape = $CollisionShape2D.shape
 		if shape and shape is RectangleShape2D:
-			shape.size = Vector2(192, 264)
+			shape.size = Vector2(192, 264)  # SAME AS PLAYER
 		$CollisionShape2D.position = Vector2(0, -132)  # Offset up by half height
 	
-	# Position at left edge, BOTTOM of enemy touches ground
-	# Ground is at y=620, so enemy position should be at y=620
-	position = Vector2(0,580)
+	# Position at left edge
+	position = Vector2(0, 580)
 
 func _on_body_entered(body: Node) -> void:
 	if body.is_in_group("player"):
-		get_tree().change_scene_to_file("res://Scenes/LevelTwo/gameOver.tscn")
+		print("Enemy touched player!")
+		
+		# Deduct score
+		var controller = get_tree().current_scene
+		if controller and controller.has_method("deduct_score"):
+			controller.deduct_score(5000)
+		
+		if body.has_method("die"):
+			body.die()
