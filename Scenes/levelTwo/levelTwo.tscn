@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://b5rk1mqn6gcc3"]
 
 [ext_resource type="Script" uid="uid://chtdhep4jbtmk" path="res://Scripts/LevelTwo/levelTwoController.gd" id="1_vfym8"]
+[ext_resource type="Script" uid="uid://cj3wstohjxbna" path="res://Scripts/LevelTwo/background.gd" id="2_36jrh"]
+[ext_resource type="PackedScene" uid="uid://cgtqsyk548rcr" path="res://Scenes/UI/Pause Menu.tscn" id="2_vfc66"]
 [ext_resource type="Texture2D" uid="uid://chaianjxkvvwy" path="res://Assets/Sprites/LevelTwo/Background/main.PNG" id="2_jnvl0"]
 [ext_resource type="Texture2D" uid="uid://bbs1m8x2gme6x" path="res://Assets/Sprites/LevelTwo/Background/1ST.PNG" id="3_sm41y"]
 [ext_resource type="Script" uid="uid://df5n35rhayt0d" path="res://Scripts/LevelTwo/playerRunner.gd" id="3_wqdxf"]
@@ -128,6 +130,7 @@ animations = [{
 
 [node name="LevelTwo" type="Node2D" unique_id=1751186645]
 script = ExtResource("1_vfym8")
+PauseMenu = ExtResource("2_vfc66")
 
 [node name="Main" type="Sprite2D" parent="." unique_id=311937296]
 position = Vector2(640, 447)
@@ -250,3 +253,6 @@ offset_right = -179.0
 offset_bottom = -28.0
 theme_override_font_sizes/font_size = 48
 text = "0 / 15"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=248141980]
+unique_name_in_owner = true

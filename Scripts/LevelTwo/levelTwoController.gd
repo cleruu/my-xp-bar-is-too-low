@@ -42,10 +42,13 @@ var counted_obstacles: Array = []
 #damage popups
 var damage_popup_scene: PackedScene = null
 
+# For pausing the game
+@export var PauseMenu: PackedScene
+
 func _ready() -> void:
 	add_to_group("level_controller")
 	rng.randomize()
-
+	
 	if obstacleScene == null:
 		obstacleScene = load("res://Scenes/LevelTwo/obstacleBox.tscn") as PackedScene
 
@@ -81,6 +84,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if not game_active:
 		return
+	
+	if Input.is_action_just_pressed("Esc"):
+		pauseGame()
 	
 	# Update timer
 	time_remaining -= delta
@@ -289,3 +295,12 @@ func _on_game_over():
 
 func _change_to_game_over():
 	get_tree().change_scene_to_file("res://Scenes/LevelTwo/gameOver.tscn")
+
+# Helper functions for pausing the game
+func pauseGame() -> void:
+	var pause = PauseMenu.instantiate()
+	pause.retry.connect(resetGame)
+	get_node("%CanvasLayer").add_child(pause)
+
+func resetGame() -> void:
+	get_tree().reload_current_scene()

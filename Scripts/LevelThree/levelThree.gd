@@ -7,6 +7,9 @@ var bgm_catch := preload("res://Assets/Sounds/BGM/L3_Sneaky_Catch.wav")
 
 var guards_chasing: int = 0
 
+# For pausing the game
+@export var PauseMenu: PackedScene
+
 func _ready() -> void:
 	var guards = get_tree().get_nodes_in_group("guards")
 	for guard in guards:
@@ -18,6 +21,10 @@ func _ready() -> void:
 	bgm.stream = bgm_nocatch
 	bgm.bus = "Master"
 	bgm.play()
+
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("Esc"):
+		pauseGame()
 
 func _on_bgm_finished() -> void:
 	bgm.play()
@@ -49,3 +56,12 @@ func _on_player_caught() -> void:
 
 func _on_player_reached_goal() -> void:
 	print("LevelThree: player reached the goal! YOU WIN")
+
+# Helper functions for pausing the game
+func pauseGame() -> void:
+	var pause = PauseMenu.instantiate()
+	pause.retry.connect(resetGame)
+	get_node("%CanvasLayer").add_child(pause)
+
+func resetGame() -> void:
+	get_tree().reload_current_scene()

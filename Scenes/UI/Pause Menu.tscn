@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://b57t4vqbtlds" path="res://Assets/Fonts/SteelworksVintageDemo-rR98.ttf" id="3_q5xte"]
 
 [node name="Pause Menu" type="Control" unique_id=1432655512]
+process_mode = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -46,7 +47,6 @@ theme_override_font_sizes/normal_font_size = 100
 text = "Paused"
 
 [node name="Continue" type="Button" parent="." unique_id=274682015]
-process_mode = 2
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -123,3 +123,4 @@ text = "save and quit"
 flat = true
 
 [connection signal="pressed" from="Continue" to="." method="ContinueGame"]
+[connection signal="pressed" from="Retry" to="." method="retryGame"]
