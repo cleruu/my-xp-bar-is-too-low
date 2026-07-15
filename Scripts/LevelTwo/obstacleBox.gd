@@ -18,7 +18,10 @@ extends StaticBody2D
 @export var air_hitbox_width: float = 150.0
 @export var air_hitbox_height: float = 180.0
 
+@export var hit_sound: AudioStream = null
+
 @onready var sprite: Sprite2D = $Sprite2D
+@onready var audio_player: AudioStreamPlayer2D = $AudioStreamPlayer2D 
 
 var is_air_obstacle: bool = false
 var hitbox: Area2D = null
@@ -26,6 +29,11 @@ var hitbox: Area2D = null
 func _ready():
 	_create_hitbox()
 	_apply_texture_and_hitbox()
+	
+	if not audio_player:
+		audio_player = AudioStreamPlayer2D.new()
+		add_child(audio_player)
+	
 
 func _create_hitbox():
 	hitbox = Area2D.new()
@@ -107,8 +115,16 @@ func _physics_process(delta: float) -> void:
 
 func _on_body_entered(body: Node) -> void:
 	if body.is_in_group("player"):
-		# Player got hit - reset dodge counter
+				# Play hit sound
+		if audio_player and hit_sound:
+			audio_player.stream = hit_sound
+			audio_player.play()
+			
+		# Show damage popup at player position
 		var controller = get_tree().current_scene
+		if controller and controller.has_method("show_damage_popup"):
+			controller.show_damage_popup(body.global_position + Vector2(0, -100), 5000)
+		
 		if controller and controller.has_method("reset_dodge"):
 			controller.reset_dodge()
 		

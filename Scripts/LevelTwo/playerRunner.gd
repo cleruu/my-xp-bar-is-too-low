@@ -13,6 +13,7 @@ extends CharacterBody2D
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 var isCrouching: bool = false
+var was_in_air: bool = false  # Track if we were just in air
 
 func _ready() -> void:
 	_apply_stand_shape()
@@ -51,19 +52,30 @@ func _update_animation() -> void:
 	if not animated_sprite:
 		return
 	
-	# In the air - play jump
+	# IN THE AIR - Play jump animation
 	if not is_on_floor():
+		# Play jump animation (2 frames)
 		if animated_sprite.animation != "jump":
 			animated_sprite.play("jump")
-			animated_sprite.frame = 0
+			animated_sprite.frame = 0  # Start from first frame
+		was_in_air = true
 		return
+	
+	# LANDING - Transition back to ground animation
+	if was_in_air and is_on_floor():
+		was_in_air = false
+		# Immediately play run or idle
+		if abs(velocity.x) > 10:
+			animated_sprite.play("run")
+		else:
+			animated_sprite.play("run")  # Keep run animation (no idle)
+			animated_sprite.pause()
+			animated_sprite.frame = 0
 	
 	# On ground - check if crouching
 	if isCrouching:
-		# Play duck animation
 		if animated_sprite.animation != "duck":
 			animated_sprite.play("duck")
-		# Make sure it's playing
 		if not animated_sprite.is_playing():
 			animated_sprite.play()
 		return
