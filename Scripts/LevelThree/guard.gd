@@ -14,9 +14,14 @@ const ARRIVAL_THRESHOLD := 5.0
 var patrol_points: Array[Vector2] = []
 var current_point_index: int = 0
 var facing_direction: Vector2 = Vector2.DOWN
+
+# This is for smooth rotation
+@export var turn_speed: float = 5.0
+var desired_direction: Vector2 = Vector2.DOWN
+
+
 signal player_caught 
 var is_detecting: bool = false
-
 
 signal player_spotted
 
@@ -46,6 +51,9 @@ var detection_timer: float = 0.0
 enum State { PATROL, CHASE }
 var current_state: State = State.PATROL
 
+@export var wander_radius: float = 300.0
+@onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
+var spawn_position: Vector2
 
 func _ready() -> void:
 	for point in patrol_points_node.get_children():
@@ -58,6 +66,21 @@ func _ready() -> void:
 	setRayCast(vision_ray)
 	setRayCast(vision_ray2)
 	setRayCast(vision_ray3)
+	
+
+	spawn_position = global_position
+	
+	# We use call_deferred so the game has 1 frame to load the TileMap 
+	# before the guard tries to calculate a path!
+	call_deferred("_pick_new_wander_target")
+
+func _pick_new_wander_target() -> void:
+	var random_angle = randf() * TAU 
+	var random_distance = randf_range(50.0, wander_radius) 
+	var random_target = spawn_position + Vector2(cos(random_angle), sin(random_angle)) * random_distance
+	
+	# Feed the random coordinate to the Navigation Agent
+	nav_agent.target_position = random_target
 
 func setRayCast(rc: RayCast2D) -> void:
 	#rc.collision_mask = 0
@@ -81,31 +104,32 @@ func _physics_process(delta: float) -> void:
 				_patrol()
 		State.CHASE:
 			_chase()
+	facing_direction = facing_direction.slerp(desired_direction, turn_speed * delta)
 
 	_update_vision(delta)
 	queue_redraw()
 
-
+		
 func _patrol() -> void:
-	if patrol_points.is_empty():
-		return
-
 	if is_waiting:
 		return
-
-	var target = patrol_points[current_point_index]
-	var to_target = target - global_position
-
-	if to_target.length() < ARRIVAL_THRESHOLD:
+	
+	if nav_agent.is_navigation_finished():
 		is_waiting = true
 		wait_timer = 0.0
-		# Face the direction the marker was rotated to point
-		var marker = patrol_points_node.get_child(current_point_index)
-		facing_direction = Vector2.RIGHT.rotated(marker.rotation)
-	else:
-		facing_direction = to_target.normalized()
-		velocity = facing_direction * patrol_speed
-		move_and_slide()
+		
+		# Look around randomly while waiting
+		desired_direction = Vector2.RIGHT.rotated(randf() * TAU)
+		
+		# Queue up the next location
+		_pick_new_wander_target()
+		return
+
+	var next_path_position: Vector2 = nav_agent.get_next_path_position()
+	
+	desired_direction = global_position.direction_to(next_path_position)
+	velocity = desired_direction * patrol_speed
+	move_and_slide()
 
 
 func _chase() -> void:
@@ -114,8 +138,8 @@ func _chase() -> void:
 
 	var to_player = player.global_position - global_position
 	if to_player.length() > 5.0:
-		facing_direction = to_player.normalized()
-		velocity = facing_direction * chase_speed
+		desired_direction = to_player.normalized()
+		velocity = desired_direction * chase_speed
 		move_and_slide()
 
 
@@ -127,10 +151,18 @@ func _update_vision(delta: float) -> void:
 	match current_state:
 		State.PATROL:
 			if _can_see_player():
-				facing_direction = (player.global_position - global_position).normalized()
+				#facing_direction = (player.global_position - global_position).normalized()
+				
+				var target_direction = (player.global_position - global_position).normalized()
+				desired_direction = desired_direction.lerp(target_direction, 0.5).normalized()
+				
 				is_detecting = true
+				velocity = desired_direction * chase_speed
+				move_and_slide()
+				
 				detection_timer += delta
-
+				
+			
 				if detection_timer >= time_to_detect:
 					sawPlayer = true
 					is_detecting = false
@@ -201,7 +233,6 @@ func _can_see_player() -> bool:
 
 	print("Perpendicularing the Area: ", perpendicular)
 
-	# 4. Apply the offset: One goes left, one center, one right
 	raycastEnable(vision_ray, perpendicular * spread_distance)   # Left edge
 	raycastEnable(vision_ray2, Vector2.ZERO)                     # Dead center
 	raycastEnable(vision_ray3, -perpendicular * spread_distance) # Right edge
