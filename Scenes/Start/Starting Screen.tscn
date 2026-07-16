@@ -1,18 +1,17 @@
 [gd_scene format=3 uid="uid://bgnbnu6q4x2kw"]
 
 [ext_resource type="Script" uid="uid://ei2da28cetux" path="res://Scripts/Start/Starting Screen Manager.gd" id="1_fybfx"]
+[ext_resource type="Texture2D" uid="uid://bw7n5ojm4engt" path="res://Assets/Sprites/Start Assets/MainMenu.png" id="1_pdm60"]
 [ext_resource type="AudioStream" uid="uid://htuhdb7swh4x" path="res://Assets/Sounds/Title song.wav" id="2_6fifq"]
 [ext_resource type="Script" uid="uid://ms80vonistdx" path="res://Scripts/Audio Manager.gd" id="2_8kkvn"]
+[ext_resource type="FontFile" uid="uid://b57t4vqbtlds" path="res://Assets/Fonts/SteelworksVintageDemo-rR98.ttf" id="2_o0u6y"]
 [ext_resource type="AudioStream" uid="uid://css8pxj2uut2n" path="res://Assets/Sounds/sfx/Button Hover.mp3" id="3_61log"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_krmdh"]
 
 [node name="StartingScreen" type="Node2D" unique_id=119521370]
 
-[node name="Background" type="Sprite2D" parent="." unique_id=489772162]
-position = Vector2(960, 540)
-scale = Vector2(1920, 1080)
-texture = SubResource("PlaceholderTexture2D_krmdh")
+[node name="Background" type="Sprite2D" parent="." unique_id=248370236]
+position = Vector2(962, 540)
+texture = ExtResource("1_pdm60")
 
 [node name="UI" type="Control" parent="." unique_id=1510869740]
 layout_mode = 3
@@ -20,45 +19,48 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Title Text" type="RichTextLabel" parent="UI" unique_id=712941362]
-layout_mode = 0
-offset_left = 92.0
-offset_top = 125.0
-offset_right = 1249.0
-offset_bottom = 370.0
-theme_override_font_sizes/normal_font_size = 126
-text = "Habol ng Hininga"
-
 [node name="Story Button" type="Button" parent="UI" unique_id=1120805849]
 layout_mode = 0
-offset_left = 239.0
-offset_top = 529.0
-offset_right = 366.0
-offset_bottom = 568.0
+offset_left = 143.0
+offset_top = 604.0
+offset_right = 270.0
+offset_bottom = 643.0
 scale = Vector2(1.8000025, 1.8000025)
-theme_override_colors/font_hover_color = Color(0.7372549, 0.9490196, 0.9490196, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.44705883, 0.06666667, 0.011764706, 1)
+theme_override_fonts/font = ExtResource("2_o0u6y")
+theme_override_font_sizes/font_size = 34
 toggle_mode = true
-text = "Story Mode"
+text = "story mode	"
+flat = true
 
 [node name="Arcade Button" type="Button" parent="UI" unique_id=454041848]
 layout_mode = 0
-offset_left = 239.0
-offset_top = 616.0
-offset_right = 366.0
-offset_bottom = 655.0
+offset_left = 143.0
+offset_top = 691.0
+offset_right = 270.0
+offset_bottom = 730.0
 scale = Vector2(1.8000025, 1.8000025)
-theme_override_colors/font_hover_color = Color(0.7372549, 0.9490196, 0.9490196, 1)
-text = "Arcade Mode"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.44705883, 0.06666667, 0.011764706, 1)
+theme_override_fonts/font = ExtResource("2_o0u6y")
+theme_override_font_sizes/font_size = 34
+text = "arcade mode"
+flat = true
 
 [node name="Settings Button" type="Button" parent="UI" unique_id=406128106]
 layout_mode = 0
-offset_left = 238.0
-offset_top = 697.0
-offset_right = 365.0
-offset_bottom = 736.0
+offset_left = 142.0
+offset_top = 772.0
+offset_right = 379.0
+offset_bottom = 811.0
 scale = Vector2(1.8000025, 1.8000025)
-theme_override_colors/font_hover_color = Color(0.7372549, 0.9490196, 0.9490196, 1)
-text = "Settings (Under Construction)"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.44705883, 0.06666667, 0.011764706, 1)
+theme_override_fonts/font = ExtResource("2_o0u6y")
+theme_override_font_sizes/font_size = 34
+text = "settings (under construction)"
+flat = true
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=368379480]
 position = Vector2(962, 540)
@@ -73,6 +75,7 @@ script = ExtResource("2_8kkvn")
 
 [node name="BGM" type="AudioStreamPlayer" parent="Audio Manager" unique_id=643333736]
 stream = ExtResource("2_6fifq")
+volume_db = -2.419
 autoplay = true
 
 [node name="Button Hover" type="AudioStreamPlayer" parent="Audio Manager" unique_id=1999035934]

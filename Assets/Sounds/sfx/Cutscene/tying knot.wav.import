@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://df0uyk4o8f74m"
+path="res://.godot/imported/tying knot.wav-1e29ba2ba65a73929416ffe230afc62e.sample"
+
+[deps]
+
+source_file="res://Assets/Sounds/sfx/Cutscene/tying knot.wav"
+dest_files=["res://.godot/imported/tying knot.wav-1e29ba2ba65a73929416ffe230afc62e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

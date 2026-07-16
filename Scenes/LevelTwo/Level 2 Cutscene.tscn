@@ -1,0 +1,405 @@
+[gd_scene format=3 uid="uid://ddvluosh8m3xq"]
+
+[ext_resource type="Script" uid="uid://b2qv86231qfc" path="res://Scripts/LevelTwo/manager_level_2_cutscene.gd" id="1_aadk0"]
+[ext_resource type="Texture2D" uid="uid://ff68c07yi1uf" path="res://Assets/Sprites/LevelTwo/Cutscene/1.png" id="1_rkof6"]
+[ext_resource type="Texture2D" uid="uid://cl54xts6s68gt" path="res://Assets/Sprites/LevelTwo/Cutscene/2-1.png" id="2_qsn5v"]
+[ext_resource type="Texture2D" uid="uid://dyta8oxrfh0ok" path="res://Assets/Sprites/LevelTwo/Cutscene/2-2.png" id="3_qsn5v"]
+[ext_resource type="Texture2D" uid="uid://ti5jpu0ahgrg" path="res://Assets/Sprites/LevelTwo/Cutscene/2-4.png" id="4_1v5jb"]
+[ext_resource type="Texture2D" uid="uid://b5k8rxy8210l" path="res://Assets/Sprites/LevelTwo/Cutscene/2-3.png" id="4_qsn5v"]
+[ext_resource type="Texture2D" uid="uid://d3lkwdi0uidcr" path="res://Assets/Sprites/LevelTwo/Cutscene/3-1.png" id="5_oxrgq"]
+[ext_resource type="Texture2D" uid="uid://kaimc608xwn5" path="res://Assets/Sprites/LevelTwo/Cutscene/3-2.png" id="6_twx5c"]
+[ext_resource type="Texture2D" uid="uid://b6c2g5dh5drom" path="res://Assets/Sprites/LevelTwo/Cutscene/3-3.png" id="7_cjwn0"]
+[ext_resource type="Texture2D" uid="uid://cswpik5nt6wcc" path="res://Assets/Sprites/LevelTwo/Cutscene/3-4.png" id="8_vxsjv"]
+[ext_resource type="FontFile" uid="uid://b57t4vqbtlds" path="res://Assets/Fonts/SteelworksVintageDemo-rR98.ttf" id="9_cqe6y"]
+[ext_resource type="Script" uid="uid://ms80vonistdx" path="res://Scripts/Audio Manager.gd" id="10_j426p"]
+[ext_resource type="AudioStream" uid="uid://dxqfthks1svqa" path="res://Assets/Sounds/BGM/Cutscene.wav" id="11_iwr1c"]
+[ext_resource type="AudioStream" uid="uid://bgljnic1qvtaq" path="res://Assets/Sounds/sfx/Cutscene/JeepTrimmed.mp3" id="12_ck1yy"]
+
+[sub_resource type="Animation" id="Animation_uhq4o"]
+resource_name = "Play Cutscene"
+length = 14.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Control/SC1:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.06666666, 1.1, 1.6, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Control/SC2 Strip 1:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2, 3.0333333, 3.5333333, 4.0333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/Control/SC2 Strip 2:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(4.0333333, 5.0333333, 5.5666666, 6.0333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/Control/SC2 Strip 3:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(6.0333333, 7, 7.5666666, 8.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer/Control/SC2 Strip 4:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(8.1, 9.033334, 9.566667, 10.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CanvasLayer/Control/SC3 Strip 1:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(10.1, 11.066667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CanvasLayer/Control/SC3 Strip 2:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(11.133333, 12.133333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("CanvasLayer/Control/SC3 Strip 3:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(12.166667, 13.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("CanvasLayer/Control/SC3 Strip 4:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(13.1, 14),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("CanvasLayer/Control/RichTextLabel:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(14, 14.766666),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/10/type = "method"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Manager Level 2 Cutscene")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(14.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"isAtEnd"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_ucbuv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Control/SC1:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Control/SC2 Strip 1:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/Control/SC2 Strip 2:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/Control/SC2 Strip 3:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer/Control/SC2 Strip 4:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CanvasLayer/Control/SC3 Strip 1:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CanvasLayer/Control/SC3 Strip 2:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("CanvasLayer/Control/SC3 Strip 3:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("CanvasLayer/Control/SC3 Strip 4:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("CanvasLayer/Control/RichTextLabel:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_flijn"]
+_data = {
+&"Level 2 CS": SubResource("Animation_uhq4o"),
+&"RESET": SubResource("Animation_ucbuv")
+}
+
+[node name="Level 2 Cutscene" type="Node2D" unique_id=1727763333]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=944022067]
+position = Vector2(960, 540)
+
+[node name="Manager Level 2 Cutscene" type="Node2D" parent="." unique_id=321916196]
+script = ExtResource("1_aadk0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=585433724]
+libraries/ = SubResource("AnimationLibrary_flijn")
+autoplay = &"Level 2 CS"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=523443918]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=536477178]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_right = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SC1" type="TextureRect" parent="CanvasLayer/Control" unique_id=564403375]
+layout_mode = 0
+offset_left = 4.0
+offset_right = 1924.0
+offset_bottom = 1080.0
+texture = ExtResource("1_rkof6")
+
+[node name="SC2 Strip 1" type="TextureRect" parent="CanvasLayer/Control" unique_id=1987208000]
+layout_mode = 0
+offset_left = 5.000002
+offset_right = 2000.8333
+offset_bottom = 1127.0834
+scale = Vector2(0.96, 0.96)
+texture = ExtResource("2_qsn5v")
+
+[node name="SC2 Strip 2" type="TextureRect" parent="CanvasLayer/Control" unique_id=325868282]
+layout_mode = 0
+offset_left = 5.000002
+offset_right = 2003.9583
+offset_bottom = 1127.0834
+scale = Vector2(0.96, 0.96)
+texture = ExtResource("3_qsn5v")
+
+[node name="SC2 Strip 3" type="TextureRect" parent="CanvasLayer/Control" unique_id=1414307078]
+layout_mode = 0
+offset_left = 5.000002
+offset_right = 2003.9583
+offset_bottom = 1127.0834
+scale = Vector2(0.96, 0.96)
+texture = ExtResource("4_qsn5v")
+
+[node name="SC2 Strip 4" type="TextureRect" parent="CanvasLayer/Control" unique_id=1339563700]
+layout_mode = 0
+offset_left = 5.000002
+offset_right = 2003.9583
+offset_bottom = 1127.0834
+scale = Vector2(0.96, 0.96)
+texture = ExtResource("4_1v5jb")
+
+[node name="SC3 Strip 1" type="TextureRect" parent="CanvasLayer/Control" unique_id=554493932]
+layout_mode = 0
+offset_left = 4.0
+offset_right = 1924.0
+offset_bottom = 1080.0
+texture = ExtResource("5_oxrgq")
+
+[node name="SC3 Strip 2" type="TextureRect" parent="CanvasLayer/Control" unique_id=1562837776]
+layout_mode = 0
+offset_left = 4.0
+offset_right = 1924.0
+offset_bottom = 1080.0
+texture = ExtResource("6_twx5c")
+
+[node name="SC3 Strip 3" type="TextureRect" parent="CanvasLayer/Control" unique_id=1017562297]
+layout_mode = 0
+offset_left = 4.0
+offset_right = 1924.0
+offset_bottom = 1080.0
+texture = ExtResource("7_cjwn0")
+
+[node name="SC3 Strip 4" type="TextureRect" parent="CanvasLayer/Control" unique_id=531047227]
+layout_mode = 0
+offset_left = 4.0
+offset_right = 1924.0
+offset_bottom = 1080.0
+texture = ExtResource("8_vxsjv")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control" unique_id=1051918625]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 462.0
+offset_top = 478.0
+offset_right = 975.0
+offset_bottom = 546.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("9_cqe6y")
+theme_override_font_sizes/normal_font_size = 55
+text = "[press enter to continue]"
+
+[node name="Audio Manager" type="Node" parent="." unique_id=1064596265]
+script = ExtResource("10_j426p")
+
+[node name="BGM" type="AudioStreamPlayer" parent="Audio Manager" unique_id=2068994153]
+stream = ExtResource("11_iwr1c")
+volume_db = -2.419
+autoplay = true
+
+[node name="Jeep" type="AudioStreamPlayer" parent="Audio Manager" unique_id=2000703899]
+unique_name_in_owner = true
+stream = ExtResource("12_ck1yy")

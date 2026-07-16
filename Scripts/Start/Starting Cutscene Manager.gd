@@ -15,6 +15,7 @@ func _process(delta: float) -> void:
 		if isAtEnd:
 			goToLevel1()
 		else:
+			playClothes()
 			print("test")
 			
 	if Input.is_action_just_pressed("Esc"):
@@ -29,4 +30,15 @@ func canGoToL1() -> void:
 func pauseGame() -> void:
 	var pause = PauseMenu.instantiate()
 	get_parent().get_child(4).add_child(pause)
+
+func playClothes() -> void:
+	get_parent().get_child(5).get_node("%Clothes").play()
 	
+func playHairbrush() -> void:
+	get_parent().get_child(5).get_node("%Hairbrush").play()
+	
+func playKnow() -> void:
+	get_parent().get_child(5).get_node("%Tying Knot").play()
+
+func playJeep() -> void:
+	get_parent().get_child(5).get_node("%Jeep").play()
