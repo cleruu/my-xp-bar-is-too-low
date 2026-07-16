@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dqbbjsdjyjviv"]
 
 [ext_resource type="Script" uid="uid://d0sin0jhr2hjb" path="res://Scripts/LevelTwo/damagePopup.gd" id="1_25355"]
-[ext_resource type="FontFile" uid="uid://d3ocxdke0tnxi" path="res://Assets/Fonts/SatukiloRegular-BLgz3.ttf" id="2_ja1sv"]
+[ext_resource type="FontFile" uid="uid://b57t4vqbtlds" path="res://Assets/Fonts/SteelworksVintageDemo-rR98.ttf" id="2_ja1sv"]
 
 [node name="DamagePopup" type="Node2D" unique_id=352055560]
 script = ExtResource("1_25355")

@@ -1,11 +1,23 @@
 [gd_scene format=3 uid="uid://bu6jjj721elg0"]
 
+[ext_resource type="Script" uid="uid://c6xlq0rmbcbpi" path="res://Scripts/LevelTwo/victory.gd" id="1_1fdcx"]
+[ext_resource type="Texture2D" uid="uid://bf5ot8mxja208" path="res://Assets/Sprites/LevelTwo/SplashArt/LVL2_Success.png" id="1_5u3rh"]
+[ext_resource type="FontFile" uid="uid://b57t4vqbtlds" path="res://Assets/Fonts/SteelworksVintageDemo-rR98.ttf" id="2_5u3rh"]
+
 [node name="Victory" type="Node2D" unique_id=2004677084]
+script = ExtResource("1_1fdcx")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1249845363]
+position = Vector2(960.99994, 509.24994)
+scale = Vector2(0.9989583, 0.94212955)
+texture = ExtResource("1_5u3rh")
 
 [node name="Label" type="Label" parent="." unique_id=575442363]
-offset_left = 798.0
-offset_top = 462.0
-offset_right = 1240.0
-offset_bottom = 599.0
+offset_left = 68.0
+offset_top = 883.0
+offset_right = 894.0
+offset_bottom = 1020.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_5u3rh")
 theme_override_font_sizes/font_size = 100
-text = "VICTORY!"
+text = "press enter to continue"
