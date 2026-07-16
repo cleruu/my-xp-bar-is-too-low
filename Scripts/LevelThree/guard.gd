@@ -58,7 +58,7 @@ var current_state: State = State.PATROL
 var spawn_position: Vector2
 
 # Pathfinding Optimization 
-@export var path_update_interval: float = 0.15 # Update path every 0.15 seconds
+@export var path_update_interval: float = 0.40 # Update path every 0.15 seconds
 var path_update_timer: float = 0.0
 # For pathfinding failsafe
 @export var stuck_time_limit: float = 0.5

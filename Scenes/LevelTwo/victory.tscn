@@ -1,23 +1,22 @@
 [gd_scene format=3 uid="uid://bu6jjj721elg0"]
 
-[ext_resource type="Script" uid="uid://c6xlq0rmbcbpi" path="res://Scripts/LevelTwo/victory.gd" id="1_1fdcx"]
-[ext_resource type="Texture2D" uid="uid://bf5ot8mxja208" path="res://Assets/Sprites/LevelTwo/SplashArt/LVL2_Success.png" id="1_5u3rh"]
-[ext_resource type="FontFile" uid="uid://b57t4vqbtlds" path="res://Assets/Fonts/SteelworksVintageDemo-rR98.ttf" id="2_5u3rh"]
+[ext_resource type="Script" uid="uid://dgy8oesnpwurd" path="res://Scripts/LevelTwo/Level 2 Victory.gd" id="1_7romp"]
+[ext_resource type="Texture2D" uid="uid://bfkrb8agtkape" path="res://Assets/Sprites/LevelTwo/Background/LVL2_Success.png" id="1_8bxaf"]
+[ext_resource type="FontFile" uid="uid://b57t4vqbtlds" path="res://Assets/Fonts/SteelworksVintageDemo-rR98.ttf" id="2_7romp"]
 
 [node name="Victory" type="Node2D" unique_id=2004677084]
-script = ExtResource("1_1fdcx")
+script = ExtResource("1_7romp")
+Level2Cutscene = "uid://ddvluosh8m3xq"
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1249845363]
-position = Vector2(960.99994, 509.24994)
-scale = Vector2(0.9989583, 0.94212955)
-texture = ExtResource("1_5u3rh")
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1232241072]
+position = Vector2(960, 540)
+texture = ExtResource("1_8bxaf")
 
-[node name="Label" type="Label" parent="." unique_id=575442363]
-offset_left = 68.0
-offset_top = 883.0
-offset_right = 894.0
-offset_bottom = 1020.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("2_5u3rh")
-theme_override_font_sizes/font_size = 100
-text = "press enter to continue"
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=284232916]
+offset_left = 11.0
+offset_top = 992.0
+offset_right = 691.0
+offset_bottom = 1092.0
+theme_override_fonts/normal_font = ExtResource("2_7romp")
+theme_override_font_sizes/normal_font_size = 76
+text = "[press enter to continue]"

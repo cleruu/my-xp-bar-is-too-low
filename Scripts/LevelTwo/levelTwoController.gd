@@ -235,6 +235,7 @@ func _win_challenge():
 		obstacle.queue_free()
 	
 	# Wait for music to play before changing scene
+	GlobalManager.damage = value_bar.max_value - value_bar.current_value
 	await get_tree().create_timer(0.5).timeout
 	call_deferred("_change_to_victory")
 

@@ -1,7 +1,6 @@
-extends Node
+extends Node2D
 
-var isGamePaused := false
-var damage := 50000
+@export_file("*.tscn") var Level2Cutscene: String
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -10,4 +9,5 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if Input.is_action_just_pressed("Next"):
+		get_tree().change_scene_to_file(Level2Cutscene)

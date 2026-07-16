@@ -21,6 +21,13 @@ func _process(delta: float) -> void:
 # Blinking text template
 func blinkText() -> void:
 	atEnd = true
-	get_parent().get_child(3).get_child(0).get_child(7)
+
+func paraPoPlay() -> void:
+	get_parent().get_child(4).get_node("%Para po").play()
 	
+func nakawPlay() -> void:
+	get_parent().get_child(4).get_node("%Magnanakaw").play()
+	
+func iphonePlay() -> void:
+	get_parent().get_child(4).get_node("%Iphone").play()
 	
