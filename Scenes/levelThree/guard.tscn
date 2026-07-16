@@ -50,21 +50,7 @@ animations = [{
 position = Vector2(160, 120)
 scale = Vector2(0.41489363, 0.41666666)
 script = ExtResource("1_4g6nq")
-patrol_speed = null
-chase_speed = null
-turn_speed = null
-chase_lose_time = null
-catch_distance = null
-catch_time = null
-vision_range = null
-vision_angle_degrees = null
-time_to_detect = null
-patrol_wait_time = null
-peripheral_radius = null
 suspicion_drain_rate = 0.415
-wander_radius = null
-path_update_interval = null
-stuck_time_limit = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1336571179]
 position = Vector2(-4.820526, 2.4000244)
@@ -103,5 +89,4 @@ offset_bottom = 23.0
 metadata/_edit_use_anchors_ = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1898182028]
-debug_enabled = true
 debug_path_custom_color = Color(1, 0, 0.010975838, 1)
