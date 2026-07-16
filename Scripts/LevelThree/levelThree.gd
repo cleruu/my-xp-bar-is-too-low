@@ -20,6 +20,7 @@ func _ready() -> void:
 	bgm.finished.connect(_on_bgm_finished)
 	bgm.stream = bgm_nocatch
 	bgm.bus = "Master"
+	bgm.volume_db = -12.0
 	bgm.play()
 
 func _process(delta: float) -> void:
