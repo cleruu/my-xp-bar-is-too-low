@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bpm6a0vq7f4a1"
-path="res://.godot/imported/Success.png-ea55d3fd2dfb5bde3bfcdf1c7b0042c8.ctex"
+uid="uid://ces4xnavdllf5"
+path="res://.godot/imported/lola_Running5.png-8b54b1cab9389a811d8e72ba4eec1d6c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/TempSpritesForLevel1/Success.png"
-dest_files=["res://.godot/imported/Success.png-ea55d3fd2dfb5bde3bfcdf1c7b0042c8.ctex"]
+source_file="res://Assets/Sprites/LevelTwo/Enemy/lola_Running5.png"
+dest_files=["res://.godot/imported/lola_Running5.png-8b54b1cab9389a811d8e72ba4eec1d6c.ctex"]
 
 [params]
 

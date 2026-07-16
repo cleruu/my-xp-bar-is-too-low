@@ -39,11 +39,16 @@ var time_remaining: float = 60.0
 
 # Track which obstacles have been counted
 var counted_obstacles: Array = []
+#damage popups
+var damage_popup_scene: PackedScene = null
+
+# For pausing the game
+@export var PauseMenu: PackedScene
 
 func _ready() -> void:
 	add_to_group("level_controller")
 	rng.randomize()
-
+	
 	if obstacleScene == null:
 		obstacleScene = load("res://Scenes/LevelTwo/obstacleBox.tscn") as PackedScene
 
@@ -58,7 +63,11 @@ func _ready() -> void:
 	thrown_obstacle_scene = load("res://Scenes/LevelTwo/thrownObstacle.tscn")
 	if thrown_obstacle_scene == null:
 		push_error("thrownObstacle.tscn not found!")
-
+	
+	damage_popup_scene = load("res://Scenes/LevelTwo/damagePopup.tscn")
+	if damage_popup_scene == null:
+		push_error("damagePopup.tscn not found!")
+		
 	# Initialize displays
 	time_remaining = challenge_time_limit
 	_update_timer_display()
@@ -69,10 +78,15 @@ func _ready() -> void:
 	
 	_setup_enemy_throwing()
 	_setup_challenge_timer()
+	
+
 
 func _process(delta: float) -> void:
 	if not game_active:
 		return
+	
+	if Input.is_action_just_pressed("Esc"):
+		pauseGame()
 	
 	# Update timer
 	time_remaining -= delta
@@ -255,6 +269,18 @@ func deduct_score(amount: int = 5000):
 	if scoreLabel and scoreLabel.has_method("deduct_score"):
 		scoreLabel.deduct_score(amount)
 
+func show_damage_popup(position: Vector2, amount: int = 5000):
+	if not damage_popup_scene:
+		return
+	
+	var popup = damage_popup_scene.instantiate()
+	if not popup:
+		return
+	
+	popup.position = position
+	add_child(popup)
+	print("Damage popup shown!")
+
 func _on_game_over():
 	if not game_active:
 		return
@@ -269,3 +295,12 @@ func _on_game_over():
 
 func _change_to_game_over():
 	get_tree().change_scene_to_file("res://Scenes/LevelTwo/gameOver.tscn")
+
+# Helper functions for pausing the game
+func pauseGame() -> void:
+	var pause = PauseMenu.instantiate()
+	pause.retry.connect(resetGame)
+	get_node("%CanvasLayer").add_child(pause)
+
+func resetGame() -> void:
+	get_tree().reload_current_scene()

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhma0fdp8dvrk"
-path="res://.godot/imported/RodRect.png-0df188d1b85175cf53d1e823cace2e45.ctex"
+uid="uid://bby33ky513ytl"
+path="res://.godot/imported/player_Grabbing1.png-a5988017b5a3d061634696b4ca0b7ff4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/TempSpritesForLevel1/RodRect.png"
-dest_files=["res://.godot/imported/RodRect.png-0df188d1b85175cf53d1e823cace2e45.ctex"]
+source_file="res://Assets/Sprites/LevelOne/Character/PlayerGrabbing/player_Grabbing1.png"
+dest_files=["res://.godot/imported/player_Grabbing1.png-a5988017b5a3d061634696b4ca0b7ff4.ctex"]
 
 [params]
 

@@ -6,9 +6,11 @@ extends Area2D
 @export var max_arc_height: float = 200.0
 @export var fall_speed: float = 300.0
 @export var lifetime: float = 4.0
+@export var hit_sound: AudioStream = null
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
+@onready var audio_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 var throw_speed: float = 300.0
 var arc_height: float = 100.0
@@ -95,8 +97,15 @@ func _physics_process(delta: float) -> void:
 
 func _on_body_entered(body: Node) -> void:
 	if body.is_in_group("player"):
-		# Player got hit by thrown obstacle - reset dodge
+		# Play hit sound
+		if audio_player and hit_sound:
+			audio_player.stream = hit_sound
+			audio_player.play()
+		# Show damage popup at player position
 		var controller = get_tree().current_scene
+		if controller and controller.has_method("show_damage_popup"):
+			controller.show_damage_popup(body.global_position + Vector2(0, -100), 5000)
+		
 		if controller and controller.has_method("reset_dodge"):
 			controller.reset_dodge()
 		

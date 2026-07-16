@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://boyru8ceo5b16"
-path="res://.godot/imported/SuccessMeterBG.png-34ef56d47b151142a1ca2636bcf16746.ctex"
+uid="uid://chaianjxkvvwy"
+path="res://.godot/imported/main.PNG-18aa564a206f491c2882f623e4b12b20.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/TempSpritesForLevel1/SuccessMeterBG.png"
-dest_files=["res://.godot/imported/SuccessMeterBG.png-34ef56d47b151142a1ca2636bcf16746.ctex"]
+source_file="res://Assets/Sprites/LevelTwo/Background/main.PNG"
+dest_files=["res://.godot/imported/main.PNG-18aa564a206f491c2882f623e4b12b20.ctex"]
 
 [params]
 

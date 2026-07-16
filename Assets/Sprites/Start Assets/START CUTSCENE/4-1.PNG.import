@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://fs1p88in5xtu"
-path="res://.godot/imported/LevelTwoBg.PNG-0c6e684b00fbadcbcba917e4f7dfc0d2.ctex"
+uid="uid://b5bagjlsskf87"
+path="res://.godot/imported/4-1.PNG-b817683854c66e0c9a126c17bef1fe94.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/LevelTwo/LevelTwoBg.PNG"
-dest_files=["res://.godot/imported/LevelTwoBg.PNG-0c6e684b00fbadcbcba917e4f7dfc0d2.ctex"]
+source_file="res://Assets/Sprites/Start Assets/START CUTSCENE/4-1.PNG"
+dest_files=["res://.godot/imported/4-1.PNG-b817683854c66e0c9a126c17bef1fe94.ctex"]
 
 [params]
 
@@ -34,7 +34,7 @@ process/channel_remap/alpha=3
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false
-process/hdr_as_srgb=true
+process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1

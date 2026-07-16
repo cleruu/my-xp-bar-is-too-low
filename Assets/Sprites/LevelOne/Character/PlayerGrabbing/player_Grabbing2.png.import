@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bpwoi2p4mpves"
-path="res://.godot/imported/LeftRightHolder.png-807f673a219710b430fc8602ff1a1735.ctex"
+uid="uid://c06uvox2oy5kf"
+path="res://.godot/imported/player_Grabbing2.png-57840b2efc31a9b98c489bd2aa429553.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/TempSpritesForLevel1/LeftRightHolder.png"
-dest_files=["res://.godot/imported/LeftRightHolder.png-807f673a219710b430fc8602ff1a1735.ctex"]
+source_file="res://Assets/Sprites/LevelOne/Character/PlayerGrabbing/player_Grabbing2.png"
+dest_files=["res://.godot/imported/player_Grabbing2.png-57840b2efc31a9b98c489bd2aa429553.ctex"]
 
 [params]
 

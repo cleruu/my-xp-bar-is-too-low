@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhks7232wn68d"
-path="res://.godot/imported/FishIcon.png-a1075841d1b655aa47bb7a0b9fb3425b.ctex"
+uid="uid://cl5j4emnnb87w"
+path="res://.godot/imported/player_Idle1.png-4962dd458e1139ca116d50052869de6d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/TempSpritesForLevel1/FishIcon.png"
-dest_files=["res://.godot/imported/FishIcon.png-a1075841d1b655aa47bb7a0b9fb3425b.ctex"]
+source_file="res://Assets/Sprites/LevelOne/Character/Idle/player_Idle1.png"
+dest_files=["res://.godot/imported/player_Idle1.png-4962dd458e1139ca116d50052869de6d.ctex"]
 
 [params]
 

@@ -4,16 +4,25 @@ signal theftFailed(reason: String)
 
 const fillSpeed = 20.0
 const drainSpeed = 4.0
-		 
+
 ## Total time (in seconds) the player has to complete the theft.
 @export var timeLimit: float = 20.0
 
 ## looking before it counts as getting caught. Gives a small buffer for
-## accidental taps.    
+## accidental taps.
 @export var catchDelay: float = 0.35
 
 ## Path to the WitnessNPC node. Set this in the editor once the NPC node exists.
 @export var witnessPath: NodePath
+
+## Scene to load immediately when the theft succeeds.
+@export_file("*.tscn") var victoryLevelOnePath: String
+
+## Scene to load immediately when the theft fails (caught or time up).
+@export_file("*.tscn") var gameOverLevelOnePath: String
+
+# For pausing the game
+@export var PauseMenu: PackedScene
 
 var isOnBar = false
 var witnessIsLooking = false
@@ -28,6 +37,7 @@ var gameOver = false
 func _ready() -> void:
 	timeRemaining = timeLimit
 	%LookingLabel.visible = false
+	$CharacterAnimation.play("Idle")
 
 	if witness:
 		witness.lookStarted.connect(_onWitnessLookStarted)
@@ -57,10 +67,14 @@ func _onWitnessLookEnded() -> void:
 func _process(delta: float) -> void:
 	if gameOver:
 		return
-
+	
+	if Input.is_action_just_pressed("Esc"):
+		pauseGame()
+	
 	_handleMeter(delta)
 	_handleTimer(delta)
 	_handleCatchCheck(delta)
+	_handleAnimation()
 
 
 func _handleMeter(delta: float) -> void:
@@ -81,7 +95,7 @@ func _handleTimer(delta: float) -> void:
 		timeRemaining = 0
 		_fail("time_up")
 
- 
+
 func _handleCatchCheck(delta: float) -> void:
 	var isPressing = Input.is_action_pressed("ui_accept") or Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
 
@@ -94,6 +108,27 @@ func _handleCatchCheck(delta: float) -> void:
 		pressedWhileLookingTime = 0.0
 
 
+## Handles swapping the character sprite animation based on whether the
+## player is currently pressing the grab input, independent of the
+## witness/catch logic above.
+func _handleAnimation() -> void:
+	var isPressing = Input.is_action_pressed("ui_accept") or Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
+
+	if isPressing:
+		if $CharacterAnimation.animation != "PlayerGoingToGrab":
+			$CharacterAnimation.play("PlayerGoingToGrab")
+	else:
+		if $CharacterAnimation.animation != "Idle":
+			$CharacterAnimation.play("Idle")
+
+
+func _goToVictory() -> void:
+	if victoryLevelOnePath.is_empty():
+		push_warning("FishingSystem: victoryLevelOnePath not set, cannot change scene.")
+		return
+	get_tree().change_scene_to_file(victoryLevelOnePath)
+
+
 func _succeed() -> void:
 	if gameOver:
 		return
@@ -101,9 +136,10 @@ func _succeed() -> void:
 	if witness:
 		witness.stopWatching()
 	print("SUCCESS: The theft was successful!")
+	$CharacterAnimation.play("PlayerGrabbing")
 	theftSucceeded.emit()
-	
-	get_tree().quit()
+
+	_goToVictory()
 
 
 func _fail(reason: String) -> void:
@@ -122,4 +158,16 @@ func _fail(reason: String) -> void:
 
 	theftFailed.emit(reason)
 
-	get_tree().quit()
+	if gameOverLevelOnePath.is_empty():
+		push_warning("FishingSystem: gameOverLevelOnePath not set, cannot change scene.")
+		return
+	get_tree().change_scene_to_file(gameOverLevelOnePath)
+
+# Helper functions for pausing the game
+func pauseGame() -> void:
+	var pause = PauseMenu.instantiate()
+	pause.retry.connect(resetGame)
+	get_node("%CanvasLayer").add_child(pause)
+
+func resetGame() -> void:
+	get_tree().reload_current_scene()

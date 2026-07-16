@@ -3,7 +3,8 @@
 [ext_resource type="Script" uid="uid://caa4ceubcf0n6" path="res://Scripts/LevelThree/levelThree.gd" id="1_c3deb"]
 [ext_resource type="Script" uid="uid://dweoidn5nu2up" path="res://Scenes/levelThree/l3_charaMovement.gd" id="1_frt6c"]
 [ext_resource type="Texture2D" uid="uid://bjkxiiqeo1mx0" path="res://Assets/L3 TEMP ASSETS/Tiny Swords (Free Pack)/Terrain/Tileset/Tilemap_color1.png" id="2_3kt3y"]
-[ext_resource type="Texture2D" uid="uid://dekk1uw85dxyy" path="res://Assets/Sprites/LevelThree/DarkRoad/DarkRoad/NewTextures/Sidewalks.png" id="2_sqe66"]
+[ext_resource type="PackedScene" uid="uid://cgtqsyk548rcr" path="res://Scenes/UI/Pause Menu.tscn" id="2_46acj"]
+[ext_resource type="Texture2D" uid="uid://c21lc1cxx1py1" path="res://Assets/Sprites/Placeholder/Celeste2.jpg" id="2_frt6c"]
 [ext_resource type="Texture2D" uid="uid://5wqeb8h4sir0" path="res://Assets/L3 TEMP ASSETS/Tiny Swords (Free Pack)/Terrain/Tileset/Water Background color.png" id="3_xu1mw"]
 [ext_resource type="Texture2D" uid="uid://cdhrqt52n7sbg" path="res://Assets/Sprites/LevelThree/DarkRoad/DarkRoad/OldTextures/DarkRoad.png" id="5_aw2bo"]
 [ext_resource type="Texture2D" uid="uid://fs1p88in5xtu" path="res://Assets/Sprites/LevelTwo/LevelTwoBg.PNG" id="5_xw1qe"]
@@ -6623,6 +6624,7 @@ size = Vector2(65.00049, 80.999985)
 
 [node name="LevelThree" type="Node2D" unique_id=1916613163]
 script = ExtResource("1_c3deb")
+PauseMenu = ExtResource("2_46acj")
 
 [node name="BGMPlayer" type="AudioStreamPlayer" parent="." unique_id=765155578]
 
@@ -6853,3 +6855,4 @@ position = Vector2(-113, -220)
 color = Color(0.32337376, 0.45991522, 0.5722213, 1)
 
 [connection signal="body_entered" from="goalSensor/GoalZone" to="player" method="_on_area_2d_body_entered"]
+
