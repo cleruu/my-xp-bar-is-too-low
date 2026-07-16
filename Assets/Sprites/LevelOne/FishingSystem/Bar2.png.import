@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bpwoi2p4mpves"
-path="res://.godot/imported/LeftRightHolder.png-5bdf9b3e29ac1cedf29b6ec405dff91e.ctex"
+uid="uid://baeepsmh0kkpf"
+path="res://.godot/imported/Bar2.png-a7eae9c577244cef18085e0572c3ce26.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/LevelOne/FishingSystem/LeftRightHolder.png"
-dest_files=["res://.godot/imported/LeftRightHolder.png-5bdf9b3e29ac1cedf29b6ec405dff91e.ctex"]
+source_file="res://Assets/Sprites/LevelOne/FishingSystem/Bar2.png"
+dest_files=["res://.godot/imported/Bar2.png-a7eae9c577244cef18085e0572c3ce26.ctex"]
 
 [params]
 

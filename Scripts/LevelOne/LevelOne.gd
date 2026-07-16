@@ -39,6 +39,7 @@ func _ready() -> void:
 	timeRemaining = timeLimit
 	%LookingLabel.visible = false
 	$CharacterAnimation.play("Idle")
+	$NPC.play("Idle")
 	backgroundMusic.play()
 
 	if witness:

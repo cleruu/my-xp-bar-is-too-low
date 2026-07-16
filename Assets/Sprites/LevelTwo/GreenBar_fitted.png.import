@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhks7232wn68d"
-path="res://.godot/imported/FishIcon.png-2015e8fbfe031f76a75b136887971563.ctex"
+uid="uid://dbkknodp35n7d"
+path="res://.godot/imported/GreenBar_fitted.png-a5740f9af92dab0193804713fc40e0fa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/LevelOne/FishingSystem/FishIcon.png"
-dest_files=["res://.godot/imported/FishIcon.png-2015e8fbfe031f76a75b136887971563.ctex"]
+source_file="res://Assets/Sprites/LevelTwo/GreenBar_fitted.png"
+dest_files=["res://.godot/imported/GreenBar_fitted.png-a5740f9af92dab0193804713fc40e0fa.ctex"]
 
 [params]
 
