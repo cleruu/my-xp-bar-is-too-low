@@ -6,11 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://j6uf8cei2fbq" path="res://Assets/Sprites/End Sprites/1-2.png" id="3_ykp4c"]
 [ext_resource type="Texture2D" uid="uid://cbfgsovhgvsln" path="res://Assets/Sprites/End Sprites/1-4.png" id="4_iukex"]
 [ext_resource type="Script" uid="uid://ms80vonistdx" path="res://Scripts/Audio Manager.gd" id="4_ykp4c"]
+[ext_resource type="Texture2D" uid="uid://dfnplfl762un5" path="res://Assets/Sprites/End Sprites/PALDO.PNG" id="5_ykp4c"]
 [ext_resource type="AudioStream" uid="uid://cfcslr6ea0oh3" path="res://Assets/Sounds/BGM/Ending_UncutSiren.wav" id="6_q1cm5"]
 
 [sub_resource type="Animation" id="Animation_i67mq"]
 resource_name = "End Cutscene"
-length = 8.066667
+length = 11.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -18,10 +19,10 @@ tracks/0/path = NodePath("CanvasLayer/Control/SC1 Strip 1:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.100000024, 2.1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.100000024, 2.1, 9.3),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -30,10 +31,10 @@ tracks/1/path = NodePath("CanvasLayer/Control/SC1 Strip 2:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(2.1, 4.1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(2.1, 4.1, 9.3),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -42,10 +43,10 @@ tracks/2/path = NodePath("CanvasLayer/Control/SC1 Strip 3:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(4.133333, 6.2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(4.133333, 6.2, 9.3),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -54,7 +55,7 @@ tracks/3/path = NodePath("CanvasLayer/Control/RichTextLabel:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(6.8, 7.866667),
+"times": PackedFloat32Array(10.466666, 11),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -66,12 +67,24 @@ tracks/4/path = NodePath("Manager End Cutscene")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(7.8333335),
+"times": PackedFloat32Array(10.966666),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
 "method": &"isAtEnd"
 }]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CanvasLayer/Control/SC2:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(9.366667, 10.933333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_4xvfx"]
@@ -123,6 +136,18 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer/Control/SC2:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4xvfx"]
@@ -176,6 +201,13 @@ offset_left = 4.0
 offset_right = 1924.0
 offset_bottom = 1080.0
 texture = ExtResource("4_iukex")
+
+[node name="SC2" type="TextureRect" parent="CanvasLayer/Control" unique_id=867238521]
+layout_mode = 0
+offset_left = 4.0
+offset_right = 1924.0
+offset_bottom = 1080.0
+texture = ExtResource("5_ykp4c")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control" unique_id=1146265191]
 visible = false
