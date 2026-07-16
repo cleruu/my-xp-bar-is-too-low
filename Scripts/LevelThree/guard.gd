@@ -14,6 +14,7 @@ const ARRIVAL_THRESHOLD := 5.0
 var patrol_points: Array[Vector2] = []
 var current_point_index: int = 0
 var facing_direction: Vector2 = Vector2.DOWN
+var last_flip_h: bool = false
 
 # This is for smooth rotation
 @export var turn_speed: float = 5.0
@@ -112,6 +113,16 @@ func _physics_process(delta: float) -> void:
 			_chase(delta)
 			
 	facing_direction = facing_direction.slerp(desired_direction, turn_speed * delta)
+
+	# --- Sprite flip logic (mirrors player script) ---
+	if facing_direction.x > 0:
+		last_flip_h = true
+		sprite.flip_h = true
+	elif facing_direction.x < 0:
+		last_flip_h = false
+		sprite.flip_h = false
+	elif facing_direction.y != 0:
+		sprite.flip_h = not last_flip_h
 
 	_update_vision(delta)
 	queue_redraw()
@@ -338,19 +349,6 @@ func _draw() -> void:
 	# 2. Draw a faint inner circle to visualize the peripheral "Sixth Sense" radius
 	draw_arc(Vector2.ZERO, peripheral_radius, 0, TAU, 32, Color(1, 1, 1, 0.2), 1.0)
 
-	# 3. NEW: DEBUG DRAW NAV PATH
-	if current_state == State.PATROL and nav_agent.target_position != Vector2.ZERO:
-		# Draw the safe target destination as a magenta circle
-		draw_circle(to_local(nav_agent.target_position), 8.0, Color.MAGENTA)
-		
-		# Draw the calculated path lines
-		var path = nav_agent.get_current_navigation_path()
-		if path.size() > 1:
-			var local_path = PackedVector2Array()
-			for p in path:
-				local_path.append(to_local(p))
-			draw_polyline(local_path, Color.GREEN, 2.0)
-
 	# 4. Detection meter bar
 	if is_detecting:
 		var bar_width: float = 40.0
@@ -359,7 +357,6 @@ func _draw() -> void:
 		var fill_ratio: float = clamp(detection_timer / time_to_detect, 0.0, 1.0)
 
 		draw_rect(Rect2(bar_pos, Vector2(bar_width, bar_height)), Color(0, 0, 0, 0.5))
-		draw_rect(Rect2(bar_pos, Vector2(bar_width * fill_ratio, bar_height)), Color(1, 0.2, 0.2, 0.9))
 
 func _process(_delta: float) -> void:
 	debug_label.text = "state: %s | detect: %.1f | lost: %.1f | catch: %.1f" % [
