@@ -1,24 +1,24 @@
 [gd_scene format=3 uid="uid://52kyw6vddqrf"]
 
 [ext_resource type="Script" uid="uid://ca8eex0exx3lv" path="res://Scripts/Start/Arcade Screen Manager.gd" id="1_2ou0m"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_krmdh"]
+[ext_resource type="Texture2D" uid="uid://bw7n5ojm4engt" path="res://Assets/Sprites/Start Assets/MainMenu.png" id="1_8pp0w"]
+[ext_resource type="FontFile" uid="uid://b57t4vqbtlds" path="res://Assets/Fonts/SteelworksVintageDemo-rR98.ttf" id="3_3jr7o"]
 
 [node name="ArcadeScreen" type="Node2D" unique_id=1025395795]
 
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1114409150]
+position = Vector2(960, 540)
+texture = ExtResource("1_8pp0w")
+
 [node name="Camera2D" type="Camera2D" parent="." unique_id=878083188]
 position = Vector2(960, 540)
-
-[node name="Background" type="Sprite2D" parent="." unique_id=756466538]
-position = Vector2(959.75, 539.75)
-scale = Vector2(1920.5, 1080.5)
-texture = SubResource("PlaceholderTexture2D_krmdh")
 
 [node name="Arcade Screen Manager" type="Node2D" parent="." unique_id=1603146417]
 script = ExtResource("1_2ou0m")
 level1 = "uid://dgj2xcn0y4xl2"
 level2 = "uid://b5rk1mqn6gcc3"
 level3 = "uid://c02ectbgvwcad"
+mainMenu = "uid://bgnbnu6q4x2kw"
 
 [node name="Control" type="Control" parent="." unique_id=1319581319]
 layout_mode = 3
@@ -26,45 +26,59 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Title Text" type="RichTextLabel" parent="Control" unique_id=1223558472]
-layout_mode = 0
-offset_left = 229.0
-offset_top = 62.0
-offset_right = 870.0
-offset_bottom = 312.0
-theme_override_font_sizes/normal_font_size = 176
-text = "Arcade"
-
 [node name="Level 1" type="Button" parent="Control" unique_id=982055690]
 layout_mode = 0
-offset_left = 184.0
-offset_top = 497.0
-offset_right = 608.0
-offset_bottom = 662.0
-theme_override_colors/font_hover_color = Color(0.7372549, 0.9490196, 0.9490196, 1)
+offset_left = 207.0
+offset_top = 599.0
+offset_right = 522.0
+offset_bottom = 727.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.44705883, 0.06666667, 0.011764706, 1)
+theme_override_fonts/font = ExtResource("3_3jr7o")
 theme_override_font_sizes/font_size = 75
-text = "Level 1"
+text = "level 1"
+flat = true
 
 [node name="Level 2" type="Button" parent="Control" unique_id=2009304557]
 layout_mode = 0
-offset_left = 756.0
-offset_top = 497.0
-offset_right = 1180.0
-offset_bottom = 662.0
-theme_override_colors/font_hover_color = Color(0.7372549, 0.9490196, 0.9490196, 1)
+offset_left = 230.0
+offset_top = 705.0
+offset_right = 510.0
+offset_bottom = 823.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.44705883, 0.06666667, 0.011764706, 1)
+theme_override_fonts/font = ExtResource("3_3jr7o")
 theme_override_font_sizes/font_size = 75
-text = "Level 2"
+text = "level 2"
+flat = true
 
 [node name="Level 3" type="Button" parent="Control" unique_id=941199267]
 layout_mode = 0
-offset_left = 1322.0
-offset_top = 497.0
-offset_right = 1746.0
-offset_bottom = 662.0
-theme_override_colors/font_hover_color = Color(0.7372549, 0.9490196, 0.9490196, 1)
+offset_left = 157.0
+offset_top = 788.0
+offset_right = 581.0
+offset_bottom = 953.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.44705883, 0.06666667, 0.011764706, 1)
+theme_override_fonts/font = ExtResource("3_3jr7o")
 theme_override_font_sizes/font_size = 75
-text = "Level 3"
+text = "level 3"
+flat = true
+
+[node name="Level 4" type="Button" parent="Control" unique_id=1311362079]
+layout_mode = 0
+offset_left = 117.0
+offset_top = 886.0
+offset_right = 541.0
+offset_bottom = 1051.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.44705883, 0.06666667, 0.011764706, 1)
+theme_override_fonts/font = ExtResource("3_3jr7o")
+theme_override_font_sizes/font_size = 75
+text = "back"
+flat = true
 
 [connection signal="pressed" from="Control/Level 1" to="Arcade Screen Manager" method="goToLevel1"]
 [connection signal="pressed" from="Control/Level 2" to="Arcade Screen Manager" method="goToLevel2"]
 [connection signal="pressed" from="Control/Level 3" to="Arcade Screen Manager" method="goToLevel3"]
+[connection signal="pressed" from="Control/Level 4" to="Arcade Screen Manager" method="goBackToMainMenu"]
