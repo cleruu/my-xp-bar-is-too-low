@@ -2,7 +2,9 @@
 
 [ext_resource type="Script" uid="uid://chtdhep4jbtmk" path="res://Scripts/LevelTwo/levelTwoController.gd" id="1_vfym8"]
 [ext_resource type="Texture2D" uid="uid://chaianjxkvvwy" path="res://Assets/Sprites/LevelTwo/Background/main.PNG" id="2_jnvl0"]
+[ext_resource type="AudioStream" uid="uid://b7gia2k7su52a" path="res://Assets/Sounds/LevelTwo/SlipperThrow.wav" id="2_sfet4"]
 [ext_resource type="PackedScene" uid="uid://cgtqsyk548rcr" path="res://Scenes/UI/Pause Menu.tscn" id="2_vfc66"]
+[ext_resource type="AudioStream" uid="uid://c11j44i1f60hh" path="res://Assets/Sounds/LevelTwo/Sucess.wav" id="3_dt8bs"]
 [ext_resource type="Texture2D" uid="uid://bbs1m8x2gme6x" path="res://Assets/Sprites/LevelTwo/Background/1ST.PNG" id="3_sm41y"]
 [ext_resource type="Script" uid="uid://df5n35rhayt0d" path="res://Scripts/LevelTwo/playerRunner.gd" id="3_wqdxf"]
 [ext_resource type="Script" uid="uid://d3lacml8x5vwl" path="res://Scripts/LevelTwo/enemyBox.gd" id="4_1vfx7"]
@@ -16,10 +18,13 @@
 [ext_resource type="Texture2D" uid="uid://3nwmyf3a6bwo" path="res://Assets/Sprites/LevelTwo/Running/player_Running1.png" id="7_w324y"]
 [ext_resource type="Texture2D" uid="uid://b0yvk61mobjvo" path="res://Assets/Sprites/LevelTwo/Running/player_Running2.png" id="8_gmdng"]
 [ext_resource type="Texture2D" uid="uid://dm4vmfsbxmo3c" path="res://Assets/Sprites/LevelTwo/Ducking/player_RunningDuck4.png" id="8_xtgec"]
+[ext_resource type="AudioStream" uid="uid://787uprwrq5ss" path="res://Assets/Sounds/LevelTwo/Running.wav" id="9_e7616"]
 [ext_resource type="Texture2D" uid="uid://yj577ak6a7iq" path="res://Assets/Sprites/LevelTwo/Running/player_Running3.png" id="9_i77de"]
 [ext_resource type="Texture2D" uid="uid://d2v5265t06jwt" path="res://Assets/Sprites/LevelTwo/Ducking/player_RunningDuck5.png" id="9_wmcb0"]
 [ext_resource type="Texture2D" uid="uid://c4fi4mkv04vq" path="res://Assets/Sprites/LevelTwo/Running/player_Running4.png" id="10_pq1pk"]
 [ext_resource type="Texture2D" uid="uid://bhae8h2fa2rhu" path="res://Assets/Sprites/LevelTwo/Ducking/player_RunningDuck6.png" id="10_uspcj"]
+[ext_resource type="AudioStream" uid="uid://bls2tvalatdw7" path="res://Assets/Sounds/LevelTwo/Jump1.wav" id="10_yuc2l"]
+[ext_resource type="AudioStream" uid="uid://bqvm5hqmxj1ae" path="res://Assets/Sounds/LevelTwo/Jump2.wav" id="11_dt8bs"]
 [ext_resource type="Texture2D" uid="uid://dxu0lgebxsm7q" path="res://Assets/Sprites/LevelTwo/Running/player_Running5.png" id="11_l8wlw"]
 [ext_resource type="Texture2D" uid="uid://bj1qh4dnvfitc" path="res://Assets/Sprites/LevelTwo/Running/player_Running6.png" id="12_wdrpt"]
 [ext_resource type="Texture2D" uid="uid://5plq8ctjo5p5" path="res://Assets/Sprites/LevelTwo/Enemy/lola_Running1.png" id="20_jnvl0"]
@@ -129,6 +134,8 @@ animations = [{
 
 [node name="LevelTwo" type="Node2D" unique_id=1751186645]
 script = ExtResource("1_vfym8")
+enemyThrowSound = ExtResource("2_sfet4")
+success_music = ExtResource("3_dt8bs")
 PauseMenu = ExtResource("2_vfc66")
 
 [node name="Main" type="Sprite2D" parent="." unique_id=311937296]
@@ -185,6 +192,9 @@ debug_color = Color(1, 0.10980392, 0.31764707, 0.3764706)
 [node name="Player" type="CharacterBody2D" parent="." unique_id=6888644]
 position = Vector2(220, 540)
 script = ExtResource("3_wqdxf")
+running_sound = ExtResource("9_e7616")
+jump_sound_1 = ExtResource("10_yuc2l")
+jump_sound_2 = ExtResource("11_dt8bs")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=314159605]
 position = Vector2(87, -132)
@@ -219,8 +229,6 @@ scale = Vector2(0.199, 0.199)
 sprite_frames = SubResource("SpriteFrames_5y726")
 animation = &"run"
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Enemy" unique_id=1739377616]
-
 [node name="ValueBarBackground" type="ColorRect" parent="." unique_id=59463431]
 offset_left = -305.0
 offset_top = -141.0
@@ -237,7 +245,7 @@ script = ExtResource("30_skc8q")
 
 [node name="MusicPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1963900855]
 stream = ExtResource("21_wdrpt")
-volume_db = -0.1
+volume_db = -10.0
 autoplay = true
 
 [node name="TimerLabel" type="Label" parent="." unique_id=713067432]

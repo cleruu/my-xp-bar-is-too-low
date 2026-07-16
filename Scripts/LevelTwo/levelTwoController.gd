@@ -18,6 +18,9 @@ extends Node2D
 @export var enemyThrowInterval: float = 5.0
 @export var enemyThrowSpeed: float = 250.0
 @export var enemyThrowCurve: float = 1.5
+@export var enemyThrowSound: AudioStream = null
+
+@export var success_music: AudioStream = null
 
 @onready var spawnTimer: Timer = $SpawnTimer
 @onready var obstaclesRoot: Node2D = $Obstacles
@@ -173,6 +176,10 @@ func _enemy_throw_obstacle():
 		obstacle.set_throw_speed(enemyThrowSpeed, enemyThrowCurve)
 	
 	get_parent().add_child(obstacle)
+	
+		# PLAY THROW SOUND
+	if enemyThrowSound:
+		play_sound(enemyThrowSound, -5, randf_range(0.9, 1.1))
 
 func _update_dodge_display():
 	if dodge_counter:
@@ -218,11 +225,17 @@ func _win_challenge():
 	if challenge_timer:
 		challenge_timer.stop()
 	
+	# PLAY SUCCESS MUSIC
+	if success_music:
+		play_sound(success_music, 0, 1.0)
+		print("🎵 Success music playing!")
 	
 	var thrown_obstacles = get_tree().get_nodes_in_group("thrown_obstacle")
 	for obstacle in thrown_obstacles:
 		obstacle.queue_free()
 	
+	# Wait for music to play before changing scene
+	await get_tree().create_timer(0.5).timeout
 	call_deferred("_change_to_victory")
 
 func _change_to_victory():
@@ -305,3 +318,19 @@ func pauseGame() -> void:
 
 func resetGame() -> void:
 	get_tree().reload_current_scene()
+	
+func play_sound(sound: AudioStream, volume: float = 0.0, pitch: float = 1.0):
+	if not sound:
+		return
+	
+	var player = AudioStreamPlayer2D.new()
+	player.stream = sound
+	player.volume_db = volume
+	player.pitch_scale = pitch
+	
+	# Add to scene root so it survives object destruction
+	get_tree().root.add_child(player)
+	player.play()
+	
+	# Auto-cleanup when finished
+	player.finished.connect(player.queue_free)
