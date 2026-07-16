@@ -57,7 +57,7 @@ var current_state: State = State.PATROL
 var spawn_position: Vector2
 
 # Pathfinding Optimization 
-@export var path_update_interval: float = 0.15 # Update path every 0.15 seconds
+@export var path_update_interval: float = 0.40 # Update path every 0.15 seconds
 var path_update_timer: float = 0.0
 # For pathfinding failsafe
 @export var stuck_time_limit: float = 0.5
@@ -337,19 +337,6 @@ func _draw() -> void:
 	
 	# 2. Draw a faint inner circle to visualize the peripheral "Sixth Sense" radius
 	draw_arc(Vector2.ZERO, peripheral_radius, 0, TAU, 32, Color(1, 1, 1, 0.2), 1.0)
-
-	# 3. NEW: DEBUG DRAW NAV PATH
-	if current_state == State.PATROL and nav_agent.target_position != Vector2.ZERO:
-		# Draw the safe target destination as a magenta circle
-		draw_circle(to_local(nav_agent.target_position), 8.0, Color.MAGENTA)
-		
-		# Draw the calculated path lines
-		var path = nav_agent.get_current_navigation_path()
-		if path.size() > 1:
-			var local_path = PackedVector2Array()
-			for p in path:
-				local_path.append(to_local(p))
-			draw_polyline(local_path, Color.GREEN, 2.0)
 
 	# 4. Detection meter bar
 	if is_detecting:

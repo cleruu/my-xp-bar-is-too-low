@@ -11,7 +11,9 @@
 [ext_resource type="FontFile" uid="uid://b57t4vqbtlds" path="res://Assets/Fonts/SteelworksVintageDemo-rR98.ttf" id="9_o3r88"]
 [ext_resource type="Script" uid="uid://ms80vonistdx" path="res://Scripts/Audio Manager.gd" id="10_b1yk2"]
 [ext_resource type="AudioStream" uid="uid://dxqfthks1svqa" path="res://Assets/Sounds/BGM/Cutscene.wav" id="11_dtk11"]
-[ext_resource type="AudioStream" uid="uid://bgljnic1qvtaq" path="res://Assets/Sounds/sfx/Cutscene/JeepTrimmed.mp3" id="12_wisco"]
+[ext_resource type="AudioStream" uid="uid://d4iddq48vrlan" path="res://Assets/Sounds/sfx/Cutscene/para.wav" id="12_s3bt7"]
+[ext_resource type="AudioStream" uid="uid://b65l3o3uhd480" path="res://Assets/Sounds/sfx/Cutscene/uy.wav" id="13_bkuf1"]
+[ext_resource type="AudioStream" uid="uid://brh7uwhp4c8yq" path="res://Assets/Sounds/sfx/Cutscene/give.wav" id="14_p3w83"]
 
 [sub_resource type="Animation" id="Animation_cxomw"]
 resource_name = "Play Cutscene"
@@ -107,7 +109,7 @@ tracks/7/path = NodePath("CanvasLayer/Control/RichTextLabel:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(9.433333, 10.7),
+"times": PackedFloat32Array(9.433333, 10.733334),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -119,9 +121,18 @@ tracks/8/path = NodePath("Manager Level 1 Cutscene")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(10.866667),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(1.1666666, 6.6, 9.666667, 10.733334),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "values": [{
+"args": [],
+"method": &"paraPoPlay"
+}, {
+"args": [],
+"method": &"nakawPlay"
+}, {
+"args": [],
+"method": &"iphonePlay"
+}, {
 "args": [],
 "method": &"blinkText"
 }]
@@ -239,6 +250,7 @@ position = Vector2(960, 540)
 
 [node name="Manager Level 1 Cutscene" type="Node2D" parent="." unique_id=1166908114]
 script = ExtResource("1_sdfv7")
+level2 = "uid://b5rk1mqn6gcc3"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=409760816]
 libraries/ = SubResource("AnimationLibrary_mj77m")
@@ -333,6 +345,14 @@ stream = ExtResource("11_dtk11")
 volume_db = -2.419
 autoplay = true
 
-[node name="Jeep" type="AudioStreamPlayer" parent="Audio Manager" unique_id=1938663657]
+[node name="Para po" type="AudioStreamPlayer" parent="Audio Manager" unique_id=579526111]
 unique_name_in_owner = true
-stream = ExtResource("12_wisco")
+stream = ExtResource("12_s3bt7")
+
+[node name="Magnanakaw" type="AudioStreamPlayer" parent="Audio Manager" unique_id=2147021949]
+unique_name_in_owner = true
+stream = ExtResource("13_bkuf1")
+
+[node name="Iphone" type="AudioStreamPlayer" parent="Audio Manager" unique_id=1077912341]
+unique_name_in_owner = true
+stream = ExtResource("14_p3w83")

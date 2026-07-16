@@ -1,23 +1,25 @@
 [gd_scene format=3 uid="uid://bw5t76fnyla4t"]
 
 [ext_resource type="Script" uid="uid://lqtfxbcac81k" path="res://Scripts/LevelTwo/gameOver.gd" id="1_lhcrs"]
+[ext_resource type="Texture2D" uid="uid://b2g5ngefw7dbh" path="res://Assets/Sprites/LevelTwo/Background/LVL2_FAIL.png" id="2_f51vm"]
+[ext_resource type="FontFile" uid="uid://b57t4vqbtlds" path="res://Assets/Fonts/SteelworksVintageDemo-rR98.ttf" id="3_7r24s"]
 
 [node name="GameOver" type="Node2D" unique_id=178194341]
 script = ExtResource("1_lhcrs")
 
-[node name="Title" type="Label" parent="." unique_id=167725230]
-offset_left = 815.0
-offset_top = 455.0
-offset_right = 1227.0
-offset_bottom = 554.0
-theme_override_font_sizes/font_size = 72
-text = "GAME OVER"
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1580847381]
+position = Vector2(960, 540)
+texture = ExtResource("2_f51vm")
 
 [node name="Button" type="Button" parent="." unique_id=222753193]
-offset_left = 915.0
-offset_top = 622.0
-offset_right = 1115.0
-offset_bottom = 672.0
+offset_left = 106.0
+offset_top = 895.0
+offset_right = 306.0
+offset_bottom = 969.0
+theme_override_colors/font_hover_color = Color(0.44705883, 0.06666667, 0.011764706, 1)
+theme_override_fonts/font = ExtResource("3_7r24s")
+theme_override_font_sizes/font_size = 60
 text = "restart"
+flat = true
 
 [connection signal="pressed" from="Button" to="." method="_on_restart_button_pressed"]
