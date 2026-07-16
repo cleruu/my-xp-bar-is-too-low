@@ -18,11 +18,14 @@ extends Node2D
 @export var enemyThrowInterval: float = 5.0
 @export var enemyThrowSpeed: float = 250.0
 @export var enemyThrowCurve: float = 1.5
+@export var enemyThrowSound: AudioStream = null
+
+@export var success_music: AudioStream = null
 
 @onready var spawnTimer: Timer = $SpawnTimer
 @onready var obstaclesRoot: Node2D = $Obstacles
 @onready var enemy: Area2D = $Enemy
-@onready var scoreLabel: Label = $ScoreLabel 
+@onready var value_bar: ColorRect = $ValueBarBackground/ValueBar
 @onready var dodge_counter: Label = $DodgeCounter
 @onready var timer_label: Label = $TimerLabel  # CHANGED to TimerLabel
 
@@ -56,8 +59,8 @@ func _ready() -> void:
 		push_error("obstacleScene is null. Check path or assign in Inspector.")
 		return
 
-	if scoreLabel and scoreLabel.has_signal("game_over"):
-		scoreLabel.game_over.connect(_on_game_over)
+	if value_bar and value_bar.has_signal("game_over"):
+		value_bar.game_over.connect(_on_game_over)
 
 	# Load thrown obstacle scene
 	thrown_obstacle_scene = load("res://Scenes/LevelTwo/thrownObstacle.tscn")
@@ -131,7 +134,6 @@ func _check_dodged_obstacles():
 		if child.position.x < enemy_x:
 			counted_obstacles.append(child)
 			increment_dodge()
-			print("Obstacle dodged! Count: ", dodge_count)
 
 func _setup_challenge_timer():
 	challenge_timer = Timer.new()
@@ -144,8 +146,6 @@ func _setup_challenge_timer():
 func _on_challenge_timeout():
 	if not game_active:
 		return
-	
-	print("Time ran out! Challenge failed.")
 	_on_game_over()
 
 func _setup_enemy_throwing():
@@ -176,6 +176,10 @@ func _enemy_throw_obstacle():
 		obstacle.set_throw_speed(enemyThrowSpeed, enemyThrowCurve)
 	
 	get_parent().add_child(obstacle)
+	
+		# PLAY THROW SOUND
+	if enemyThrowSound:
+		play_sound(enemyThrowSound, -5, randf_range(0.9, 1.1))
 
 func _update_dodge_display():
 	if dodge_counter:
@@ -207,7 +211,6 @@ func reset_dodge():
 	dodge_count = 0
 	counted_obstacles.clear()
 	_update_dodge_display()
-	print("Dodge reset! (Got hit)")
 
 func _win_challenge():
 	if game_won:
@@ -222,12 +225,17 @@ func _win_challenge():
 	if challenge_timer:
 		challenge_timer.stop()
 	
-	print("🎉 VICTORY! Dodged ", dodge_target, " obstacles!")
+	# PLAY SUCCESS MUSIC
+	if success_music:
+		play_sound(success_music, 0, 1.0)
+		print("🎵 Success music playing!")
 	
 	var thrown_obstacles = get_tree().get_nodes_in_group("thrown_obstacle")
 	for obstacle in thrown_obstacles:
 		obstacle.queue_free()
 	
+	# Wait for music to play before changing scene
+	await get_tree().create_timer(0.5).timeout
 	call_deferred("_change_to_victory")
 
 func _change_to_victory():
@@ -266,8 +274,15 @@ func _reset_timer() -> void:
 	spawnTimer.start()
 	
 func deduct_score(amount: int = 5000):
-	if scoreLabel and scoreLabel.has_method("deduct_score"):
-		scoreLabel.deduct_score(amount)
+	if value_bar.has_method("deduct_score"):
+		value_bar.deduct_score(amount)
+	else:
+		print("❌ value_bar does NOT have deduct_score method!")
+		
+func get_current_score() -> int:
+	if value_bar and value_bar.has_method("get_value"):
+		return value_bar.get_value()
+	return 50000
 
 func show_damage_popup(position: Vector2, amount: int = 5000):
 	if not damage_popup_scene:
@@ -279,7 +294,6 @@ func show_damage_popup(position: Vector2, amount: int = 5000):
 	
 	popup.position = position
 	add_child(popup)
-	print("Damage popup shown!")
 
 func _on_game_over():
 	if not game_active:
@@ -304,3 +318,19 @@ func pauseGame() -> void:
 
 func resetGame() -> void:
 	get_tree().reload_current_scene()
+	
+func play_sound(sound: AudioStream, volume: float = 0.0, pitch: float = 1.0):
+	if not sound:
+		return
+	
+	var player = AudioStreamPlayer2D.new()
+	player.stream = sound
+	player.volume_db = volume
+	player.pitch_scale = pitch
+	
+	# Add to scene root so it survives object destruction
+	get_tree().root.add_child(player)
+	player.play()
+	
+	# Auto-cleanup when finished
+	player.finished.connect(player.queue_free)

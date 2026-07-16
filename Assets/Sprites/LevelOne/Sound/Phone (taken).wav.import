@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dmhg2rme8j5vn"
+path="res://.godot/imported/Phone (taken).wav-c66c27af22b753cbfe073d35674a997d.sample"
+
+[deps]
+
+source_file="res://Assets/Sprites/LevelOne/Sound/Phone (taken).wav"
+dest_files=["res://.godot/imported/Phone (taken).wav-c66c27af22b753cbfe073d35674a997d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

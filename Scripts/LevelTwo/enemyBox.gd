@@ -7,7 +7,6 @@ var player: Node2D = null
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collisionShape: CollisionShape2D = $CollisionShape2D
-@onready var audio_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 func _ready():
 	# Find player
@@ -37,8 +36,6 @@ func _ready():
 		animated_sprite.play("run")
 		animated_sprite.flip_h = false  # Facing right
 		animated_sprite.position = Vector2(0, -132)  # Match collision shape
-		
-		print("Enemy running animation started!")
 
 func _process(delta: float):
 	# Enemy stays at fixed position - NO CHASING
@@ -50,14 +47,19 @@ func _process(delta: float):
 
 func _on_body_entered(body: Node) -> void:
 	if body.is_in_group("player"):
-		# Play hit sound
-		if audio_player and hit_sound:
-			audio_player.stream = hit_sound
-			audio_player.play()
-			
-		# INSTANT GAME OVER
 		var controller = get_tree().current_scene
+		
+		# Play hit sound through controller (persists through scene change)
+		if controller and controller.has_method("play_sound") and hit_sound:
+			var pitch = randf_range(0.9, 1.1)
+			controller.play_sound(hit_sound, 0, pitch)
+			print("🔊 Enemy caught player! Sound playing!")
+		
+		# INSTANT GAME OVER (sound continues playing)
 		if controller and controller.has_method("_on_game_over"):
+			# Add small delay so sound plays before scene changes
+			await get_tree().create_timer(0.3).timeout
 			controller._on_game_over()
 		else:
+			await get_tree().create_timer(0.3).timeout
 			get_tree().change_scene_to_file("res://Scenes/LevelTwo/gameOver.tscn")

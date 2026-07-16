@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c2n5gxuqmfghx"]
 
 [ext_resource type="Script" uid="uid://b60bc6p2khj17" path="res://Scripts/LevelOne/VictoryLevelOne.gd" id="1_uooi1"]
+[ext_resource type="AudioStream" uid="uid://cqqxcp4j5wbn3" path="res://Assets/Sprites/LevelOne/Sound/Sucess.wav" id="2_oejtc"]
 
 [node name="VictoryLevelOne" type="Node2D" unique_id=1747859155]
 script = ExtResource("1_uooi1")
@@ -16,3 +17,6 @@ text = "VICTORY
 
 PRESS SPACE TO CONTINUE"
 horizontal_alignment = 1
+
+[node name="VictorySound" type="AudioStreamPlayer" parent="." unique_id=184805697]
+stream = ExtResource("2_oejtc")

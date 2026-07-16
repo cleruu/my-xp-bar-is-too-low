@@ -8,12 +8,21 @@ extends CharacterBody2D
 @export var standSize: Vector2 = Vector2(192, 264)
 @export var crouchSize: Vector2 = Vector2(192, 156)
 
+# Sound exports
+@export var running_sound: AudioStream = null
+@export var jump_sound_1: AudioStream = null
+@export var jump_sound_2: AudioStream = null
+
+@export var camera_margin: float = 50.0
+
 @onready var collisionShape: CollisionShape2D = $CollisionShape2D
 @onready var collisionRect: RectangleShape2D = collisionShape.shape as RectangleShape2D
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 var isCrouching: bool = false
 var was_in_air: bool = false  # Track if we were just in air
+var is_running: bool = false  # Track running state
+var running_sound_player: AudioStreamPlayer2D = null  # Persistent player
 
 func _ready() -> void:
 	_apply_stand_shape()
@@ -22,6 +31,25 @@ func _ready() -> void:
 	# Start with run animation
 	if animated_sprite:
 		animated_sprite.play("run")
+	
+	# Create running sound player (persistent)
+	running_sound_player = AudioStreamPlayer2D.new()
+	
+	# Debug: Check if sound is assigned
+	if running_sound:
+		print("✅ Running sound assigned: ", running_sound.resource_path)
+		running_sound_player.stream = running_sound
+	else:
+		print("❌ Running sound is NULL! Assign it in the Inspector.")
+	
+	running_sound_player.volume_db = 0  # Set to 0 to hear it clearly
+	running_sound_player.finished.connect(_on_running_sound_finished)  # Re-trigger when finished
+	add_child(running_sound_player)
+
+func _on_running_sound_finished():
+	# Re-trigger the running sound if player is still running
+	if is_running and running_sound_player:
+		running_sound_player.play()
 
 func _physics_process(delta: float) -> void:
 	# Gravity
@@ -42,12 +70,61 @@ func _physics_process(delta: float) -> void:
 	# Jump
 	if Input.is_action_just_pressed("moveUp") and is_on_floor() and not isCrouching:
 		velocity.y = jumpForce
+		_play_jump_sound()
 
 	move_and_slide()
+# CLAMP PLAYER POSITION TO STAY ON SCREEN
+	var viewport = get_viewport()
+	var camera = get_viewport().get_camera_2d()
 	
-	# Update animation
+	if camera:
+		# Get camera bounds
+		var camera_pos = camera.global_position
+		var screen_size = viewport.get_visible_rect().size
+		
+		# Calculate left/right boundaries
+		var left_bound = camera_pos.x - screen_size.x / 2 + camera_margin
+		var right_bound = camera_pos.x + screen_size.x / 2 - camera_margin
+		
+		# Clamp position
+		global_position.x = clamp(global_position.x, left_bound, right_bound)
+	
+	# Update animation and sound
 	_update_animation()
+	_update_running_sound()
 
+func _update_running_sound():
+	if not running_sound_player or not running_sound:
+		return
+	
+	# Always play running sound when on ground (even when crouching)
+	var should_run = is_on_floor()
+	
+	if should_run and not is_running:
+		is_running = true
+		running_sound_player.play()
+		print("🔊 Running sound STARTED!")
+	elif not should_run and is_running:
+		is_running = false
+		running_sound_player.stop()
+		print("🔇 Running sound STOPPED!")
+
+func _play_jump_sound():
+	# Choose random jump sound
+	var jump_sound = null
+	var random_value = randi() % 2  # 0 or 1
+	
+	if random_value == 0:
+		jump_sound = jump_sound_1
+	else:
+		jump_sound = jump_sound_2
+	
+	# Play through controller
+	if jump_sound:
+		var controller = get_tree().current_scene
+		if controller and controller.has_method("play_sound"):
+			controller.play_sound(jump_sound, 0, randf_range(0.9, 1.1))
+	
 func _update_animation() -> void:
 	if not animated_sprite:
 		return
@@ -140,3 +217,7 @@ func _apply_crouch_shape() -> void:
 	# Only resize the hitbox (collision shape)
 	collisionRect.size = crouchSize  # (192, 156)
 	collisionShape.position = Vector2(0, -crouchSize.y * 0.5)  # (0, -78)
+
+func _on_game_over():
+	if running_sound_player and running_sound_player.playing:
+		running_sound_player.stop()
