@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://c21lc1cxx1py1" path="res://Assets/Sprites/Placeholder/Celeste2.jpg" id="2_frt6c"]
 [ext_resource type="Texture2D" uid="uid://5wqeb8h4sir0" path="res://Assets/L3 TEMP ASSETS/Tiny Swords (Free Pack)/Terrain/Tileset/Water Background color.png" id="3_xu1mw"]
 [ext_resource type="Texture2D" uid="uid://cdhrqt52n7sbg" path="res://Assets/Sprites/LevelThree/DarkRoad/DarkRoad/OldTextures/DarkRoad.png" id="5_aw2bo"]
-[ext_resource type="Texture2D" uid="uid://fs1p88in5xtu" path="res://Assets/Sprites/LevelTwo/LevelTwoBg.PNG" id="5_xw1qe"]
+[ext_resource type="Texture2D" uid="uid://bd565u6ipkj1q" path="res://Assets/Sprites/Level 3 Sprites/2tier-1.PNG" id="5_xw1qe"]
 [ext_resource type="PackedScene" uid="uid://dv0xynaxgib47" path="res://Scenes/levelThree/guard.tscn" id="7_r4kcd"]
 [ext_resource type="Texture2D" uid="uid://bjka1f5p30x8m" path="res://Assets/Sprites/LevelThree/3_player_walking1.png" id="7_xw1qe"]
 [ext_resource type="Texture2D" uid="uid://bg0yaqmywyjyg" path="res://Assets/Sprites/LevelThree/3_player_walking2.png" id="8_405vd"]
@@ -35,7 +35,7 @@
 [ext_resource type="Texture2D" uid="uid://c84j66bk3xouj" path="res://Assets/Sprites/LevelThree/Additions/dog.PNG" id="24_3lwkm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ch8ca"]
-texture = ExtResource("2_sqe66")
+texture = ExtResource("2_3kt3y")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -6807,6 +6807,8 @@ shape = SubResource("CapsuleShape2D_6nr7s")
 
 [node name="Camera2D" type="Camera2D" parent="player" unique_id=1970495766]
 zoom = Vector2(3.41, 3.41)
+
+[node name="FootstepSFX" type="AudioStreamPlayer" parent="player"]
 
 [node name="building" type="TileMapLayer" parent="." unique_id=1514777821]
 y_sort_enabled = true
