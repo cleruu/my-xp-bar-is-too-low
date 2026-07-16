@@ -1,6 +1,14 @@
 extends Node2D
 
+# --- Expose these to the Inspector to avoid hardcoded paths ---
 @export var obstacleScene: PackedScene
+@export var thrown_obstacle_scene: PackedScene
+@export var damage_popup_scene: PackedScene
+@export var victory_scene: PackedScene
+@export var game_over_scene: PackedScene
+@export var PauseMenu: PackedScene
+
+# --- Remaining Settings ---
 @export var spawnX: float = 1500.0
 @export var groundY: float = 620.0
 @export var obstacleHalfHeight: float = 45.0
@@ -31,7 +39,6 @@ extends Node2D
 
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var throw_timer: Timer = null
-var thrown_obstacle_scene: PackedScene = null
 
 # Dodge variables
 var dodge_count: int = 0
@@ -42,34 +49,32 @@ var time_remaining: float = 60.0
 
 # Track which obstacles have been counted
 var counted_obstacles: Array = []
-#damage popups
-var damage_popup_scene: PackedScene = null
-
-# For pausing the game
-@export var PauseMenu: PackedScene
 
 func _ready() -> void:
 	add_to_group("level_controller")
 	rng.randomize()
 	
+	# Safety assertions to warn you in the editor if you forgot to assign them
 	if obstacleScene == null:
-		obstacleScene = load("res://Scenes/LevelTwo/obstacleBox.tscn") as PackedScene
-
-	if obstacleScene == null:
-		push_error("obstacleScene is null. Check path or assign in Inspector.")
+		push_error("ERROR: 'obstacleScene' is not assigned in the Inspector!")
 		return
+
+	if thrown_obstacle_scene == null:
+		push_error("ERROR: 'thrown_obstacle_scene' is not assigned in the Inspector!")
+		return
+	
+	if damage_popup_scene == null:
+		push_error("ERROR: 'damage_popup_scene' is not assigned in the Inspector!")
+		return
+
+	if victory_scene == null:
+		push_error("ERROR: 'victory_scene' is not assigned in the Inspector!")
+		
+	if game_over_scene == null:
+		push_error("ERROR: 'game_over_scene' is not assigned in the Inspector!")
 
 	if value_bar and value_bar.has_signal("game_over"):
 		value_bar.game_over.connect(_on_game_over)
-
-	# Load thrown obstacle scene
-	thrown_obstacle_scene = load("res://Scenes/LevelTwo/thrownObstacle.tscn")
-	if thrown_obstacle_scene == null:
-		push_error("thrownObstacle.tscn not found!")
-	
-	damage_popup_scene = load("res://Scenes/LevelTwo/damagePopup.tscn")
-	if damage_popup_scene == null:
-		push_error("damagePopup.tscn not found!")
 		
 	# Initialize displays
 	time_remaining = challenge_time_limit
@@ -81,7 +86,6 @@ func _ready() -> void:
 	
 	_setup_enemy_throwing()
 	_setup_challenge_timer()
-	
 
 
 func _process(delta: float) -> void:
@@ -177,7 +181,7 @@ func _enemy_throw_obstacle():
 	
 	get_parent().add_child(obstacle)
 	
-		# PLAY THROW SOUND
+	# PLAY THROW SOUND
 	if enemyThrowSound:
 		play_sound(enemyThrowSound, -5, randf_range(0.9, 1.1))
 
@@ -240,7 +244,8 @@ func _win_challenge():
 	call_deferred("_change_to_victory")
 
 func _change_to_victory():
-	get_tree().change_scene_to_file("res://Scenes/LevelTwo/victory.tscn")
+	if victory_scene:
+		get_tree().change_scene_to_packed(victory_scene)
 
 func _on_spawn_timer_timeout() -> void:
 	if not game_active or obstacleScene == null:
@@ -301,7 +306,6 @@ func _on_game_over():
 		return
 
 	game_active = false
-
 	spawnTimer.stop()
 
 	if throw_timer:
@@ -316,17 +320,18 @@ func _on_game_over():
 
 	# Wait so the last sliver is visible
 	await get_tree().create_timer(0.15).timeout
-
 	_change_to_game_over()
 
 func _change_to_game_over():
-	get_tree().change_scene_to_file("res://Scenes/LevelTwo/gameOver.tscn")
+	if game_over_scene:
+		get_tree().change_scene_to_packed(game_over_scene)
 
 # Helper functions for pausing the game
 func pauseGame() -> void:
-	var pause = PauseMenu.instantiate()
-	pause.retry.connect(resetGame)
-	get_node("%CanvasLayer").add_child(pause)
+	if PauseMenu:
+		var pause = PauseMenu.instantiate()
+		pause.retry.connect(resetGame)
+		get_node("%CanvasLayer").add_child(pause)
 
 func resetGame() -> void:
 	get_tree().reload_current_scene()
