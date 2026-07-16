@@ -22,7 +22,7 @@ extends Node2D
 @onready var spawnTimer: Timer = $SpawnTimer
 @onready var obstaclesRoot: Node2D = $Obstacles
 @onready var enemy: Area2D = $Enemy
-@onready var scoreLabel: Label = $ScoreLabel 
+@onready var value_bar: ColorRect = $ValueBarBackground/ValueBar
 @onready var dodge_counter: Label = $DodgeCounter
 @onready var timer_label: Label = $TimerLabel  # CHANGED to TimerLabel
 
@@ -56,8 +56,8 @@ func _ready() -> void:
 		push_error("obstacleScene is null. Check path or assign in Inspector.")
 		return
 
-	if scoreLabel and scoreLabel.has_signal("game_over"):
-		scoreLabel.game_over.connect(_on_game_over)
+	if value_bar and value_bar.has_signal("game_over"):
+		value_bar.game_over.connect(_on_game_over)
 
 	# Load thrown obstacle scene
 	thrown_obstacle_scene = load("res://Scenes/LevelTwo/thrownObstacle.tscn")
@@ -131,7 +131,6 @@ func _check_dodged_obstacles():
 		if child.position.x < enemy_x:
 			counted_obstacles.append(child)
 			increment_dodge()
-			print("Obstacle dodged! Count: ", dodge_count)
 
 func _setup_challenge_timer():
 	challenge_timer = Timer.new()
@@ -144,8 +143,6 @@ func _setup_challenge_timer():
 func _on_challenge_timeout():
 	if not game_active:
 		return
-	
-	print("Time ran out! Challenge failed.")
 	_on_game_over()
 
 func _setup_enemy_throwing():
@@ -207,7 +204,6 @@ func reset_dodge():
 	dodge_count = 0
 	counted_obstacles.clear()
 	_update_dodge_display()
-	print("Dodge reset! (Got hit)")
 
 func _win_challenge():
 	if game_won:
@@ -222,7 +218,6 @@ func _win_challenge():
 	if challenge_timer:
 		challenge_timer.stop()
 	
-	print("🎉 VICTORY! Dodged ", dodge_target, " obstacles!")
 	
 	var thrown_obstacles = get_tree().get_nodes_in_group("thrown_obstacle")
 	for obstacle in thrown_obstacles:
@@ -266,8 +261,15 @@ func _reset_timer() -> void:
 	spawnTimer.start()
 	
 func deduct_score(amount: int = 5000):
-	if scoreLabel and scoreLabel.has_method("deduct_score"):
-		scoreLabel.deduct_score(amount)
+	if value_bar.has_method("deduct_score"):
+		value_bar.deduct_score(amount)
+	else:
+		print("❌ value_bar does NOT have deduct_score method!")
+		
+func get_current_score() -> int:
+	if value_bar and value_bar.has_method("get_value"):
+		return value_bar.get_value()
+	return 50000
 
 func show_damage_popup(position: Vector2, amount: int = 5000):
 	if not damage_popup_scene:
@@ -279,7 +281,6 @@ func show_damage_popup(position: Vector2, amount: int = 5000):
 	
 	popup.position = position
 	add_child(popup)
-	print("Damage popup shown!")
 
 func _on_game_over():
 	if not game_active:

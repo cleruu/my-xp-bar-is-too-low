@@ -1,14 +1,12 @@
 [gd_scene format=3 uid="uid://b5rk1mqn6gcc3"]
 
 [ext_resource type="Script" uid="uid://chtdhep4jbtmk" path="res://Scripts/LevelTwo/levelTwoController.gd" id="1_vfym8"]
-[ext_resource type="Script" uid="uid://cj3wstohjxbna" path="res://Scripts/LevelTwo/background.gd" id="2_36jrh"]
-[ext_resource type="PackedScene" uid="uid://cgtqsyk548rcr" path="res://Scenes/UI/Pause Menu.tscn" id="2_vfc66"]
 [ext_resource type="Texture2D" uid="uid://chaianjxkvvwy" path="res://Assets/Sprites/LevelTwo/Background/main.PNG" id="2_jnvl0"]
+[ext_resource type="PackedScene" uid="uid://cgtqsyk548rcr" path="res://Scenes/UI/Pause Menu.tscn" id="2_vfc66"]
 [ext_resource type="Texture2D" uid="uid://bbs1m8x2gme6x" path="res://Assets/Sprites/LevelTwo/Background/1ST.PNG" id="3_sm41y"]
 [ext_resource type="Script" uid="uid://df5n35rhayt0d" path="res://Scripts/LevelTwo/playerRunner.gd" id="3_wqdxf"]
 [ext_resource type="Script" uid="uid://d3lacml8x5vwl" path="res://Scripts/LevelTwo/enemyBox.gd" id="4_1vfx7"]
 [ext_resource type="Texture2D" uid="uid://ck28nlh5myg22" path="res://Assets/Sprites/LevelTwo/Background/2ND.PNG" id="4_qd3ud"]
-[ext_resource type="Script" uid="uid://dsktwms3bq6xd" path="res://Scripts/LevelTwo/scoreLabel.gd" id="4_wqdxf"]
 [ext_resource type="Texture2D" uid="uid://b44ushqal5gfm" path="res://Assets/Sprites/LevelTwo/Jumping/player_Jumping1.png" id="5_bmsnb"]
 [ext_resource type="Texture2D" uid="uid://ywpxi08biano" path="res://Assets/Sprites/LevelTwo/Ducking/player_RunningDuck1.png" id="5_l8wlw"]
 [ext_resource type="Texture2D" uid="uid://djej3jemeomw5" path="res://Assets/Sprites/LevelTwo/Background/3RD.PNG" id="5_skc8q"]
@@ -32,6 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://cvy6u6mtqhw7l" path="res://Assets/Sprites/LevelTwo/Enemy/lola_Running4.png" id="23_qd3ud"]
 [ext_resource type="Texture2D" uid="uid://ces4xnavdllf5" path="res://Assets/Sprites/LevelTwo/Enemy/lola_Running5.png" id="24_skc8q"]
 [ext_resource type="Texture2D" uid="uid://ix7x76vfap81" path="res://Assets/Sprites/LevelTwo/Enemy/lola_Running6.png" id="25_sfet4"]
+[ext_resource type="Script" uid="uid://dg6llqclqqcd4" path="res://Scripts/LevelTwo/valueBar.gd" id="30_skc8q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5y726"]
 size = Vector2(1666, 80)
@@ -222,14 +221,19 @@ animation = &"run"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Enemy" unique_id=1739377616]
 
-[node name="ScoreLabel" type="Label" parent="." unique_id=1072683532]
-offset_left = -306.0
-offset_top = -160.0
-offset_right = -169.0
-offset_bottom = -93.0
-theme_override_font_sizes/font_size = 48
-text = "50000"
-script = ExtResource("4_wqdxf")
+[node name="ValueBarBackground" type="ColorRect" parent="." unique_id=59463431]
+offset_left = -305.0
+offset_top = -141.0
+offset_right = -5.0
+offset_bottom = -111.0
+color = Color(0.48452926, 0.48452926, 0.48452926, 1)
+
+[node name="ValueBar" type="ColorRect" parent="ValueBarBackground" unique_id=58003348]
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 30.0
+color = Color(0, 1, 0, 1)
+script = ExtResource("30_skc8q")
 
 [node name="MusicPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1963900855]
 stream = ExtResource("21_wdrpt")
