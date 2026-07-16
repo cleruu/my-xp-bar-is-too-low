@@ -1,23 +1,30 @@
 [gd_scene format=3 uid="uid://doyugpgddktfd"]
 
 [ext_resource type="Script" uid="uid://bbaachg1g3ya8" path="res://Scripts/LevelOne/GameOverLevelOne.gd" id="1_xmmrm"]
+[ext_resource type="Texture2D" uid="uid://55ocnwpot4om" path="res://Assets/Sprites/LevelOne/Frame 1 (1).png" id="2_yy8a5"]
 
 [node name="GameOver" type="Node2D" unique_id=178194341]
 script = ExtResource("1_xmmrm")
 
-[node name="Title" type="Label" parent="." unique_id=167725230]
-offset_left = 815.0
-offset_top = 455.0
-offset_right = 1227.0
-offset_bottom = 554.0
-theme_override_font_sizes/font_size = 72
-text = "GAME OVER"
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1278040601]
+position = Vector2(967, 534)
+texture = ExtResource("2_yy8a5")
 
 [node name="Button" type="Button" parent="." unique_id=222753193]
-offset_left = 917.0
-offset_top = 666.0
-offset_right = 1117.0
-offset_bottom = 716.0
+offset_left = 556.0
+offset_top = 533.0
+offset_right = 918.0
+offset_bottom = 668.0
+theme_override_font_sizes/font_size = 80
 text = "restart"
 
+[node name="Button2" type="Button" parent="." unique_id=229299930]
+offset_left = 1040.0
+offset_top = 532.0
+offset_right = 1401.0
+offset_bottom = 666.0
+theme_override_font_sizes/font_size = 80
+text = "Quit"
+
 [connection signal="pressed" from="Button" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]

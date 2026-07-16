@@ -22,4 +22,17 @@ theme_override_font_sizes/font_size = 60
 text = "restart"
 flat = true
 
-[connection signal="pressed" from="Button" to="." method="_on_restart_button_pressed"]
+[node name="QuitButton" type="Button" parent="." unique_id=970750373]
+offset_left = 76.0
+offset_top = 867.0
+offset_right = 214.0
+offset_bottom = 985.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_3n7gd")
+theme_override_font_sizes/font_size = 100
+text = "quit"
+flat = true
+
+[connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]

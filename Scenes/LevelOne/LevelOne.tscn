@@ -14,14 +14,18 @@
 [ext_resource type="Texture2D" uid="uid://c4wl2itlhiprp" path="res://Assets/Sprites/LevelOne/Character/PlayerGrabbing/player_Grabbing3.png" id="11_f2ljl"]
 [ext_resource type="Texture2D" uid="uid://qumk2i3134ro" path="res://Assets/Sprites/LevelOne/Character/PlayerGrabbing/player_Grabbing4.png" id="12_rcjjd"]
 [ext_resource type="Texture2D" uid="uid://b6b0tyu6xunb4" path="res://Assets/Sprites/LevelOne/Character/PlayerGrabbing/player_Grabbing5.png" id="13_2p8yc"]
-[ext_resource type="Texture2D" uid="uid://bpwoi2p4mpves" path="res://Assets/Sprites/LevelOne/FishingSystem/LeftRightHolder.png" id="14_ggmnk"]
+[ext_resource type="Texture2D" uid="uid://cm51ogf2grylg" path="res://Assets/Sprites/LevelOne/FishingSystem/BG_Bar1.png" id="15_h6ri6"]
 [ext_resource type="Script" uid="uid://bq0l0beeg7ac6" path="res://Scripts/LevelOne/InsideRect.gd" id="15_or6yd"]
-[ext_resource type="Texture2D" uid="uid://dhma0fdp8dvrk" path="res://Assets/Sprites/LevelOne/FishingSystem/RodRect.png" id="16_xr3e4"]
-[ext_resource type="Texture2D" uid="uid://dhks7232wn68d" path="res://Assets/Sprites/LevelOne/FishingSystem/FishIcon.png" id="17_h6ri6"]
-[ext_resource type="Script" uid="uid://b6g0ay1s2vpmq" path="res://Scripts/LevelOne/fish.gd" id="18_u1is5"]
-[ext_resource type="Texture2D" uid="uid://bpm6a0vq7f4a1" path="res://Assets/Sprites/LevelOne/FishingSystem/Success.png" id="19_wfebn"]
+[ext_resource type="Texture2D" uid="uid://diqeh1y1tmqe4" path="res://Assets/Sprites/LevelOne/NPC/npc_Idle1.png" id="15_wea86"]
+[ext_resource type="Texture2D" uid="uid://cvihfg7mydkb2" path="res://Assets/Sprites/LevelOne/NPC/npc_Idle2.png" id="16_hsl3k"]
+[ext_resource type="Texture2D" uid="uid://dthx75ar5k8f6" path="res://Assets/Sprites/LevelOne/NPC/npc_Idle3.png" id="17_4dj8j"]
+[ext_resource type="Texture2D" uid="uid://c0debkg2bbqss" path="res://Assets/Sprites/LevelOne/FishingSystem/Bar1.png" id="17_u1is5"]
+[ext_resource type="Texture2D" uid="uid://cnedlpymm5x0y" path="res://Assets/Sprites/LevelOne/FishingSystem/PHONE.png" id="18_h6ri6"]
+[ext_resource type="Script" uid="uid://b6g0ay1s2vpmq" path="res://Scripts/LevelOne/Phone.gd" id="18_u1is5"]
+[ext_resource type="Texture2D" uid="uid://b5oq8s2jv7iq4" path="res://Assets/Sprites/LevelOne/FishingSystem/BG_Bar2.png" id="20_u1is5"]
 [ext_resource type="Script" uid="uid://x304a4b4bvap" path="res://Scripts/LevelOne/WitnessNPC.gd" id="20_xvwyu"]
 [ext_resource type="Texture2D" uid="uid://begk4yr2b18nx" path="res://Assets/Sprites/LevelOne/Setting/JEEP WINDOW MOVING BG.PNG" id="21_mbex6"]
+[ext_resource type="Texture2D" uid="uid://baeepsmh0kkpf" path="res://Assets/Sprites/LevelOne/FishingSystem/Bar2.png" id="21_wfebn"]
 [ext_resource type="Texture2D" uid="uid://duqva27xja87h" path="res://Assets/Sprites/LevelOne/Lola/Idle/lola_CloseEyes_Idle1.png" id="22_okwmc"]
 [ext_resource type="Texture2D" uid="uid://d1qevemfd1n5e" path="res://Assets/Sprites/LevelOne/Lola/ClosingEyes/lola_ClosingEyes1.png" id="22_or6yd"]
 [ext_resource type="Texture2D" uid="uid://dfgamdhltxb1n" path="res://Assets/Sprites/LevelOne/Setting/JEEP BG.PNG" id="22_wea86"]
@@ -36,6 +40,7 @@
 [ext_resource type="Texture2D" uid="uid://bfdfwjlwrxypy" path="res://Assets/Sprites/LevelOne/Lola/OpeningEyes/lola_OpeningEyes2.png" id="32_wea86"]
 [ext_resource type="Texture2D" uid="uid://dh6asg2jjph7h" path="res://Assets/Sprites/LevelOne/Lola/OpeningEyes/lola_OpeningEyes3.png" id="33_hsl3k"]
 [ext_resource type="Texture2D" uid="uid://dbynibocpumdo" path="res://Assets/Sprites/LevelOne/Lola/OpeningEyes/lola_OpeningEyes4.png" id="34_4dj8j"]
+[ext_resource type="Script" uid="uid://coxnk7q2jd7qe" path="res://Scripts/LevelOne/Parallax_Background.gd" id="36_wfebn"]
 [ext_resource type="AudioStream" uid="uid://c1i3j1v8rw8ph" path="res://Assets/Sprites/LevelOne/Sound/Level_1.wav" id="37_h6ri6"]
 [ext_resource type="AudioStream" uid="uid://dmhg2rme8j5vn" path="res://Assets/Sprites/LevelOne/Sound/Phone (taken).wav" id="38_u1is5"]
 
@@ -93,14 +98,31 @@ animations = [{
 "speed": 1.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_dtglo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_wea86")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_hsl3k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_4dj8j")
+}],
+"loop": 1,
+"name": &"Idle",
+"speed": 4.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yex4w"]
-size = Vector2(795.353, 71.8217)
+size = Vector2(1082, 55.999996)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wt34f"]
-size = Vector2(352.80896, 79.42636)
+size = Vector2(216.00003, 51.000023)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u0ya7"]
-size = Vector2(80.644165, 83.39453)
+size = Vector2(72.80849, 69.5625)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_u0ya7"]
 animations = [{
@@ -173,59 +195,62 @@ gameOverLevelOnePath = "uid://doyugpgddktfd"
 PauseMenu = ExtResource("2_6jkrq")
 
 [node name="CharacterAnimation" type="AnimatedSprite2D" parent="." unique_id=1458317970]
-position = Vector2(871.25, 423.37503)
+position = Vector2(854, 606)
 scale = Vector2(0.46825, 0.423375)
 sprite_frames = SubResource("SpriteFrames_3irhm")
 animation = &"PlayerGrabbing"
 frame_progress = 0.6874678
 
+[node name="NPC" type="AnimatedSprite2D" parent="." unique_id=2051114190]
+position = Vector2(392.99997, 645)
+scale = Vector2(0.468, 0.4035)
+sprite_frames = SubResource("SpriteFrames_dtglo")
+animation = &"Idle"
+frame_progress = 0.8092244
+
 [node name="Frame" type="Sprite2D" parent="." unique_id=757150166]
 position = Vector2(960, 1011.5)
-scale = Vector2(2.225, 1)
-texture = ExtResource("14_ggmnk")
+texture = ExtResource("15_h6ri6")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Frame" unique_id=695560062]
 position = Vector2(-1.8027296, -6.3372107)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Frame/StaticBody2D" unique_id=457276326]
 visible = false
-position = Vector2(-1.5206909, -3.8023071)
+position = Vector2(-10.197266, 11.837219)
 shape = SubResource("RectangleShape2D_yex4w")
 
 [node name="GrooveJoint2D" type="GrooveJoint2D" parent="Frame" unique_id=1326085649]
-position = Vector2(-325, -6)
+position = Vector2(-350, 6.5)
 rotation = -1.5707964
 node_a = NodePath("../StaticBody2D")
 node_b = NodePath("../RigidBody2D")
-length = 650.0
-initial_offset = 325.0
+length = 700.0
+initial_offset = 350.0
 
 [node name="RigidBody2D" type="RigidBody2D" parent="Frame" unique_id=413653336]
-position = Vector2(1.3364172, -7.1821575)
+position = Vector2(-8.583069e-06, 7.4999714)
 gravity_scale = 0.0
 script = ExtResource("15_or6yd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Frame/RigidBody2D" unique_id=474256767]
-visible = false
-position = Vector2(-1.1116638, 0)
+position = Vector2(-2, -2.5)
 shape = SubResource("RectangleShape2D_wt34f")
 
 [node name="Sprite2D" type="Sprite2D" parent="Frame/RigidBody2D" unique_id=1201554835]
-position = Vector2(-2.9137888, 1.6899058)
-scale = Vector2(2.5, 0.972)
-texture = ExtResource("16_xr3e4")
+position = Vector2(2.9563904e-05, -1.9999743)
+texture = ExtResource("17_u1is5")
 
-[node name="Fish" type="Sprite2D" parent="Frame" unique_id=614844088]
-position = Vector2(0, -8.500061)
-rotation = -1.5707964
-scale = Vector2(0.7564087, 0.28024396)
-texture = ExtResource("17_h6ri6")
+[node name="Phone" type="Sprite2D" parent="Frame" unique_id=614844088]
+position = Vector2(-3.7500527, 6.5000143)
+scale = Vector2(0.81034523, 0.761905)
+texture = ExtResource("18_h6ri6")
 script = ExtResource("18_u1is5")
 
-[node name="Area2D" type="Area2D" parent="Frame/Fish" unique_id=953711947]
+[node name="Area2D" type="Area2D" parent="Frame/Phone" unique_id=953711947]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Frame/Fish/Area2D" unique_id=402526495]
-position = Vector2(-0.66101074, -1.6037598)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Frame/Phone/Area2D" unique_id=402526495]
+position = Vector2(0.30871582, -1.96875)
 scale = Vector2(0.99999976, 1)
 shape = SubResource("RectangleShape2D_u0ya7")
 
@@ -233,15 +258,16 @@ shape = SubResource("RectangleShape2D_u0ya7")
 unique_name_in_owner = true
 anchors_preset = -1
 anchor_bottom = 0.035
-offset_left = 5.0
-offset_top = 8.0
-offset_right = 815.0
-offset_bottom = 68.0
+offset_left = 360.0
+offset_top = 10.0
+offset_right = 1477.0
+offset_bottom = 142.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(2.35, 1)
 step = 0.1
-texture_progress = ExtResource("19_wfebn")
+texture_under = ExtResource("20_u1is5")
+texture_progress = ExtResource("21_wfebn")
+texture_progress_offset = Vector2(140, 28)
 
 [node name="Timer" type="Timer" parent="." unique_id=1939966748]
 wait_time = 0.2
@@ -251,7 +277,7 @@ autostart = true
 script = ExtResource("20_xvwyu")
 
 [node name="Lola" type="AnimatedSprite2D" parent="Lola" unique_id=69914497]
-position = Vector2(1196, 388.5)
+position = Vector2(1187, 574)
 scale = Vector2(0.51799995, 0.4575)
 sprite_frames = SubResource("SpriteFrames_u0ya7")
 animation = &"LolaOpeningEyes"
@@ -265,24 +291,28 @@ one_shot = true
 
 [node name="LookingLabel" type="Label" parent="." unique_id=857367415]
 unique_name_in_owner = true
-visible = false
-offset_left = 607.0
-offset_top = 375.0
-offset_right = 1080.0
-offset_bottom = 531.0
+offset_left = 1365.0
+offset_top = 549.0
+offset_right = 1853.0
+offset_bottom = 641.0
 theme_override_font_sizes/font_size = 67
 text = "LOOOOKING!!!!"
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=604485385]
+script = ExtResource("36_wfebn")
 
-[node name="JeepWindow" type="Sprite2D" parent="ParallaxBackground" unique_id=281326467]
-position = Vector2(965, 633.5)
-scale = Vector2(1, 1.1564815)
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" unique_id=115478143]
+motion_scale = Vector2(1.3, 1)
+motion_mirroring = Vector2(1930, 0)
+
+[node name="JeepWindow" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer" unique_id=281326467]
+position = Vector2(962, 792.78125)
+scale = Vector2(1.0020834, 1.3078125)
 texture = ExtResource("21_mbex6")
 
 [node name="JeepBG" type="Sprite2D" parent="ParallaxBackground" unique_id=1054868121]
-position = Vector2(966, 430.00003)
-scale = Vector2(1.0052084, 0.8076388)
+position = Vector2(966, 538.43756)
+scale = Vector2(1.0052084, 1.0084491)
 texture = ExtResource("22_wea86")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1276674609]
@@ -296,7 +326,7 @@ autoplay = true
 [node name="GrabSound" type="AudioStreamPlayer" parent="." unique_id=1146175510]
 stream = ExtResource("38_u1is5")
 
-[connection signal="body_entered" from="Frame/Fish/Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Frame/Fish/Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Frame/Phone/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Frame/Phone/Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="timeout" from="Timer" to="Frame/Fish" method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer" to="Frame/Phone" method="_on_timer_timeout"]

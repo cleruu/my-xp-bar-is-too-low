@@ -14,6 +14,7 @@ const ARRIVAL_THRESHOLD := 5.0
 var patrol_points: Array[Vector2] = []
 var current_point_index: int = 0
 var facing_direction: Vector2 = Vector2.DOWN
+var last_flip_h: bool = false
 
 # This is for smooth rotation
 @export var turn_speed: float = 5.0
@@ -112,6 +113,16 @@ func _physics_process(delta: float) -> void:
 			_chase(delta)
 			
 	facing_direction = facing_direction.slerp(desired_direction, turn_speed * delta)
+
+	# --- Sprite flip logic (mirrors player script) ---
+	if facing_direction.x > 0:
+		last_flip_h = true
+		sprite.flip_h = true
+	elif facing_direction.x < 0:
+		last_flip_h = false
+		sprite.flip_h = false
+	elif facing_direction.y != 0:
+		sprite.flip_h = not last_flip_h
 
 	_update_vision(delta)
 	queue_redraw()
@@ -346,7 +357,6 @@ func _draw() -> void:
 		var fill_ratio: float = clamp(detection_timer / time_to_detect, 0.0, 1.0)
 
 		draw_rect(Rect2(bar_pos, Vector2(bar_width, bar_height)), Color(0, 0, 0, 0.5))
-		draw_rect(Rect2(bar_pos, Vector2(bar_width * fill_ratio, bar_height)), Color(1, 0.2, 0.2, 0.9))
 
 func _process(_delta: float) -> void:
 	debug_label.text = "state: %s | detect: %.1f | lost: %.1f | catch: %.1f" % [

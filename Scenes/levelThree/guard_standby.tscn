@@ -1,12 +1,12 @@
-[gd_scene format=3 uid="uid://dv0xynaxgib47"]
+[gd_scene format=3 uid="uid://d1dnliamvmdr5"]
 
-[ext_resource type="Script" uid="uid://72lj2bc65coj" path="res://Scripts/LevelThree/guard.gd" id="1_4g6nq"]
-[ext_resource type="Texture2D" uid="uid://cxljjmvqui4ba" path="res://Assets/Sprites/LevelThree/Guard/3_Guard_walking5.png" id="2_0crpp"]
-[ext_resource type="Texture2D" uid="uid://dhwda4n7rm1sh" path="res://Assets/Sprites/LevelThree/Guard/3_Guard_walking1.png" id="3_otuvi"]
-[ext_resource type="Texture2D" uid="uid://bgpfm1iii4sik" path="res://Assets/Sprites/LevelThree/Guard/3_Guard_walking2.png" id="4_uubbd"]
-[ext_resource type="Texture2D" uid="uid://dw8wsdseirt18" path="res://Assets/Sprites/LevelThree/Guard/3_Guard_walking3.png" id="5_8avjq"]
-[ext_resource type="Texture2D" uid="uid://dpc8rxghcqq0t" path="res://Assets/Sprites/LevelThree/Guard/3_Guard_walking4.png" id="6_idpfs"]
-[ext_resource type="Texture2D" uid="uid://bmovejlaow5el" path="res://Assets/Sprites/LevelThree/Guard/3_Guard_walking6.png" id="7_0c0a4"]
+[ext_resource type="Script" uid="uid://dtkat65yr33fj" path="res://Scenes/levelThree/guard_standby.gd" id="1_oycv4"]
+[ext_resource type="Texture2D" uid="uid://cxljjmvqui4ba" path="res://Assets/Sprites/LevelThree/Guard/3_Guard_walking5.png" id="2_yjhiv"]
+[ext_resource type="Texture2D" uid="uid://dhwda4n7rm1sh" path="res://Assets/Sprites/LevelThree/Guard/3_Guard_walking1.png" id="3_y4kgf"]
+[ext_resource type="Texture2D" uid="uid://bgpfm1iii4sik" path="res://Assets/Sprites/LevelThree/Guard/3_Guard_walking2.png" id="4_kfee5"]
+[ext_resource type="Texture2D" uid="uid://dw8wsdseirt18" path="res://Assets/Sprites/LevelThree/Guard/3_Guard_walking3.png" id="5_t8x3r"]
+[ext_resource type="Texture2D" uid="uid://dpc8rxghcqq0t" path="res://Assets/Sprites/LevelThree/Guard/3_Guard_walking4.png" id="6_3cle8"]
+[ext_resource type="Texture2D" uid="uid://bmovejlaow5el" path="res://Assets/Sprites/LevelThree/Guard/3_Guard_walking6.png" id="7_rm4fh"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_35ved"]
 radius = 24.10257
@@ -16,7 +16,7 @@ height = 91.19995
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_0crpp")
+"texture": ExtResource("2_yjhiv")
 }],
 "loop": 1,
 "name": &"idle",
@@ -24,22 +24,22 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_otuvi")
+"texture": ExtResource("3_y4kgf")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_uubbd")
+"texture": ExtResource("4_kfee5")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_8avjq")
+"texture": ExtResource("5_t8x3r")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_idpfs")
+"texture": ExtResource("6_3cle8")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_0crpp")
+"texture": ExtResource("2_yjhiv")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_0c0a4")
+"texture": ExtResource("7_rm4fh")
 }],
 "loop": 1,
 "name": &"walk_r",
@@ -49,8 +49,7 @@ animations = [{
 [node name="guard" type="CharacterBody2D" unique_id=1274342205 groups=["guards"]]
 position = Vector2(160, 120)
 scale = Vector2(0.41489363, 0.41666666)
-script = ExtResource("1_4g6nq")
-suspicion_drain_rate = 0.415
+script = ExtResource("1_oycv4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1336571179]
 position = Vector2(-4.820526, 2.4000244)

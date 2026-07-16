@@ -25,7 +25,7 @@ extends Node2D
 @onready var spawnTimer: Timer = $SpawnTimer
 @onready var obstaclesRoot: Node2D = $Obstacles
 @onready var enemy: Area2D = $Enemy
-@onready var value_bar: ColorRect = $ValueBarBackground/ValueBar
+@onready var value_bar = $ValueBar
 @onready var dodge_counter: Label = $DodgeCounter
 @onready var timer_label: Label = $TimerLabel  # CHANGED to TimerLabel
 
@@ -275,14 +275,14 @@ func _reset_timer() -> void:
 	spawnTimer.start()
 	
 func deduct_score(amount: int = 5000):
-	if value_bar.has_method("deduct_score"):
+	if value_bar and value_bar.has_method("deduct_score"):
 		value_bar.deduct_score(amount)
 	else:
 		print("❌ value_bar does NOT have deduct_score method!")
 		
 func get_current_score() -> int:
-	if value_bar and value_bar.has_method("get_value"):
-		return value_bar.get_value()
+	if value_bar:
+		return value_bar.get_current_money()
 	return 50000
 
 func show_damage_popup(position: Vector2, amount: int = 5000):
@@ -299,14 +299,25 @@ func show_damage_popup(position: Vector2, amount: int = 5000):
 func _on_game_over():
 	if not game_active:
 		return
-	
+
 	game_active = false
-	
+
+	spawnTimer.stop()
+
+	if throw_timer:
+		throw_timer.stop()
+
+	if challenge_timer:
+		challenge_timer.stop()
+
 	var thrown_obstacles = get_tree().get_nodes_in_group("thrown_obstacle")
 	for obstacle in thrown_obstacles:
 		obstacle.queue_free()
-	
-	call_deferred("_change_to_game_over")
+
+	# Wait so the last sliver is visible
+	await get_tree().create_timer(0.15).timeout
+
+	_change_to_game_over()
 
 func _change_to_game_over():
 	get_tree().change_scene_to_file("res://Scenes/LevelTwo/gameOver.tscn")
