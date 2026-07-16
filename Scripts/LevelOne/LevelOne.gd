@@ -163,11 +163,27 @@ func _fail(reason: String) -> void:
 		print("FAILED: ", reason)
 
 	theftFailed.emit(reason)
+	
+	# Show game over overlay (ONLY this, not change scene too!)
+	_show_game_over(reason)
 
-	if gameOverLevelOnePath.is_empty():
-		push_warning("FishingSystem: gameOverLevelOnePath not set, cannot change scene.")
-		return
-	get_tree().change_scene_to_file(gameOverLevelOnePath)
+
+func _show_game_over(reason: String):
+	var game_over_scene = load("res://Scenes/LevelOne/gameOverLevelOne.tscn")
+	if game_over_scene:
+		var overlay = game_over_scene.instantiate()
+		add_child(overlay)  # Adds on top of current scene
+		
+		# If your gameOver scene has a set_reason method, call it
+		if overlay.has_method("set_reason"):
+			overlay.set_reason(reason)
+		
+		get_tree().paused = true  # Pause the game
+	else:
+		# Fallback: Use the scene change path
+		if not gameOverLevelOnePath.is_empty():
+			get_tree().change_scene_to_file(gameOverLevelOnePath)
+
 
 # Helper functions for pausing the game
 func pauseGame() -> void:

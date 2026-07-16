@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://55ocnwpot4om"
-path="res://.godot/imported/Frame 1 (1).png-438e5a92bbd04baa58910b762ec4cb25.ctex"
+uid="uid://kbsvxq07frtu"
+path="res://.godot/imported/GAMEOVER.png-60b6618b6f2682f83cb99aa1dca986f6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/LevelOne/Frame 1 (1).png"
-dest_files=["res://.godot/imported/Frame 1 (1).png-438e5a92bbd04baa58910b762ec4cb25.ctex"]
+source_file="res://Assets/Sprites/LevelOne/GAMEOVER.png"
+dest_files=["res://.godot/imported/GAMEOVER.png-60b6618b6f2682f83cb99aa1dca986f6.ctex"]
 
 [params]
 

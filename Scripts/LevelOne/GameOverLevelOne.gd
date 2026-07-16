@@ -1,12 +1,13 @@
-extends Node2D
+extends CanvasLayer
 
 func _ready():
-	pass
-	
+	# Make sure UI processes even when game is paused
+	process_mode = PROCESS_MODE_ALWAYS
 
-func _on_restart_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/LevelOne/LevelOne.tscn")
+func _on_restart_button_pressed():
+	get_tree().paused = false
+	get_tree().reload_current_scene()
 
-
-func _on_button_2_pressed() -> void:
+func _on_main_menu_button_pressed():
+	get_tree().paused = false
 	get_tree().change_scene_to_file("res://Scenes/Start/Starting Screen.tscn")

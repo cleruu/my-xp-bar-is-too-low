@@ -1,21 +1,20 @@
 [gd_scene format=3 uid="uid://doyugpgddktfd"]
 
 [ext_resource type="Script" uid="uid://bbaachg1g3ya8" path="res://Scripts/LevelOne/GameOverLevelOne.gd" id="1_xmmrm"]
-[ext_resource type="Texture2D" uid="uid://55ocnwpot4om" path="res://Assets/Sprites/LevelOne/Frame 1 (1).png" id="2_yy8a5"]
+[ext_resource type="Texture2D" uid="uid://kbsvxq07frtu" path="res://Assets/Sprites/LevelOne/GAMEOVER.png" id="2_wvfnl"]
 [ext_resource type="FontFile" uid="uid://b57t4vqbtlds" path="res://Assets/Fonts/SteelworksVintageDemo-rR98.ttf" id="3_wvfnl"]
-[ext_resource type="FontFile" uid="uid://d3ocxdke0tnxi" path="res://Assets/Fonts/SatukiloRegular-BLgz3.ttf" id="4_he44f"]
 
-[node name="GameOver" type="Node2D" unique_id=178194341]
+[node name="GameOver" type="CanvasLayer" unique_id=1260051443]
 script = ExtResource("1_xmmrm")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1278040601]
 position = Vector2(967, 534)
-texture = ExtResource("2_yy8a5")
+texture = ExtResource("2_wvfnl")
 
 [node name="Button" type="Button" parent="." unique_id=222753193]
-offset_left = 556.0
+offset_left = 612.0
 offset_top = 533.0
-offset_right = 918.0
+offset_right = 974.0
 offset_bottom = 668.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
@@ -26,9 +25,9 @@ text = "restart"
 flat = true
 
 [node name="Button2" type="Button" parent="." unique_id=229299930]
-offset_left = 1040.0
+offset_left = 1096.0
 offset_top = 532.0
-offset_right = 1401.0
+offset_right = 1457.0
 offset_bottom = 666.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
@@ -38,22 +37,5 @@ theme_override_font_sizes/font_size = 100
 text = "quit"
 flat = true
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1546200560]
-offset_left = 696.0
-offset_top = 368.0
-offset_right = 1316.0
-offset_bottom = 453.0
-color = Color(0.9411765, 0.72156864, 0.4117647, 1)
-
-[node name="Label" type="Label" parent="." unique_id=1953653013]
-offset_left = 759.0
-offset_top = 366.0
-offset_right = 1215.0
-offset_bottom = 462.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_he44f")
-theme_override_font_sizes/font_size = 100
-text = "HULI KA BOI"
-
 [connection signal="pressed" from="Button" to="." method="_on_restart_button_pressed"]
-[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_main_menu_button_pressed"]
