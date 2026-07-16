@@ -6646,7 +6646,7 @@ tile_map_data = PackedByteArray("AACuAOb/AQAFADcAAACuAOf/AQAFADcAAACvAOb/AQAFADc
 tile_set = SubResource("TileSet_qk7ji")
 
 [node name="Light" parent="." unique_id=906797323 instance=ExtResource("9_fowa6")]
-position = Vector2(-135, -247)
+position = Vector2(-119, -245)
 
 [node name="Light2" parent="." unique_id=228776570 instance=ExtResource("9_fowa6")]
 position = Vector2(361, -233)
