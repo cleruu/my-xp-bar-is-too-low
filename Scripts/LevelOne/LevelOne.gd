@@ -32,12 +32,14 @@ var timeRemaining: float
 var gameOver = false
 
 @onready var witness: Node = get_node_or_null(witnessPath)
-
+@onready var backgroundMusic: AudioStreamPlayer = $BackgroundMusic
+@onready var grabSound: AudioStreamPlayer = $GrabSound
 
 func _ready() -> void:
 	timeRemaining = timeLimit
 	%LookingLabel.visible = false
 	$CharacterAnimation.play("Idle")
+	backgroundMusic.play()
 
 	if witness:
 		witness.lookStarted.connect(_onWitnessLookStarted)
@@ -126,6 +128,7 @@ func _goToVictory() -> void:
 	if victoryLevelOnePath.is_empty():
 		push_warning("FishingSystem: victoryLevelOnePath not set, cannot change scene.")
 		return
+	await get_tree().create_timer(grabSound.stream.get_length()).timeout
 	get_tree().change_scene_to_file(victoryLevelOnePath)
 
 
@@ -137,6 +140,8 @@ func _succeed() -> void:
 		witness.stopWatching()
 	print("SUCCESS: The theft was successful!")
 	$CharacterAnimation.play("PlayerGrabbing")
+	backgroundMusic.stop()
+	grabSound.play()
 	theftSucceeded.emit()
 
 	_goToVictory()
