@@ -6808,7 +6808,7 @@ shape = SubResource("CapsuleShape2D_6nr7s")
 [node name="Camera2D" type="Camera2D" parent="player" unique_id=1970495766]
 zoom = Vector2(3.41, 3.41)
 
-[node name="FootstepSFX" type="AudioStreamPlayer2D" parent="player"]
+[node name="FootstepSFX" type="AudioStreamPlayer" parent="player"]
 
 [node name="building" type="TileMapLayer" parent="." unique_id=1514777821]
 y_sort_enabled = true

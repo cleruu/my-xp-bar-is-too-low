@@ -4,14 +4,14 @@ extends CharacterBody2D
 var character_direction : Vector2
 var last_flip_h : bool = false
 
-@onready var footstep_sfx: AudioStreamPlayer2D = $FootstepSFX
+@onready var footstep_sfx: AudioStreamPlayer = $FootstepSFX
 var footstep_stream: AudioStreamWAV
 
 func _ready() -> void:
 	footstep_stream = preload("res://Assets/Sounds/sfx/Walking Sound Effects.wav")
 	footstep_stream.loop_mode = AudioStreamWAV.LOOP_FORWARD
 	footstep_sfx.stream = footstep_stream
-	footstep_sfx.volume_db = 6.0
+	footstep_sfx.volume_db = 24.0
 
 func _physics_process(delta):
 	character_direction.x = Input.get_axis("moveLeft", "moveRight")
