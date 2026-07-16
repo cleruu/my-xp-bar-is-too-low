@@ -4,14 +4,18 @@ extends CharacterBody2D
 var character_direction : Vector2
 var last_flip_h : bool = false
 
-@onready var footstep_sfx: AudioStreamPlayer = $FootstepSFX
+var footstep_sfx: AudioStreamPlayer
 var footstep_stream: AudioStreamWAV
 
 func _ready() -> void:
-	footstep_stream = preload("res://Assets/Sounds/BGM/L3_Sneaky_NoCatch.wav")
+	footstep_stream = preload("res://Assets/Sounds/sfx/Walking Sound Effects.wav")
 	footstep_stream.loop_mode = AudioStreamWAV.LOOP_FORWARD
+	footstep_sfx = AudioStreamPlayer.new()
 	footstep_sfx.stream = footstep_stream
 	footstep_sfx.volume_db = 0.0
+	footstep_sfx.bus = "Master"
+	add_child(footstep_sfx)
+	print("ROBS_DEBUG: footstep _ready done, node: ", footstep_sfx != null)
 
 func _physics_process(delta):
 	character_direction.x = Input.get_axis("moveLeft", "moveRight")
@@ -31,6 +35,7 @@ func _physics_process(delta):
 		if %charaSprite.animation != "walk_r": %charaSprite.animation = "walk_r"
 		if not footstep_sfx.playing:
 			footstep_sfx.play()
+			print("ROBS_DEBUG: footstep play called")
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, movement_speed)
 		if %charaSprite.animation != "idle": %charaSprite.animation = "idle"
