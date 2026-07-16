@@ -6,7 +6,7 @@ var atEnd := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	get_parent().get_child(3).get_child(0).get_child(5).text = str(GlobalManager.damage)
+	get_parent().get_child(3).get_child(0).get_child(5).text = str(50000 - GlobalManager.damage)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("Next"):

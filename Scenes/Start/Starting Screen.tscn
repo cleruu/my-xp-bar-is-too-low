@@ -19,7 +19,21 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="Button" type="Button" parent="UI" unique_id=847619421]
+layout_mode = 0
+offset_left = 148.0
+offset_top = 714.0
+offset_right = 577.0
+offset_bottom = 847.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.44705883, 0.06666667, 0.011764706, 1)
+theme_override_fonts/font = ExtResource("2_o0u6y")
+theme_override_font_sizes/font_size = 113
+text = "start game"
+flat = true
+
 [node name="Story Button" type="Button" parent="UI" unique_id=1120805849]
+visible = false
 layout_mode = 0
 offset_left = 143.0
 offset_top = 604.0
@@ -31,35 +45,7 @@ theme_override_colors/font_hover_color = Color(0.44705883, 0.06666667, 0.0117647
 theme_override_fonts/font = ExtResource("2_o0u6y")
 theme_override_font_sizes/font_size = 34
 toggle_mode = true
-text = "story mode	"
-flat = true
-
-[node name="Arcade Button" type="Button" parent="UI" unique_id=454041848]
-layout_mode = 0
-offset_left = 143.0
-offset_top = 691.0
-offset_right = 270.0
-offset_bottom = 730.0
-scale = Vector2(1.8000025, 1.8000025)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0.44705883, 0.06666667, 0.011764706, 1)
-theme_override_fonts/font = ExtResource("2_o0u6y")
-theme_override_font_sizes/font_size = 34
-text = "arcade mode"
-flat = true
-
-[node name="Settings Button" type="Button" parent="UI" unique_id=406128106]
-layout_mode = 0
-offset_left = 142.0
-offset_top = 772.0
-offset_right = 379.0
-offset_bottom = 811.0
-scale = Vector2(1.8000025, 1.8000025)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0.44705883, 0.06666667, 0.011764706, 1)
-theme_override_fonts/font = ExtResource("2_o0u6y")
-theme_override_font_sizes/font_size = 34
-text = "settings (under construction)"
+text = "start game"
 flat = true
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=368379480]
@@ -82,8 +68,6 @@ autoplay = true
 unique_name_in_owner = true
 stream = ExtResource("3_61log")
 
+[connection signal="pressed" from="UI/Button" to="Starting Screen Manager" method="goToStartingCutscene"]
 [connection signal="mouse_entered" from="UI/Story Button" to="Audio Manager" method="playSound" binds= ["Button Hover"]]
 [connection signal="pressed" from="UI/Story Button" to="Starting Screen Manager" method="goToStartingCutscene"]
-[connection signal="mouse_entered" from="UI/Arcade Button" to="Audio Manager" method="playSound" binds= ["Button Hover"]]
-[connection signal="pressed" from="UI/Arcade Button" to="Starting Screen Manager" method="goToArcade"]
-[connection signal="mouse_entered" from="UI/Settings Button" to="Audio Manager" method="playSound" binds= ["Button Hover"]]

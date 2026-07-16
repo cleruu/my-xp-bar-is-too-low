@@ -61,9 +61,10 @@ var spawn_position: Vector2
 @export var path_update_interval: float = 0.40 # Update path every 0.15 seconds
 var path_update_timer: float = 0.0
 # For pathfinding failsafe
-@export var stuck_time_limit: float = 0.5
+@export var stuck_check_interval: float = 1.0 # Take a snapshot every 1 second
+@export var min_travel_distance: float = 20.0 # They must move at least 20 pixels in that second
 var stuck_timer: float = 0.0
-var previous_position: Vector2
+var snapshot_position: Vector2
 
 
 func _ready() -> void:
@@ -79,6 +80,7 @@ func _ready() -> void:
 	setRayCast(vision_ray3)
 	
 	spawn_position = global_position
+	snapshot_position = global_position
 	
 	# Wait for the navigation map to fully synchronize before asking it questions
 	await get_tree().physics_frame
@@ -127,21 +129,25 @@ func _physics_process(delta: float) -> void:
 	_update_vision(delta)
 	queue_redraw()
 	
+# --- NEW: The Snapshot Stuck Failsafe ---
 	if current_state == State.PATROL and not is_waiting and not is_detecting:
-		
-		var distance_moved = global_position.distance_to(previous_position)
-		if distance_moved < (patrol_speed * delta * 0.1):
-			stuck_timer += delta
-			if stuck_timer >= stuck_time_limit:
-				print("DEBUG: Guard got stuck! Forcing a new path.")
-				_pick_new_wander_target()
-				stuck_timer = 0.0
-		else:
-			# We are moving fine, reset the timer
-			stuck_timer = 0.0
+		stuck_timer += delta
+		if stuck_timer >= stuck_check_interval:
+			# Time's up! Did we actually go anywhere?
+			var distance_moved = global_position.distance_to(snapshot_position)
 			
-	# Always update the previous position for the next frame's math
-	previous_position = global_position
+			if distance_moved < min_travel_distance:
+				print("DEBUG: Guard is jitter-stuck! Forcing a new path.")
+				_pick_new_wander_target()
+				
+			# Take a new snapshot for the next interval and reset the timer
+			snapshot_position = global_position
+			stuck_timer = 0.0
+	else:
+		# If we are waiting, chasing, or detecting, constantly update the snapshot
+		# so we don't accidentally trigger the failsafe the moment we resume patrolling.
+		snapshot_position = global_position
+		stuck_timer = 0.0
 
 func _pick_new_wander_target() -> void:
 	var max_attempts = 10

@@ -190,7 +190,7 @@ animations = [{
 script = ExtResource("1_g4gpp")
 timeLimit = 60.0
 witnessPath = NodePath("Lola")
-victoryLevelOnePath = "uid://c2n5gxuqmfghx"
+victoryLevelOnePath = "uid://djx22gr8rir76"
 gameOverLevelOnePath = "uid://doyugpgddktfd"
 PauseMenu = ExtResource("2_6jkrq")
 
