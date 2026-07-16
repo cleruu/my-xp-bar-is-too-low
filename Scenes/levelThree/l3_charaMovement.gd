@@ -7,14 +7,7 @@ var last_flip_h : bool = false
 @onready var footstep_sfx: AudioStreamPlayer = $FootstepSFX
 
 func _ready() -> void:
-	var src: AudioStreamWAV = preload("res://Assets/Sounds/sfx/Walking Sound Effects.wav")
-	var looped = AudioStreamWAV.new()
-	looped.format = AudioStreamWAV.FORMAT_16_BITS
-	looped.mix_rate = src.mix_rate
-	looped.stereo = src.stereo
-	looped.data = src.data
-	looped.loop_mode = AudioStreamWAV.LOOP_FORWARD
-	footstep_sfx.stream = looped
+	footstep_sfx.stream = preload("res://Assets/Sounds/sfx/Walking Sound Effects.wav")
 	footstep_sfx.volume_db = 12.0
 	footstep_sfx.bus = "Master"
 
