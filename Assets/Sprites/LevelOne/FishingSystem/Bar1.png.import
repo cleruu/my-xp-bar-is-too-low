@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bpm6a0vq7f4a1"
-path="res://.godot/imported/Success.png-0eeeb707ffef4471118404b2d7631adf.ctex"
+uid="uid://c0debkg2bbqss"
+path="res://.godot/imported/Bar1.png-6988271f9e1c1f0f145dec3aa3f8cc3b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/LevelOne/FishingSystem/Success.png"
-dest_files=["res://.godot/imported/Success.png-0eeeb707ffef4471118404b2d7631adf.ctex"]
+source_file="res://Assets/Sprites/LevelOne/FishingSystem/Bar1.png"
+dest_files=["res://.godot/imported/Bar1.png-6988271f9e1c1f0f145dec3aa3f8cc3b.ctex"]
 
 [params]
 
