@@ -8,10 +8,10 @@ var last_flip_h : bool = false
 var footstep_stream: AudioStreamWAV
 
 func _ready() -> void:
-	footstep_stream = preload("res://Assets/Sounds/sfx/Walking Sound Effects.wav")
+	footstep_stream = preload("res://Assets/Sounds/BGM/L3_Sneaky_NoCatch.wav")
 	footstep_stream.loop_mode = AudioStreamWAV.LOOP_FORWARD
 	footstep_sfx.stream = footstep_stream
-	footstep_sfx.volume_db = 24.0
+	footstep_sfx.volume_db = 0.0
 
 func _physics_process(delta):
 	character_direction.x = Input.get_axis("moveLeft", "moveRight")
