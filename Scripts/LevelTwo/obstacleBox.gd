@@ -9,6 +9,7 @@ extends StaticBody2D
 @export var ground_y_offsets: Array[float] = []  # One per texture
 @export var ground_hitbox_widths: Array[float] = []  # One per texture
 @export var ground_hitbox_heights: Array[float] = []  # One per texture
+@export var ground_hit_sounds: Array[AudioStream] = []
 
 # Air obstacle settings (single)
 @export var air_texture: Texture2D = null
@@ -17,23 +18,21 @@ extends StaticBody2D
 @export var air_y_offset: float = -50.0
 @export var air_hitbox_width: float = 150.0
 @export var air_hitbox_height: float = 180.0
+@export var air_hit_sound: AudioStream = null
 
 @export var hit_sound: AudioStream = null
 
 @onready var sprite: Sprite2D = $Sprite2D
-@onready var audio_player: AudioStreamPlayer2D = $AudioStreamPlayer2D 
+
 
 var is_air_obstacle: bool = false
 var hitbox: Area2D = null
+var current_hit_sound: AudioStream = null
+var current_texture_index: int = 0
 
 func _ready():
 	_create_hitbox()
 	_apply_texture_and_hitbox()
-	
-	if not audio_player:
-		audio_player = AudioStreamPlayer2D.new()
-		add_child(audio_player)
-	
 
 func _create_hitbox():
 	hitbox = Area2D.new()
@@ -60,13 +59,18 @@ func _apply_texture_and_hitbox():
 	var y_offset: float = 0.0
 	var index: int = 0
 	
+	# Reset sound first
+	current_hit_sound = null
+	
 	if is_air_obstacle and air_texture:
 		# AIR OBSTACLE
 		chosen_texture = air_texture
 		target_size = Vector2(air_target_width, air_target_height)
 		hitbox_size = Vector2(air_hitbox_width, air_hitbox_height)
 		y_offset = air_y_offset
+		current_hit_sound = air_hit_sound  # ONLY for air
 		print("Air obstacle! Hitbox: ", hitbox_size)
+		print("Air sound: ", current_hit_sound)
 		
 	elif ground_textures.size() > 0:
 		# GROUND OBSTACLE - pick random
@@ -83,7 +87,14 @@ func _apply_texture_and_hitbox():
 		target_size = Vector2(tw, th)
 		hitbox_size = Vector2(hw, hh)
 		y_offset = yo
-		print("Ground obstacle #", index, "! Hitbox: ", hitbox_size)
+		
+		# Get the specific hit sound for this texture
+		if index < ground_hit_sounds.size():
+			current_hit_sound = ground_hit_sounds[index]
+			print("Ground obstacle #", index, "! Sound: ", current_hit_sound)
+		else:
+			current_hit_sound = null
+			print("Ground obstacle #", index, "! NO SOUND assigned!")
 	
 	if chosen_texture and hitbox:
 		# Apply texture
@@ -115,13 +126,16 @@ func _physics_process(delta: float) -> void:
 
 func _on_body_entered(body: Node) -> void:
 	if body.is_in_group("player"):
-				# Play hit sound
-		if audio_player and hit_sound:
-			audio_player.stream = hit_sound
-			audio_player.play()
-			
-		# Show damage popup at player position
+		# Play hit sound through controller (survives queue_free)
 		var controller = get_tree().current_scene
+		if controller and controller.has_method("play_sound") and current_hit_sound:
+			var pitch = randf_range(0.9, 1.1)
+			controller.play_sound(current_hit_sound, 0, pitch)
+			print("🔊 Playing obstacle sound: ", current_hit_sound.resource_path)
+		else:
+			print("❌ No sound to play!")
+		
+		# Show damage popup at player position
 		if controller and controller.has_method("show_damage_popup"):
 			controller.show_damage_popup(body.global_position + Vector2(0, -100), 5000)
 		
