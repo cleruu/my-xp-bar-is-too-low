@@ -13,6 +13,8 @@ extends CharacterBody2D
 @export var jump_sound_1: AudioStream = null
 @export var jump_sound_2: AudioStream = null
 
+@export var camera_margin: float = 50.0
+
 @onready var collisionShape: CollisionShape2D = $CollisionShape2D
 @onready var collisionRect: RectangleShape2D = collisionShape.shape as RectangleShape2D
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -71,10 +73,24 @@ func _physics_process(delta: float) -> void:
 		_play_jump_sound()
 
 	move_and_slide()
+# CLAMP PLAYER POSITION TO STAY ON SCREEN
+	var viewport = get_viewport()
+	var camera = get_viewport().get_camera_2d()
 	
-	# Update animation
+	if camera:
+		# Get camera bounds
+		var camera_pos = camera.global_position
+		var screen_size = viewport.get_visible_rect().size
+		
+		# Calculate left/right boundaries
+		var left_bound = camera_pos.x - screen_size.x / 2 + camera_margin
+		var right_bound = camera_pos.x + screen_size.x / 2 - camera_margin
+		
+		# Clamp position
+		global_position.x = clamp(global_position.x, left_bound, right_bound)
+	
+	# Update animation and sound
 	_update_animation()
-	# Update running sound
 	_update_running_sound()
 
 func _update_running_sound():

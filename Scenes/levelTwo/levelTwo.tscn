@@ -139,8 +139,8 @@ success_music = ExtResource("3_dt8bs")
 PauseMenu = ExtResource("2_vfc66")
 
 [node name="Main" type="Sprite2D" parent="." unique_id=311937296]
-position = Vector2(640, 447)
-scale = Vector2(1, 1.0203704)
+position = Vector2(640, 430.5)
+scale = Vector2(1, 1.1472222)
 texture = ExtResource("2_jnvl0")
 
 [node name="Parallax2D_Back" type="Parallax2D" parent="." unique_id=204262640]
@@ -173,13 +173,6 @@ repeat_times = 3
 position = Vector2(640, 375.00003)
 scale = Vector2(1, 0.86851853)
 texture = ExtResource("3_sm41y")
-
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1765648751]
-offset_left = -320.0
-offset_top = -178.0
-offset_right = 1596.0
-offset_bottom = -78.0
-color = Color(0, 0, 0, 1)
 
 [node name="Ground" type="StaticBody2D" parent="." unique_id=1205775299]
 position = Vector2(640, 620)
