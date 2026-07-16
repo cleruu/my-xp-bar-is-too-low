@@ -97,12 +97,12 @@ func _physics_process(delta: float) -> void:
 
 func _on_body_entered(body: Node) -> void:
 	if body.is_in_group("player"):
-		# Play hit sound
-		if audio_player and hit_sound:
-			audio_player.stream = hit_sound
-			audio_player.play()
-		# Show damage popup at player position
 		var controller = get_tree().current_scene
+		if controller and controller.has_method("play_sound"):
+			# Optional: random pitch for variety
+			var pitch = randf_range(0.9, 1.1)
+			controller.play_sound(hit_sound, 0, pitch)
+		# Show damage popup at player position
 		if controller and controller.has_method("show_damage_popup"):
 			controller.show_damage_popup(body.global_position + Vector2(0, -100), 5000)
 		

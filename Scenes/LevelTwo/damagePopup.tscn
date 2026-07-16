@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dqbbjsdjyjviv"]
 
 [ext_resource type="Script" uid="uid://d0sin0jhr2hjb" path="res://Scripts/LevelTwo/damagePopup.gd" id="1_25355"]
+[ext_resource type="FontFile" uid="uid://d3ocxdke0tnxi" path="res://Assets/Fonts/SatukiloRegular-BLgz3.ttf" id="2_ja1sv"]
 
 [node name="DamagePopup" type="Node2D" unique_id=352055560]
 script = ExtResource("1_25355")
@@ -9,5 +10,6 @@ script = ExtResource("1_25355")
 offset_right = 40.0
 offset_bottom = 23.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ja1sv")
 theme_override_font_sizes/font_size = 48
 text = "-5000"
