@@ -10,9 +10,9 @@ func _ready() -> void:
 	var src: AudioStreamWAV = preload("res://Assets/Sounds/sfx/Walking Sound Effects.wav")
 	var looped = AudioStreamWAV.new()
 	looped.format = AudioStreamWAV.FORMAT_16_BITS
-	looped.mix_rate = 24000
-	looped.stereo = true
-	looped.data = src.data.slice(0, 96000)
+	looped.mix_rate = src.mix_rate
+	looped.stereo = src.stereo
+	looped.data = src.data
 	looped.loop_mode = AudioStreamWAV.LOOP_FORWARD
 	footstep_sfx.stream = looped
 	footstep_sfx.volume_db = 12.0
