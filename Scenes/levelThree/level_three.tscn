@@ -2218,5 +2218,19 @@ visible = false
 
 [node name="guard" parent="." unique_id=1274342205 instance=ExtResource("7_r4kcd")]
 position = Vector2(255, 10)
+patrol_speed = null
+chase_speed = null
+turn_speed = null
+chase_lose_time = null
+catch_distance = null
+catch_time = null
+vision_range = null
+vision_angle_degrees = null
+time_to_detect = null
+patrol_wait_time = null
+peripheral_radius = null
+wander_radius = null
+path_update_interval = null
+stuck_time_limit = null
 
 [connection signal="body_entered" from="goalSensor/GoalZone" to="Node2D2/player" method="_on_area_2d_body_entered"]
