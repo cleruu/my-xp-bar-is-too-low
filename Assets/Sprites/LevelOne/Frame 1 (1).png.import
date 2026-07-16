@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhma0fdp8dvrk"
-path="res://.godot/imported/RodRect.png-5920e4c7bf3c0fd993301a939e59bdd5.ctex"
+uid="uid://55ocnwpot4om"
+path="res://.godot/imported/Frame 1 (1).png-438e5a92bbd04baa58910b762ec4cb25.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/LevelOne/FishingSystem/RodRect.png"
-dest_files=["res://.godot/imported/RodRect.png-5920e4c7bf3c0fd993301a939e59bdd5.ctex"]
+source_file="res://Assets/Sprites/LevelOne/Frame 1 (1).png"
+dest_files=["res://.godot/imported/Frame 1 (1).png-438e5a92bbd04baa58910b762ec4cb25.ctex"]
 
 [params]
 
