@@ -2286,6 +2286,7 @@ scale = Vector2(0.9846159, 0.79012376)
 collision_layer = 255
 collision_mask = 4294967295
 script = ExtResource("22_fi66q")
+endCutscene = "uid://ddodsywy6qhgc"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="goalSensor/GoalZone" unique_id=1270233608]
 visible = false

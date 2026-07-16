@@ -56,7 +56,8 @@ func _on_player_caught() -> void:
 		print("RELOAD FAILED with error code: ", error)
 
 func _on_player_reached_goal() -> void:
-	print("LevelThree: player reached the goal! YOU WIN")
+	print("test")
+	
 
 # Helper functions for pausing the game
 func pauseGame() -> void:
