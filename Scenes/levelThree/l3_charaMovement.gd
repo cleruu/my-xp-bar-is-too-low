@@ -8,7 +8,7 @@ var last_flip_h : bool = false
 var footstep_stream: AudioStreamWAV
 
 func _ready() -> void:
-	footstep_stream = preload("res://Assets/Sounds/SFX/Walking Sound Effects.wav")
+	footstep_stream = preload("res://Assets/Sounds/sfx/Walking Sound Effects.wav")
 	footstep_stream.loop_mode = AudioStreamWAV.LOOP_FORWARD
 	footstep_sfx.stream = footstep_stream
 	print("ROBS_DEBUG: FootstepSFX node: ", footstep_sfx != null)
