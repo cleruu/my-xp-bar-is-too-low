@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://dy66oe78wl6f6"]
+
+[ext_resource type="Texture2D" uid="uid://d4sasxplejel" path="res://Assets/Sprites/LevelThree/Additions/light.png" id="1_amhad"]
+[ext_resource type="Texture2D" uid="uid://bso78h3tftnyc" path="res://Assets/Sprites/LevelThree/Additions/bush.PNG" id="2_k7kv1"]
+[ext_resource type="Texture2D" uid="uid://c84j66bk3xouj" path="res://Assets/Sprites/LevelThree/Additions/dog.PNG" id="3_jqquq"]
+[ext_resource type="Texture2D" uid="uid://pkldnmwl27x5" path="res://Assets/Sprites/LevelThree/Additions/lightpost.png" id="4_6idl0"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p4beb"]
+texture = ExtResource("2_k7kv1")
+16:28/size_in_atlas = Vector2i(107, 72)
+16:28/0 = 0
+16:28/0/physics_layer_0/polygon_0/points = PackedVector2Array(-760, -96, -344, -208, 160, -568, 672, -400, 888, 688, 600, 528, -503.81848, 552.25977, -808, 440)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eq3o0"]
+texture = ExtResource("3_jqquq")
+7:25/size_in_atlas = Vector2i(120, 85)
+7:25/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wx2tb"]
+texture = ExtResource("4_6idl0")
+49:2/0 = 0
+17:3/size_in_atlas = Vector2i(37, 77)
+17:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_6xvv8"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_p4beb")
+sources/1 = SubResource("TileSetAtlasSource_eq3o0")
+sources/2 = SubResource("TileSetAtlasSource_wx2tb")
+
+[node name="Light" type="Node2D" unique_id=906797323]
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=516630841]
+position = Vector2(8, 169)
+scale = Vector2(0.15555556, 0.18765432)
+texture = ExtResource("1_amhad")
+
+[node name="lightpoles" type="TileMapLayer" parent="." unique_id=1290090582]
+scale = Vector2(0.11, 0.11)
+tile_map_data = PackedByteArray(0, 0, 39, 0, 52, 0, 2, 0, 49, 0, 2, 0, 0, 16, 26, 0, 47, 0, 2, 0, 17, 0, 3, 0, 0, 16)
+tile_set = SubResource("TileSet_6xvv8")
