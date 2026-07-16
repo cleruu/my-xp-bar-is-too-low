@@ -6,6 +6,7 @@
 
 [node name="GameOver" type="Node2D" unique_id=178194341]
 script = ExtResource("1_lhcrs")
+endCutscene = "uid://b5rk1mqn6gcc3"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1580847381]
 position = Vector2(960, 540)
