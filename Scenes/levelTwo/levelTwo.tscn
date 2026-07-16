@@ -36,6 +36,8 @@
 [ext_resource type="Texture2D" uid="uid://ces4xnavdllf5" path="res://Assets/Sprites/LevelTwo/Enemy/lola_Running5.png" id="24_skc8q"]
 [ext_resource type="Texture2D" uid="uid://ix7x76vfap81" path="res://Assets/Sprites/LevelTwo/Enemy/lola_Running6.png" id="25_sfet4"]
 [ext_resource type="Script" uid="uid://dg6llqclqqcd4" path="res://Scripts/LevelTwo/valueBar.gd" id="30_skc8q"]
+[ext_resource type="Texture2D" uid="uid://br4dtci5fi17u" path="res://Assets/Sprites/LevelTwo/BarBackground.png" id="35_v3ok7"]
+[ext_resource type="Texture2D" uid="uid://dbkknodp35n7d" path="res://Assets/Sprites/LevelTwo/GreenBar_fitted.png" id="36_kc1fy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5y726"]
 size = Vector2(1666, 80)
@@ -222,18 +224,15 @@ scale = Vector2(0.199, 0.199)
 sprite_frames = SubResource("SpriteFrames_5y726")
 animation = &"run"
 
-[node name="ValueBarBackground" type="ColorRect" parent="." unique_id=59463431]
-offset_left = -305.0
-offset_top = -141.0
-offset_right = -5.0
-offset_bottom = -111.0
-color = Color(0.48452926, 0.48452926, 0.48452926, 1)
-
-[node name="ValueBar" type="ColorRect" parent="ValueBarBackground" unique_id=58003348]
-layout_mode = 0
-offset_right = 300.0
-offset_bottom = 30.0
-color = Color(0, 1, 0, 1)
+[node name="ValueBar" type="TextureProgressBar" parent="." unique_id=1006088]
+offset_left = -260.0
+offset_top = -145.0
+offset_right = 857.0
+offset_bottom = -13.0
+max_value = 50000.0
+value = 50000.0
+texture_under = ExtResource("35_v3ok7")
+texture_progress = ExtResource("36_kc1fy")
 script = ExtResource("30_skc8q")
 
 [node name="MusicPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1963900855]

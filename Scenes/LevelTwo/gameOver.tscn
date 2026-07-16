@@ -1,11 +1,19 @@
 [gd_scene format=3 uid="uid://bw5t76fnyla4t"]
 
 [ext_resource type="Script" uid="uid://lqtfxbcac81k" path="res://Scripts/LevelTwo/gameOver.gd" id="1_lhcrs"]
+[ext_resource type="Texture2D" uid="uid://1wrjftdlptye" path="res://Assets/Sprites/LevelTwo/SplashArt/LVL2_FAIL.png" id="2_u632m"]
+[ext_resource type="FontFile" uid="uid://b57t4vqbtlds" path="res://Assets/Fonts/SteelworksVintageDemo-rR98.ttf" id="3_3n7gd"]
 
 [node name="GameOver" type="Node2D" unique_id=178194341]
 script = ExtResource("1_lhcrs")
 
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1560471717]
+position = Vector2(958, 515.5)
+scale = Vector2(0.99583334, 0.95092595)
+texture = ExtResource("2_u632m")
+
 [node name="Title" type="Label" parent="." unique_id=167725230]
+visible = false
 offset_left = 815.0
 offset_top = 455.0
 offset_right = 1227.0
@@ -13,11 +21,29 @@ offset_bottom = 554.0
 theme_override_font_sizes/font_size = 72
 text = "GAME OVER"
 
-[node name="Button" type="Button" parent="." unique_id=222753193]
-offset_left = 915.0
-offset_top = 622.0
-offset_right = 1115.0
-offset_bottom = 672.0
+[node name="RestartButton" type="Button" parent="." unique_id=222753193]
+offset_left = 78.0
+offset_top = 739.0
+offset_right = 329.0
+offset_bottom = 857.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_3n7gd")
+theme_override_font_sizes/font_size = 100
 text = "restart"
+flat = true
 
-[connection signal="pressed" from="Button" to="." method="_on_restart_button_pressed"]
+[node name="QuitButton" type="Button" parent="." unique_id=970750373]
+offset_left = 76.0
+offset_top = 867.0
+offset_right = 214.0
+offset_bottom = 985.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_3n7gd")
+theme_override_font_sizes/font_size = 100
+text = "quit"
+flat = true
+
+[connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
