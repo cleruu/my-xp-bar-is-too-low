@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://c14upmgkvavxw"]
+
+[ext_resource type="Script" uid="uid://ms80vonistdx" path="res://Scripts/Audio Manager.gd" id="11_mw6r1"]
+[ext_resource type="AudioStream" uid="uid://dxqfthks1svqa" path="res://Assets/Sounds/BGM/Cutscene.wav" id="12_gy12f"]
+[ext_resource type="AudioStream" uid="uid://bgljnic1qvtaq" path="res://Assets/Sounds/sfx/Cutscene/JeepTrimmed.mp3" id="13_88r7s"]
+
+[sub_resource type="Animation" id="Animation_tnhgr"]
+resource_name = "Level 3 Play Cutscene"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6bllu"]
+_data = {
+&"Level 3 Play Cutscene": SubResource("Animation_tnhgr")
+}
+
+[node name="Level3 Cutscene" type="Node2D" unique_id=2140076514]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1025808759]
+
+[node name="Manager Level 3 Cutscene" type="Node2D" parent="." unique_id=1502580222]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1190854481]
+libraries/ = SubResource("AnimationLibrary_6bllu")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=521962742]
+
+[node name="SC1" type="TextureRect" parent="CanvasLayer" unique_id=1974470877]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=267812244]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_right = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Audio Manager" type="Node" parent="." unique_id=2044028111]
+script = ExtResource("11_mw6r1")
+
+[node name="BGM" type="AudioStreamPlayer" parent="Audio Manager" unique_id=1131261906]
+stream = ExtResource("12_gy12f")
+volume_db = -2.419
+autoplay = true
+
+[node name="Jeep" type="AudioStreamPlayer" parent="Audio Manager" unique_id=2020257122]
+unique_name_in_owner = true
+stream = ExtResource("13_88r7s")
