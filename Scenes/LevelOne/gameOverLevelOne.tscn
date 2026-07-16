@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bbaachg1g3ya8" path="res://Scripts/LevelOne/GameOverLevelOne.gd" id="1_xmmrm"]
 [ext_resource type="Texture2D" uid="uid://55ocnwpot4om" path="res://Assets/Sprites/LevelOne/Frame 1 (1).png" id="2_yy8a5"]
+[ext_resource type="FontFile" uid="uid://b57t4vqbtlds" path="res://Assets/Fonts/SteelworksVintageDemo-rR98.ttf" id="3_wvfnl"]
 
 [node name="GameOver" type="Node2D" unique_id=178194341]
 script = ExtResource("1_xmmrm")
@@ -15,16 +16,24 @@ offset_left = 556.0
 offset_top = 533.0
 offset_right = 918.0
 offset_bottom = 668.0
-theme_override_font_sizes/font_size = 80
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_wvfnl")
+theme_override_font_sizes/font_size = 100
 text = "restart"
+flat = true
 
 [node name="Button2" type="Button" parent="." unique_id=229299930]
 offset_left = 1040.0
 offset_top = 532.0
 offset_right = 1401.0
 offset_bottom = 666.0
-theme_override_font_sizes/font_size = 80
-text = "Quit"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_wvfnl")
+theme_override_font_sizes/font_size = 100
+text = "quit"
+flat = true
 
 [connection signal="pressed" from="Button" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
