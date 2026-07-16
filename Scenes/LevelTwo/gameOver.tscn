@@ -11,17 +11,6 @@ script = ExtResource("1_lhcrs")
 position = Vector2(960, 540)
 texture = ExtResource("2_f51vm")
 
-[node name="Button" type="Button" parent="." unique_id=222753193]
-offset_left = 106.0
-offset_top = 895.0
-offset_right = 306.0
-offset_bottom = 969.0
-theme_override_colors/font_hover_color = Color(0.44705883, 0.06666667, 0.011764706, 1)
-theme_override_fonts/font = ExtResource("3_7r24s")
-theme_override_font_sizes/font_size = 60
-text = "restart"
-flat = true
-
 [node name="QuitButton" type="Button" parent="." unique_id=970750373]
 offset_left = 76.0
 offset_top = 867.0
@@ -29,10 +18,9 @@ offset_right = 214.0
 offset_bottom = 985.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_3n7gd")
+theme_override_fonts/font = ExtResource("3_7r24s")
 theme_override_font_sizes/font_size = 100
-text = "quit"
+text = "retry"
 flat = true
 
-[connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
