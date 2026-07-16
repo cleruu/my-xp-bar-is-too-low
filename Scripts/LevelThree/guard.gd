@@ -19,12 +19,11 @@ var facing_direction: Vector2 = Vector2.DOWN
 @export var turn_speed: float = 5.0
 var desired_direction: Vector2 = Vector2.DOWN
 
-
 signal player_caught 
 var is_detecting: bool = false
 
 signal player_spotted
-signal player_lost
+signal player_lost # NEW: Added missing signal for level manager
 
 # --- Escape / Aggro loss ---
 @export var chase_lose_time: float = 2.0
@@ -35,14 +34,13 @@ var lost_sight_timer: float = 0.0
 @export var catch_time: float = 1.0
 var catch_timer: float = 0.0
 
-
 # --- Vision ---
 @export var vision_range: float = 250.0
 @export var vision_angle_degrees: float = 45.0  # half-angle either side of facing direction
 @export var time_to_detect: float = 3.0
 @export var patrol_wait_time: float = 1.5   # seconds to pause at each point
-@export var peripheral_radius: float = 45.0 # 
-@export var suspicion_drain_rate: float = 1.5 #How fast the meter drains when sight is lost
+@export var peripheral_radius: float = 45.0 # Distance where guard ignores angle
+@export var suspicion_drain_rate: float = 1.5 # How fast the meter drains when sight is lost
 @onready var debug_label: Label = $Label
 
 var is_waiting: bool = false
@@ -59,18 +57,17 @@ var current_state: State = State.PATROL
 var spawn_position: Vector2
 
 func _ready() -> void:
-	for point in patrol_points_node.get_children():
-		patrol_points.append(point.global_position)
+	if patrol_points_node:
+		for point in patrol_points_node.get_children():
+			patrol_points.append(point.global_position)
+			
 	player = get_tree().get_first_node_in_group("player")
 
 	# Vision ray only "sees" layers 17 (player) and 18 (walls).
-	# Layer 19 (other guards) is excluded, so guards never block each other's sight.
-	
 	setRayCast(vision_ray)
 	setRayCast(vision_ray2)
 	setRayCast(vision_ray3)
 	
-
 	spawn_position = global_position
 	
 	# We use call_deferred so the game has 1 frame to load the TileMap 
@@ -82,11 +79,14 @@ func _pick_new_wander_target() -> void:
 	var random_distance = randf_range(50.0, wander_radius) 
 	var random_target = spawn_position + Vector2(cos(random_angle), sin(random_angle)) * random_distance
 	
-	# Feed the random coordinate to the Navigation Agent
-	nav_agent.target_position = random_target
+	# NEW: Ensure the target is actually on the navigable floor (not inside a wall)
+	var map_rid = get_world_2d().navigation_map
+	var safe_target = NavigationServer2D.map_get_closest_point(map_rid, random_target)
+	
+	# Feed the safe coordinate to the Navigation Agent
+	nav_agent.target_position = safe_target
 
 func setRayCast(rc: RayCast2D) -> void:
-	#rc.collision_mask = 0
 	rc.set_collision_mask_value(17, true)
 	rc.set_collision_mask_value(18, true)
 	rc.enabled = true
@@ -95,20 +95,25 @@ func _physics_process(delta: float) -> void:
 	match current_state:
 		State.PATROL:
 			if is_detecting:
-				if player != null and (player.global_position - global_position).length() > 5.0:
-					desired_direction = desired_direction.lerp((player.global_position - global_position).normalized(), 0.5).normalized()
-					velocity = desired_direction * chase_speed
-					move_and_slide()
+				# Run at the player while detecting
+				if player != null:
+					var to_player = player.global_position - global_position
+					if to_player.length() > 5.0:
+						var target_direction = to_player.normalized()
+						desired_direction = desired_direction.lerp(target_direction, 0.5).normalized()
+						velocity = desired_direction * chase_speed
+						move_and_slide()
 			elif is_waiting:
 				wait_timer += delta
 				velocity = Vector2.ZERO
 				if wait_timer >= patrol_wait_time:
 					is_waiting = false
-					current_point_index = (current_point_index + 1) % patrol_points.size()
+					# FIXED: Removed the old patrol array index code here!
 			else:
 				_patrol()
 		State.CHASE:
 			_chase()
+			
 	facing_direction = facing_direction.slerp(desired_direction, turn_speed * delta)
 
 	_update_vision(delta)
@@ -148,6 +153,7 @@ func _chase() -> void:
 		move_and_slide()
 
 
+
 func _update_vision(delta: float) -> void:
 	if player == null:
 		return
@@ -155,14 +161,8 @@ func _update_vision(delta: float) -> void:
 	match current_state:
 		State.PATROL:
 			if _can_see_player():
-				var target_direction = (player.global_position - global_position).normalized()
-				desired_direction = desired_direction.lerp(target_direction, 0.5).normalized()
-				
 				is_detecting = true
-				# The guard should stand still while staring and detecting
-				
 				detection_timer += delta
-				
 			
 				if detection_timer >= time_to_detect:
 					sawPlayer = true
@@ -176,15 +176,9 @@ func _update_vision(delta: float) -> void:
 				vision_ray2.enabled = false
 				vision_ray3.enabled = false
 				
-				# NEW: Suspicion Decay instead of instant reset
+				# Suspicion Decay instead of instant reset
 				if detection_timer > 0.0:
-					# FIX: The guard keeps turning its head to track the player's last direction
-					# during the grace period!
-					var target_direction = (player.global_position - global_position).normalized()
-					desired_direction = desired_direction.lerp(target_direction, 0.5).normalized()
-					
 					detection_timer -= delta * suspicion_drain_rate
-					# If it drains all the way to 0, they fully lose interest
 					if detection_timer <= 0.0:
 						print("Guard: lost sight during detection, resuming patrol")
 						is_detecting = false
@@ -202,6 +196,7 @@ func _update_chase_tracking(delta: float) -> void:
 		lost_sight_timer += delta
 		if lost_sight_timer >= chase_lose_time:
 			print("Guard: lost the player, giving up chase")
+			player_lost.emit() # NEW: Tell LevelManager to change the music!
 			_reset_to_patrol()
 			return
 
@@ -223,11 +218,12 @@ func _reset_to_patrol() -> void:
 	is_detecting = false
 	lost_sight_timer = 0.0
 	catch_timer = 0.0
-	player_lost.emit()
+	
+	# Recalculate a new path when giving up the chase
+	_pick_new_wander_target()
 
 func _can_see_player() -> bool:
 	if player == null:
-		print("DEBUG: player is null")
 		return false
 	
 	var to_player = player.global_position - global_position
@@ -236,8 +232,7 @@ func _can_see_player() -> bool:
 	if distance > vision_range:
 		return false
 	
-	# NEW: Peripheral Vision / "Sixth Sense"
-	# If the player is outside the point-blank radius, then we check the angle
+	# Peripheral Vision / "Sixth Sense"
 	if distance > peripheral_radius:
 		var angle_diff = rad_to_deg(facing_direction.angle_to(to_player.normalized()))
 		if abs(angle_diff) > vision_angle_degrees:
@@ -269,6 +264,7 @@ func raycastEnable(rc: RayCast2D, height_offset: Vector2 = Vector2.ZERO) -> void
 	rc.force_raycast_update()
 
 func _draw() -> void:
+	# 1. Draw Vision Cone
 	var color = Color(1, 0, 0, 0.35) if current_state == State.CHASE else Color(1, 1, 0, 0.25)
 	var points := PackedVector2Array()
 	points.append(Vector2.ZERO)
@@ -281,10 +277,23 @@ func _draw() -> void:
 
 	draw_colored_polygon(points, color)
 	
-	# NEW: Draw a faint inner circle to visualize the peripheral "Sixth Sense" radius
+	# 2. Draw a faint inner circle to visualize the peripheral "Sixth Sense" radius
 	draw_arc(Vector2.ZERO, peripheral_radius, 0, TAU, 32, Color(1, 1, 1, 0.2), 1.0)
 
-	# Detection meter bar, only visible while filling
+	# 3. NEW: DEBUG DRAW NAV PATH
+	if current_state == State.PATROL and nav_agent.target_position != Vector2.ZERO:
+		# Draw the safe target destination as a magenta circle
+		draw_circle(to_local(nav_agent.target_position), 8.0, Color.MAGENTA)
+		
+		# Draw the calculated path lines
+		var path = nav_agent.get_current_navigation_path()
+		if path.size() > 1:
+			var local_path = PackedVector2Array()
+			for p in path:
+				local_path.append(to_local(p))
+			draw_polyline(local_path, Color.GREEN, 2.0)
+
+	# 4. Detection meter bar
 	if is_detecting:
 		var bar_width: float = 40.0
 		var bar_height: float = 6.0
