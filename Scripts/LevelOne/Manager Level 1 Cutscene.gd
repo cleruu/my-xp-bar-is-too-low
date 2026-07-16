@@ -18,6 +18,8 @@ func _process(delta: float) -> void:
 		else:
 			pass # Fast forward maybe?
 
+
+
 # Blinking text template
 func blinkText() -> void:
 	atEnd = true

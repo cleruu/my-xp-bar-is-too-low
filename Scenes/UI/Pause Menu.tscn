@@ -85,6 +85,7 @@ text = "retry"
 flat = true
 
 [node name="Options" type="Button" parent="." unique_id=317087043]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -104,6 +105,7 @@ text = "options"
 flat = true
 
 [node name="Save and Quit" type="Button" parent="." unique_id=878244689]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

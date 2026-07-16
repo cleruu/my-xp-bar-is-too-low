@@ -29,7 +29,11 @@ func canGoToL1() -> void:
 
 func pauseGame() -> void:
 	var pause = PauseMenu.instantiate()
+	pause.retry.connect(resetGame)
 	get_parent().get_child(4).add_child(pause)
+
+func resetGame() -> void:
+	get_tree().reload_current_scene()
 
 func playClothes() -> void:
 	get_parent().get_child(5).get_node("%Clothes").play()
