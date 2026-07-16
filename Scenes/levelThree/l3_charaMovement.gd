@@ -4,21 +4,14 @@ extends CharacterBody2D
 var character_direction : Vector2
 var last_flip_h : bool = false
 
-var footstep_sfx: AudioStreamPlayer
-var footstep_stream: AudioStreamWAV
+@onready var footstep_sfx: AudioStreamPlayer = $FootstepSFX
 
 func _ready() -> void:
-	footstep_stream = preload("res://Assets/Sounds/sfx/Walking Sound Effects.wav")
-	footstep_stream.loop_mode = AudioStreamWAV.LOOP_FORWARD
-	footstep_sfx = AudioStreamPlayer.new()
-	footstep_sfx.stream = footstep_stream
+	var walk_stream: AudioStreamWAV = preload("res://Assets/Sounds/sfx/Walking Sound Effects.wav")
+	walk_stream.loop_mode = AudioStreamWAV.LOOP_FORWARD
+	footstep_sfx.stream = walk_stream
 	footstep_sfx.volume_db = 12.0
 	footstep_sfx.bus = "Master"
-	get_tree().root.add_child(footstep_sfx)
-	print("ROBS_DEBUG: ready - stream null? ", footstep_stream == null)
-	print("ROBS_DEBUG: ready - player stream null? ", footstep_sfx.stream == null)
-	print("ROBS_DEBUG: ready - in tree? ", footstep_sfx.is_inside_tree())
-	print("ROBS_DEBUG: ready - bus: ", footstep_sfx.bus)
 
 func _physics_process(delta):
 	character_direction.x = Input.get_axis("moveLeft", "moveRight")
@@ -38,7 +31,6 @@ func _physics_process(delta):
 		if %charaSprite.animation != "walk_r": %charaSprite.animation = "walk_r"
 		if not footstep_sfx.playing:
 			footstep_sfx.play()
-			print("ROBS_DEBUG: play() called, playing after 1 frame: ", footstep_sfx.playing)
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, movement_speed)
 		if %charaSprite.animation != "idle": %charaSprite.animation = "idle"
