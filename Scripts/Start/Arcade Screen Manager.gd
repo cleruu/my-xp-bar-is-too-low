@@ -3,6 +3,7 @@ extends Node2D
 @export_file("*.tscn") var level1: String
 @export_file("*.tscn") var level2: String
 @export_file("*.tscn") var level3: String
+@export_file("*.tscn") var mainMenu: String
 
 
 # Called when the node enters the scene tree for the first time.
@@ -18,3 +19,6 @@ func goToLevel2() -> void:
 	
 func goToLevel3() -> void:
 	get_tree().change_scene_to_file(level3)
+	
+func goBackToMainMenu() -> void:
+	get_tree().change_scene_to_file(mainMenu)

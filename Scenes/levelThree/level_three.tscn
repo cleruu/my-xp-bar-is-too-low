@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://caa4ceubcf0n6" path="res://Scripts/LevelThree/levelThree.gd" id="1_c3deb"]
 [ext_resource type="Script" uid="uid://dweoidn5nu2up" path="res://Scenes/levelThree/l3_charaMovement.gd" id="1_frt6c"]
 [ext_resource type="Texture2D" uid="uid://bjkxiiqeo1mx0" path="res://Assets/L3 TEMP ASSETS/Tiny Swords (Free Pack)/Terrain/Tileset/Tilemap_color1.png" id="2_3kt3y"]
+[ext_resource type="PackedScene" uid="uid://cgtqsyk548rcr" path="res://Scenes/UI/Pause Menu.tscn" id="2_igksj"]
 [ext_resource type="Texture2D" uid="uid://5wqeb8h4sir0" path="res://Assets/L3 TEMP ASSETS/Tiny Swords (Free Pack)/Terrain/Tileset/Water Background color.png" id="3_xu1mw"]
 [ext_resource type="Texture2D" uid="uid://cdhrqt52n7sbg" path="res://Assets/Sprites/LevelThree/DarkRoad/DarkRoad/OldTextures/DarkRoad.png" id="5_aw2bo"]
 [ext_resource type="Texture2D" uid="uid://fs1p88in5xtu" path="res://Assets/Sprites/LevelTwo/LevelTwoBg.PNG" id="6_h6ahj"]
@@ -1952,6 +1953,7 @@ size = Vector2(65.00049, 80.999985)
 
 [node name="LevelThree" type="Node2D" unique_id=1916613163]
 script = ExtResource("1_c3deb")
+PauseMenu = ExtResource("2_igksj")
 
 [node name="BGMPlayer" type="AudioStreamPlayer" parent="." unique_id=765155578]
 
@@ -2194,19 +2196,5 @@ unique_name_in_owner = true
 
 [node name="guard" parent="." unique_id=1274342205 instance=ExtResource("7_r4kcd")]
 position = Vector2(255, 10)
-patrol_speed = null
-chase_speed = null
-turn_speed = null
-chase_lose_time = null
-catch_distance = null
-catch_time = null
-vision_range = null
-vision_angle_degrees = null
-time_to_detect = null
-patrol_wait_time = null
-peripheral_radius = null
-wander_radius = null
-path_update_interval = null
-stuck_time_limit = null
 
 [connection signal="body_entered" from="goalSensor/GoalZone" to="player" method="_on_area_2d_body_entered"]
