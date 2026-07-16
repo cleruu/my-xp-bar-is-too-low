@@ -56,6 +56,15 @@ var current_state: State = State.PATROL
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
 var spawn_position: Vector2
 
+# Pathfinding Optimization 
+@export var path_update_interval: float = 0.15 # Update path every 0.15 seconds
+var path_update_timer: float = 0.0
+# For pathfinding failsafe
+@export var stuck_time_limit: float = 0.5
+var stuck_timer: float = 0.0
+var previous_position: Vector2
+
+
 func _ready() -> void:
 	if patrol_points_node:
 		for point in patrol_points_node.get_children():
@@ -70,39 +79,27 @@ func _ready() -> void:
 	
 	spawn_position = global_position
 	
-	# We use call_deferred so the game has 1 frame to load the TileMap 
-	# before the guard tries to calculate a path!
-	call_deferred("_pick_new_wander_target")
-
-func _pick_new_wander_target() -> void:
-	var random_angle = randf() * TAU 
-	var random_distance = randf_range(50.0, wander_radius) 
-	var random_target = spawn_position + Vector2(cos(random_angle), sin(random_angle)) * random_distance
-	
-	# NEW: Ensure the target is actually on the navigable floor (not inside a wall)
-	var map_rid = get_world_2d().navigation_map
-	var safe_target = NavigationServer2D.map_get_closest_point(map_rid, random_target)
-	
-	# Feed the safe coordinate to the Navigation Agent
-	nav_agent.target_position = safe_target
-
-func setRayCast(rc: RayCast2D) -> void:
-	rc.set_collision_mask_value(17, true)
-	rc.set_collision_mask_value(18, true)
-	rc.enabled = true
+	# Wait for the navigation map to fully synchronize before asking it questions
+	await get_tree().physics_frame
+	_pick_new_wander_target()
 
 func _physics_process(delta: float) -> void:
 	match current_state:
 		State.PATROL:
 			if is_detecting:
-				# Run at the player while detecting
-				if player != null:
-					var to_player = player.global_position - global_position
-					if to_player.length() > 5.0:
-						var target_direction = to_player.normalized()
-						desired_direction = desired_direction.lerp(target_direction, 0.5).normalized()
-						velocity = desired_direction * chase_speed
-						move_and_slide()
+				if player != null and (player.global_position - global_position).length() > 5.0:
+					# NEW: Throttled path updating
+					path_update_timer -= delta
+					if path_update_timer <= 0.0:
+						nav_agent.target_position = player.global_position
+						path_update_timer = path_update_interval # Reset timer
+					
+					var next_path_position: Vector2 = nav_agent.get_next_path_position()
+					var target_direction = global_position.direction_to(next_path_position)
+					
+					desired_direction = desired_direction.lerp(target_direction, 0.5).normalized()
+					velocity = desired_direction * chase_speed
+					move_and_slide()
 			elif is_waiting:
 				wait_timer += delta
 				velocity = Vector2.ZERO
@@ -112,12 +109,57 @@ func _physics_process(delta: float) -> void:
 			else:
 				_patrol()
 		State.CHASE:
-			_chase()
+			_chase(delta)
 			
 	facing_direction = facing_direction.slerp(desired_direction, turn_speed * delta)
 
 	_update_vision(delta)
 	queue_redraw()
+	
+	if current_state == State.PATROL and not is_waiting and not is_detecting:
+		
+		var distance_moved = global_position.distance_to(previous_position)
+		if distance_moved < (patrol_speed * delta * 0.1):
+			stuck_timer += delta
+			if stuck_timer >= stuck_time_limit:
+				print("DEBUG: Guard got stuck! Forcing a new path.")
+				_pick_new_wander_target()
+				stuck_timer = 0.0
+		else:
+			# We are moving fine, reset the timer
+			stuck_timer = 0.0
+			
+	# Always update the previous position for the next frame's math
+	previous_position = global_position
+
+func _pick_new_wander_target() -> void:
+	var max_attempts = 10
+	var found_valid_point = false
+	
+	# Try up to 10 times to find a point we can actually walk to
+	for i in range(max_attempts):
+		var random_angle = randf() * TAU 
+		var random_distance = randf_range(50.0, wander_radius) 
+		var random_target = spawn_position + Vector2(cos(random_angle), sin(random_angle)) * random_distance
+		
+		# Ensure the target is actually on the navigable floor
+		var map_rid = get_world_2d().navigation_map
+		var safe_target = NavigationServer2D.map_get_closest_point(map_rid, random_target)
+		
+		# Feed the coordinate to the agent so it calculates a path
+		nav_agent.target_position = safe_target
+		
+		if nav_agent.is_target_reachable():
+			found_valid_point = true
+			break 
+			
+	if not found_valid_point:
+		nav_agent.target_position = spawn_position
+
+func setRayCast(rc: RayCast2D) -> void:
+	rc.set_collision_mask_value(17, true)
+	rc.set_collision_mask_value(18, true)
+	rc.enabled = true
 
 		
 func _patrol() -> void:
@@ -134,21 +176,37 @@ func _patrol() -> void:
 		# Queue up the next location
 		_pick_new_wander_target()
 		return
-
-	var next_path_position: Vector2 = nav_agent.get_next_path_position()
 	
+	var next_path_position: Vector2 = nav_agent.get_next_path_position()
 	desired_direction = global_position.direction_to(next_path_position)
+
+	if is_on_wall():
+		desired_direction = (desired_direction + get_wall_normal() * 0.8).normalized()
+
+
 	velocity = desired_direction * patrol_speed
 	move_and_slide()
 
 
-func _chase() -> void:
+func _chase(delta: float) -> void:
 	if player == null:
 		return
 
 	var to_player = player.global_position - global_position
 	if to_player.length() > 5.0:
-		desired_direction = to_player.normalized()
+
+		path_update_timer -= delta
+		if path_update_timer <= 0.0:
+			nav_agent.target_position = player.global_position
+			path_update_timer = path_update_interval # Reset timer
+		
+		var next_path_position: Vector2 = nav_agent.get_next_path_position()
+		desired_direction = global_position.direction_to(next_path_position)
+
+		if is_on_wall():
+			desired_direction = (desired_direction + get_wall_normal() * 0.8).normalized()
+		# -----------------------------------------------
+
 		velocity = desired_direction * chase_speed
 		move_and_slide()
 
